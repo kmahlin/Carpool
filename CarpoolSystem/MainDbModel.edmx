@@ -452,40 +452,36 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MainDbModel" ZoomLevel="86">
-        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="0.625" PointY="9.75" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="0.5" PointY="5.875" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="7.375" PointY="8.5" Height="2.7494921874999987" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="5.5" PointY="3.5" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="0.5" PointY="1.875" Height="2.5571907552083313" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083322" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="5.625" PointY="7.625" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="2.75" PointY="5.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.5" PointY="6.125" Height="2.7494921874999987" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8" PointY="2.375" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.875" PointY="2.375" Height="2.5571907552083313" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.125" PointY="2.75" Height="2.5571907552083322" IsExpanded="true" />
         <AssociationConnector Association="MainDbModel.FK_Driver_Car" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.3125" PointY="9.75" />
-          <ConnectorPoint PointX="1.3125" PointY="8.2398893229166674" />
+          <ConnectorPoint PointX="5.625" PointY="7.8699446614583337" />
+          <ConnectorPoint PointX="4.25" PointY="7.8699446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.375" PointY="9.09375" />
-          <ConnectorPoint PointX="1.3958333333333333" PointY="9.09375" />
-          <ConnectorPoint PointX="1.2291666666666667" PointY="9.09375" />
-          <ConnectorPoint PointX="0.53125" PointY="9.09375" />
-          <ConnectorPoint PointX="0.53125" PointY="8.2398893229166674" />
+          <ConnectorPoint PointX="8.5" PointY="6.84375" />
+          <ConnectorPoint PointX="4.25" PointY="6.84375" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="6.0571907552083317" />
-          <ConnectorPoint PointX="3.75" PointY="7.1485405390625" />
-          <ConnectorPoint PointX="2" PointY="7.1485405390625" />
+          <ConnectorPoint PointX="5.125" PointY="5.1509407552083317" />
+          <ConnectorPoint PointX="3.84375" PointY="5.1509407552083317" />
+          <ConnectorPoint PointX="3.84375" PointY="5.75" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.125" PointY="8.5" />
-          <ConnectorPoint PointX="8.125" PointY="4.4901432291666667" />
-          <ConnectorPoint PointX="7" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="9" PointY="6.125" />
+          <ConnectorPoint PointX="9" PointY="4.3552864583333335" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.4901432291666667" />
-          <ConnectorPoint PointX="5.5" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="6.625" PointY="3.5526432291666667" />
+          <ConnectorPoint PointX="8" PointY="3.5526432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_User_Profile" ManuallyRouted="false">
-          <ConnectorPoint PointX="2" PointY="3.9660953776041659" />
-          <ConnectorPoint PointX="3" PointY="3.9660953776041659" />
+          <ConnectorPoint PointX="3.375" PointY="3.8410953776041659" />
+          <ConnectorPoint PointX="5.125" PointY="3.8410953776041659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -4,3 +4,9 @@ C:\Users\Kevin\Documents\Visual Studio 2010\Projects\CarpoolSystem\CarpoolSystem
 C:\Users\Kevin\Documents\Visual Studio 2010\Projects\CarpoolSystem\CarpoolSystem\obj\Debug\CarpoolSystem.csprojResolveAssemblyReference.cache
 C:\Users\Kevin\Documents\Visual Studio 2010\Projects\CarpoolSystem\CarpoolSystem\obj\Debug\CarpoolSystem.dll
 C:\Users\Kevin\Documents\Visual Studio 2010\Projects\CarpoolSystem\CarpoolSystem\obj\Debug\CarpoolSystem.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.csprojResolveAssemblyReference.cache
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\bin\CarpoolSystem.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\bin\CarpoolSystem.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\bin\SimpleCrypto.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.pdb
