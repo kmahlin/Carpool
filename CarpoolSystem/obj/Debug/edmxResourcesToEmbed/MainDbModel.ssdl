@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MainDbModelStoreContainer">
+    <EntitySet Name="Car" EntityType="MainDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Driver" EntityType="MainDbModel.Store.Driver" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Event" EntityType="MainDbModel.Store.Event" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Passenger" EntityType="MainDbModel.Store.Passenger" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Profile" EntityType="MainDbModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="MainDbModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Driver_Car" Association="MainDbModel.Store.FK_Driver_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Driver" EntitySet="Driver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Driver_Event" Association="MainDbModel.Store.FK_Driver_Event">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Driver" EntitySet="Driver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Driver_User" Association="MainDbModel.Store.FK_Driver_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Driver" EntitySet="Driver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passenger_Event" Association="MainDbModel.Store.FK_Passenger_Event">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Passenger" EntitySet="Passenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Passenger_User" Association="MainDbModel.Store.FK_Passenger_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Passenger" EntitySet="Passenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Profile" Association="MainDbModel.Store.FK_User_Profile">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="int" Nullable="false" />
+    <Property Name="CarMake" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CarModel" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CarYear" Type="int" Nullable="false" />
+    <Property Name="CarColor" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TotalSeats" Type="int" Nullable="false" />
+    <Property Name="SeatsLeft" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="DriverId" />
+    </Key>
+    <Property Name="DriverId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CarId" Type="int" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
+    <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingTime" Type="datetime" Nullable="false" />
+    <Property Name="EndingTime" Type="datetime" Nullable="false" />
+    <Property Name="EventInfo" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="PassengerId" />
+    </Key>
+    <Property Name="PassengerId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="Emails" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PasswordSalt" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Driver_Car">
+    <End Role="Car" Type="MainDbModel.Store.Car" Multiplicity="1" />
+    <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="CarId" />
+      </Principal>
+      <Dependent Role="Driver">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Driver_Event">
+    <End Role="Event" Type="MainDbModel.Store.Event" Multiplicity="1" />
+    <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="Driver">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Driver_User">
+    <End Role="User" Type="MainDbModel.Store.User" Multiplicity="1" />
+    <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Driver">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passenger_Event">
+    <End Role="Event" Type="MainDbModel.Store.Event" Multiplicity="1" />
+    <End Role="Passenger" Type="MainDbModel.Store.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Passenger_User">
+    <End Role="User" Type="MainDbModel.Store.User" Multiplicity="1" />
+    <End Role="Passenger" Type="MainDbModel.Store.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Profile">
+    <End Role="Profile" Type="MainDbModel.Store.Profile" Multiplicity="1" />
+    <End Role="User" Type="MainDbModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
