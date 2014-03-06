@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MainDbModelStoreContainer">
+          <EntitySet Name="Car" EntityType="MainDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Driver" EntityType="MainDbModel.Store.Driver" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Event" EntityType="MainDbModel.Store.Event" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Passenger" EntityType="MainDbModel.Store.Passenger" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Profile" EntityType="MainDbModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="MainDbModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Driver_Car" Association="MainDbModel.Store.FK_Driver_Car">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="Driver" EntitySet="Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_Event" Association="MainDbModel.Store.FK_Driver_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Driver" EntitySet="Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_User" Association="MainDbModel.Store.FK_Driver_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Driver" EntitySet="Driver" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passenger_Event" Association="MainDbModel.Store.FK_Passenger_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Passenger" EntitySet="Passenger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passenger_User" Association="MainDbModel.Store.FK_Passenger_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Passenger" EntitySet="Passenger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profile" Association="MainDbModel.Store.FK_User_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="CarMake" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CarModel" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CarYear" Type="int" Nullable="false" />
+          <Property Name="CarColor" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TotalSeats" Type="int" Nullable="false" />
+          <Property Name="SeatsLeft" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverId" />
+          </Key>
+          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
+          <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartingTime" Type="datetime" Nullable="false" />
+          <Property Name="EndingTime" Type="datetime" Nullable="false" />
+          <Property Name="EventInfo" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerId" />
+          </Key>
+          <Property Name="PassengerId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="Emails" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PasswordSalt" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Driver_Car">
+          <End Role="Car" Type="MainDbModel.Store.Car" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_Event">
+          <End Role="Event" Type="MainDbModel.Store.Event" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_User">
+          <End Role="User" Type="MainDbModel.Store.User" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passenger_Event">
+          <End Role="Event" Type="MainDbModel.Store.Event" Multiplicity="1" />
+          <End Role="Passenger" Type="MainDbModel.Store.Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Passenger">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passenger_User">
+          <End Role="User" Type="MainDbModel.Store.User" Multiplicity="1" />
+          <End Role="Passenger" Type="MainDbModel.Store.Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Passenger">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profile">
+          <End Role="Profile" Type="MainDbModel.Store.Profile" Multiplicity="1" />
+          <End Role="User" Type="MainDbModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MainDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MainDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="MainDbModel.Car" />
+          <EntitySet Name="Drivers" EntityType="MainDbModel.Driver" />
+          <EntitySet Name="Events" EntityType="MainDbModel.Event" />
+          <EntitySet Name="Passengers" EntityType="MainDbModel.Passenger" />
+          <EntitySet Name="Profiles" EntityType="MainDbModel.Profile" />
+          <EntitySet Name="Users" EntityType="MainDbModel.User" />
+          <AssociationSet Name="FK_Driver_Car" Association="MainDbModel.FK_Driver_Car">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_Event" Association="MainDbModel.FK_Driver_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Driver_User" Association="MainDbModel.FK_Driver_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Driver" EntitySet="Drivers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passenger_Event" Association="MainDbModel.FK_Passenger_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Passenger" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passenger_User" Association="MainDbModel.FK_Passenger_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Passenger" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profile" Association="MainDbModel.FK_User_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="CarId" />
+          </Key>
+          <Property Name="CarId" Type="Int32" Nullable="false" />
+          <Property Name="CarMake" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CarModel" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CarYear" Type="Int32" Nullable="false" />
+          <Property Name="CarColor" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TotalSeats" Type="Int32" Nullable="false" />
+          <Property Name="SeatsLeft" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Car" FromRole="Car" ToRole="Driver" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="DriverId" />
+          </Key>
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CarId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="MainDbModel.FK_Driver_Car" FromRole="Driver" ToRole="Car" />
+          <NavigationProperty Name="Event" Relationship="MainDbModel.FK_Driver_Event" FromRole="Driver" ToRole="Event" />
+          <NavigationProperty Name="User" Relationship="MainDbModel.FK_Driver_User" FromRole="Driver" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="StartingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="EndingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StartingTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndingTime" Type="DateTime" Nullable="false" />
+          <Property Name="EventInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Event" FromRole="Event" ToRole="Driver" />
+          <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Event" ToRole="Passenger" />
+        </EntityType>
+        <EntityType Name="Passenger">
+          <Key>
+            <PropertyRef Name="PassengerId" />
+          </Key>
+          <Property Name="PassengerId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Passenger" ToRole="Event" />
+          <NavigationProperty Name="User" Relationship="MainDbModel.FK_Passenger_User" FromRole="Passenger" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="Emails" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_User" FromRole="User" ToRole="Driver" />
+          <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_User" FromRole="User" ToRole="Passenger" />
+          <NavigationProperty Name="Profile" Relationship="MainDbModel.FK_User_Profile" FromRole="User" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK_Driver_Car">
+          <End Role="Car" Type="MainDbModel.Car" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="CarId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_Event">
+          <End Role="Event" Type="MainDbModel.Event" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Driver_User">
+          <End Role="User" Type="MainDbModel.User" Multiplicity="1" />
+          <End Role="Driver" Type="MainDbModel.Driver" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Driver">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passenger_Event">
+          <End Role="Event" Type="MainDbModel.Event" Multiplicity="1" />
+          <End Role="Passenger" Type="MainDbModel.Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Passenger">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passenger_User">
+          <End Role="User" Type="MainDbModel.User" Multiplicity="1" />
+          <End Role="Passenger" Type="MainDbModel.Passenger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Passenger">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profile">
+          <End Role="Profile" Type="MainDbModel.Profile" Multiplicity="1" />
+          <End Role="User" Type="MainDbModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MainDbModelStoreContainer" CdmEntityContainer="MainDbEntities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="MainDbModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="CarMake" ColumnName="CarMake" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarYear" ColumnName="CarYear" />
+                <ScalarProperty Name="CarColor" ColumnName="CarColor" />
+                <ScalarProperty Name="TotalSeats" ColumnName="TotalSeats" />
+                <ScalarProperty Name="SeatsLeft" ColumnName="SeatsLeft" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="MainDbModel.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="MainDbModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StartingLocation" ColumnName="StartingLocation" />
+                <ScalarProperty Name="EndingLocation" ColumnName="EndingLocation" />
+                <ScalarProperty Name="StartingTime" ColumnName="StartingTime" />
+                <ScalarProperty Name="EndingTime" ColumnName="EndingTime" />
+                <ScalarProperty Name="EventInfo" ColumnName="EventInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="MainDbModel.Passenger">
+              <MappingFragment StoreEntitySet="Passenger">
+                <ScalarProperty Name="PassengerId" ColumnName="PassengerId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="MainDbModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Emails" ColumnName="Emails" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MainDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MainDbModel" ZoomLevel="86">
+        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="0.625" PointY="9.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="0.5" PointY="5.875" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="7.375" PointY="8.5" Height="2.7494921874999987" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="5.5" PointY="3.5" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="0.5" PointY="1.875" Height="2.5571907552083313" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083322" IsExpanded="true" />
+        <AssociationConnector Association="MainDbModel.FK_Driver_Car" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.3125" PointY="9.75" />
+          <ConnectorPoint PointX="1.3125" PointY="8.2398893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_Driver_Event" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.375" PointY="9.09375" />
+          <ConnectorPoint PointX="1.3958333333333333" PointY="9.09375" />
+          <ConnectorPoint PointX="1.2291666666666667" PointY="9.09375" />
+          <ConnectorPoint PointX="0.53125" PointY="9.09375" />
+          <ConnectorPoint PointX="0.53125" PointY="8.2398893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_Driver_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="6.0571907552083317" />
+          <ConnectorPoint PointX="3.75" PointY="7.1485405390625" />
+          <ConnectorPoint PointX="2" PointY="7.1485405390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_Passenger_Event" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.125" PointY="8.5" />
+          <ConnectorPoint PointX="8.125" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="7" PointY="4.4901432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_Passenger_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="5.5" PointY="4.4901432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_User_Profile" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="3.9660953776041659" />
+          <ConnectorPoint PointX="3" PointY="3.9660953776041659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
