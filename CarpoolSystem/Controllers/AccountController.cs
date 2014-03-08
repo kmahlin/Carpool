@@ -89,12 +89,12 @@ namespace CarpoolSystem.Controllers
                     db.Users.AddObject(sysUser);
 
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Event", "Home");
                 }
             }
             else
             {
-                ModelState.AddModelError("", "Login Data is incorrect.");
+                ModelState.AddModelError("", "Register Data is incorrect.");
             }
             return View();
         }

@@ -12,20 +12,19 @@
     <div class="page">
 
         <div id="header">
-            <div id="title">
-                <h1 class ="Header">Carpool System</h1>
-            </div>
+          
               
             
             <div id="menucontainer">
             
-                <ul id="menu">              
+              <%--  <ul id="menu">              
                     <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
                     <li><%: Html.ActionLink("About", "About", "Home")%></li>
                     <li><%: Html.ActionLink("Login", "LogIn", "Account")%></li>
                     <li><%: Html.ActionLink("Register", "Registration", "Account")%></li>
                     <li><%: Html.ActionLink("Event", "Event", "Home")%></li>
-                </ul>
+                    <li><%: Html.ActionLink("Event", "Event", "Home")%></li>
+                </ul>--%>
             
             </div>
         </div>

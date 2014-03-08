@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Event</h2>
+    <h2>Carpool Event</h2>
 
      <% using (Html.BeginForm() ){ %>
 

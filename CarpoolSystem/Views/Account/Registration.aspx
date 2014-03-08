@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Registration</h2>
+    <h2>Welcome to sign up</h2>
 
      <% using (Html.BeginForm() ){ %>
 
@@ -57,7 +57,7 @@
                 </div>
 
                 <p>
-                    <input type="submit" value="Create" />
+                    <input type="submit" value="register" />
                 </p>
 
         <% } %>
