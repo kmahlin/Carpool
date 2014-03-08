@@ -16,5 +16,18 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+        public ActionResult Event()
+        {
+            return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Search()
+        {
+            return View();
+        }
+
     }
 }

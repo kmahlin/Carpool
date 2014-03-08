@@ -13,11 +13,6 @@ namespace CarpoolSystem.Controllers
         //
         // GET: /Account/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Login()
         {
