@@ -36,7 +36,7 @@
     <Key>
       <PropertyRef Name="CarId" />
     </Key>
-    <Property Name="CarId" Type="int" Nullable="false" />
+    <Property Name="CarId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="CarMake" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="CarModel" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="CarYear" Type="int" Nullable="false" />
@@ -48,7 +48,7 @@
     <Key>
       <PropertyRef Name="DriverId" />
     </Key>
-    <Property Name="DriverId" Type="int" Nullable="false" />
+    <Property Name="DriverId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="CarId" Type="int" Nullable="false" />
     <Property Name="EventId" Type="int" Nullable="false" />
@@ -57,7 +57,7 @@
     <Key>
       <PropertyRef Name="EventId" />
     </Key>
-    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
     <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
@@ -69,7 +69,7 @@
     <Key>
       <PropertyRef Name="PassengerId" />
     </Key>
-    <Property Name="PassengerId" Type="int" Nullable="false" />
+    <Property Name="PassengerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="EventId" Type="int" Nullable="false" />
   </EntityType>
@@ -77,19 +77,19 @@
     <Key>
       <PropertyRef Name="ProfileId" />
     </Key>
-    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Emails" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="CreateDate" Type="datetime" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="ProfileId" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
