@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="MainDbModelStoreContainer">
           <EntitySet Name="Car" EntityType="MainDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Driver" EntityType="MainDbModel.Store.Driver" store:Type="Tables" Schema="dbo" />
@@ -41,7 +41,7 @@
           <Key>
             <PropertyRef Name="CarId" />
           </Key>
-          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="CarId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CarMake" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CarModel" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CarYear" Type="int" Nullable="false" />
@@ -53,7 +53,7 @@
           <Key>
             <PropertyRef Name="DriverId" />
           </Key>
-          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="DriverId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
@@ -62,7 +62,7 @@
           <Key>
             <PropertyRef Name="EventId" />
           </Key>
-          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
           <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
@@ -74,7 +74,7 @@
           <Key>
             <PropertyRef Name="PassengerId" />
           </Key>
-          <Property Name="PassengerId" Type="int" Nullable="false" />
+          <Property Name="PassengerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
         </EntityType>
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="ProfileId" />
           </Key>
-          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Emails" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -94,7 +94,7 @@
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -172,8 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MainDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
