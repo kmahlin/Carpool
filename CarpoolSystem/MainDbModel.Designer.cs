@@ -1192,7 +1192,7 @@ namespace CarpoolSystem
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="address">Initial value of the Address property.</param>
         /// <param name="phone">Initial value of the Phone property.</param>
-        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.String address, global::System.Int32 phone)
+        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.String address, global::System.Int64 phone)
         {
             Profile profile = new Profile();
             profile.ProfileId = profileId;
@@ -1361,7 +1361,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Phone
+        public global::System.Int64 Phone
         {
             get
             {
@@ -1376,8 +1376,8 @@ namespace CarpoolSystem
                 OnPhoneChanged();
             }
         }
-        private global::System.Int32 _Phone;
-        partial void OnPhoneChanging(global::System.Int32 value);
+        private global::System.Int64 _Phone;
+        partial void OnPhoneChanging(global::System.Int64 value);
         partial void OnPhoneChanged();
 
         #endregion

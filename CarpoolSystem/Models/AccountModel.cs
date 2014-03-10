@@ -37,7 +37,7 @@ namespace CarpoolSystem.Models
 
         [Required]
         [Display(Name = "Phone")]
-        public Int64 Phone { get; set; }
+        public Int32 Phone { get; set; }
 
         [Required]
         [Display(Name = "CreateDate")]
