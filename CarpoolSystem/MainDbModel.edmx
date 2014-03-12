@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="MainDbModelStoreContainer">
           <EntitySet Name="Car" EntityType="MainDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Driver" EntityType="MainDbModel.Store.Driver" store:Type="Tables" Schema="dbo" />
@@ -41,7 +41,7 @@
           <Key>
             <PropertyRef Name="CarId" />
           </Key>
-          <Property Name="CarId" Type="int" Nullable="false" />
+          <Property Name="CarId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CarMake" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CarModel" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CarYear" Type="int" Nullable="false" />
@@ -53,7 +53,7 @@
           <Key>
             <PropertyRef Name="DriverId" />
           </Key>
-          <Property Name="DriverId" Type="int" Nullable="false" />
+          <Property Name="DriverId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="CarId" Type="int" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
@@ -62,7 +62,7 @@
           <Key>
             <PropertyRef Name="EventId" />
           </Key>
-          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
           <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
@@ -74,7 +74,7 @@
           <Key>
             <PropertyRef Name="PassengerId" />
           </Key>
-          <Property Name="PassengerId" Type="int" Nullable="false" />
+          <Property Name="PassengerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
         </EntityType>
@@ -82,23 +82,23 @@
           <Key>
             <PropertyRef Name="ProfileId" />
           </Key>
-          <Property Name="ProfileId" Type="int" Nullable="false" />
+          <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Emails" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="PasswordSalt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Driver_Car">
           <End Role="Car" Type="MainDbModel.Store.Car" Multiplicity="1" />
@@ -172,8 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MainDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -268,7 +267,7 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
@@ -452,40 +451,36 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MainDbModel" ZoomLevel="86">
-        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="0.625" PointY="9.75" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="0.5" PointY="5.875" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="7.375" PointY="8.5" Height="2.7494921874999987" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="5.5" PointY="3.5" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="0.5" PointY="1.875" Height="2.5571907552083313" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083322" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="5" PointY="6.375" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="2.375" PointY="5.125" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.25" PointY="5.25" Height="2.7494921874999987" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8" PointY="2.375" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.375" PointY="2" Height="2.5571907552083313" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.125" PointY="1.5" Height="2.5571907552083322" IsExpanded="true" />
         <AssociationConnector Association="MainDbModel.FK_Driver_Car" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.3125" PointY="9.75" />
-          <ConnectorPoint PointX="1.3125" PointY="8.2398893229166674" />
+          <ConnectorPoint PointX="5" PointY="6.9324446614583337" />
+          <ConnectorPoint PointX="3.875" PointY="6.9324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.375" PointY="9.09375" />
-          <ConnectorPoint PointX="1.3958333333333333" PointY="9.09375" />
-          <ConnectorPoint PointX="1.2291666666666667" PointY="9.09375" />
-          <ConnectorPoint PointX="0.53125" PointY="9.09375" />
-          <ConnectorPoint PointX="0.53125" PointY="8.2398893229166674" />
+          <ConnectorPoint PointX="8.25" PointY="5.78125" />
+          <ConnectorPoint PointX="3.875" PointY="5.78125" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="6.0571907552083317" />
-          <ConnectorPoint PointX="3.75" PointY="7.1485405390625" />
-          <ConnectorPoint PointX="2" PointY="7.1485405390625" />
+          <ConnectorPoint PointX="6.59375" PointY="4.0571907552083317" />
+          <ConnectorPoint PointX="6.59375" PointY="5.4218725" />
+          <ConnectorPoint PointX="3.875" PointY="5.4218725" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.125" PointY="8.5" />
-          <ConnectorPoint PointX="8.125" PointY="4.4901432291666667" />
-          <ConnectorPoint PointX="7" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="8.875" PointY="5.25" />
+          <ConnectorPoint PointX="8.875" PointY="4.3552864583333335" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.4901432291666667" />
-          <ConnectorPoint PointX="5.5" PointY="4.4901432291666667" />
+          <ConnectorPoint PointX="6.625" PointY="3.2160953776041659" />
+          <ConnectorPoint PointX="8" PointY="3.2160953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_User_Profile" ManuallyRouted="false">
-          <ConnectorPoint PointX="2" PointY="3.9660953776041659" />
-          <ConnectorPoint PointX="3" PointY="3.9660953776041659" />
+          <ConnectorPoint PointX="2.875" PointY="3.0285953776041659" />
+          <ConnectorPoint PointX="5.125" PointY="3.0285953776041659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

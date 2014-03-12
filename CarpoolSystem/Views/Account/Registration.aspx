@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="Login" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Models.AccountModel>" %>
+<%@ Page Title="registration" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Models.AccountModel>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Registration
@@ -7,14 +7,14 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Registration</h2>
+    <h2>Welcome to sign up</h2>
 
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Login failed. Check your login details") %>
+            <%: Html.ValidationSummary(true,"Registration failed. Check your registration details") %>
                 <div>
                     <fieldset>
-                        <legend>Login Form</legend>
+                        <legend>Registration Form</legend>
 
                            <div><% = Html.LabelFor(m => m.UserName) %></div>
                             <div><% = Html.TextBoxFor(m => m.UserName)%>
@@ -45,7 +45,7 @@
                             <div><% = Html.TextBoxFor(m => m.Phone)%>
                                 <% = Html.ValidationMessageFor(m => m.Phone)%>
                             </div>
-                            S
+                            
                             <div><% = Html.LabelFor(m => m.Password) %></div>
                             <div><% = Html.PasswordFor(m => m.Password) %>
                                 <% = Html.ValidationMessageFor(m => m.Password) %>
@@ -57,7 +57,7 @@
                 </div>
 
                 <p>
-                    <input type="submit" value="Create" />
+                    <input type="submit" value="register" />
                 </p>
 
         <% } %>
