@@ -34,7 +34,7 @@ namespace CarpoolSystem.Controllers
                 if (IsVaild(user.UserName, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    return RedirectToAction("Event", "Home");
+                    return RedirectToAction("Search", "Home");
                 }
                 else
                 {
