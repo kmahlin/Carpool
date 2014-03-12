@@ -12,7 +12,9 @@
     <div class="page">
 
         <div id="header">
-          
+            <div id="logindisplay">
+                <% Html.RenderPartial("LogOnUserControl"); %>
+            </div>   
               
             
             <div id="menucontainer">

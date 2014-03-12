@@ -50,4 +50,16 @@ namespace CarpoolSystem.Models
 
 
     }
+    public class LogInModel
+    {
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 6)]
+        [Display(Name = "Password: ")]
+        public string Password { get; set; }
+    }
 }

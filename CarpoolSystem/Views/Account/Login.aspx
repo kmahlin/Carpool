@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Models.AccountModel>" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Models.LogInModel>" %>
     
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	LogIn
@@ -10,7 +10,7 @@
 
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Search failed. Check your search details") %>
+            <%: Html.ValidationSummary(true,"Login failed. Check your search details") %>
                 <div>
      
                     <fieldset>

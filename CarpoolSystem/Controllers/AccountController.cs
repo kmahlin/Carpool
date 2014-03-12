@@ -20,14 +20,21 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(Models.AccountModel user)
+        public ActionResult LogIn(Models.LogInModel user)
         {
+            
+            var errors = ModelState
+        .Where(x => x.Value.Errors.Count > 0)
+        .Select(x => new { x.Key, x.Value.Errors })
+        .ToArray();
+
+
             if (ModelState.IsValid)
             {
                 if (IsVaild(user.UserName, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Event", "Home");
                 }
                 else
                 {
@@ -40,7 +47,9 @@ namespace CarpoolSystem.Controllers
 
         public ActionResult LogOut()
         {
-            return View();
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -67,10 +76,11 @@ namespace CarpoolSystem.Controllers
 
 
                     sysUser.UserName = user.UserName;
-                    //sysUser.Password = encrpPass;
-                    //sysUser.PasswordSalt = crypto.Salt;
-                    sysUser.Password = user.Password;
-                    sysUser.PasswordSalt = "123";
+                    sysUser.Password = encrpPass;
+                    sysUser.PasswordSalt = crypto.Salt;
+
+                    //sysUser.Password = user.Password;
+                    //sysUser.PasswordSalt = "123";
 
 
                     sysProfile.FirstName = user.FirstName;
