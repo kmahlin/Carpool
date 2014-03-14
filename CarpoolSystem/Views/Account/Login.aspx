@@ -32,8 +32,8 @@
                 </div>
 
                 <p>
-                   </p> <input type="submit" value="Log in" />
-                </p>
+                    <input type="submit" value="Log in" />
+                </p> 
 
         <% } %>
              <p>Not registered? <%: Html.ActionLink("Click Here", "Registration", "Account")%></p>

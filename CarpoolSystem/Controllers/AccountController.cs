@@ -61,28 +61,19 @@ namespace CarpoolSystem.Controllers
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
         {
-
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
                 {
                     Guid userIdGuid = Guid.NewGuid();
                     var crypto = new SimpleCrypto.PBKDF2();
-
                     var encrpPass = crypto.Compute(user.Password);
-
                     var sysUser = db.Users.CreateObject();
                     var sysProfile = db.Profiles.CreateObject();
-
 
                     sysUser.UserName = user.UserName;
                     sysUser.Password = encrpPass;
                     sysUser.PasswordSalt = crypto.Salt;
-
-                    //sysUser.Password = user.Password;
-                    //sysUser.PasswordSalt = "123";
-
-
                     sysProfile.FirstName = user.FirstName;
                     sysProfile.LastName = user.LastName;
                     sysProfile.Emails = user.Email;
@@ -90,14 +81,8 @@ namespace CarpoolSystem.Controllers
                     sysProfile.Address = user.Address;
                     sysProfile.Phone = user.Phone;
 
-                    //sysProfile.ProfileId.
-
-                    //userIdGuid = new Guid(sysUser.UserId);
-                    //sysUser.UserId = userIdGuid;
-
                     db.Profiles.AddObject(sysProfile);
                     db.Users.AddObject(sysUser);
-
                     db.SaveChanges();
                     return RedirectToAction("Event", "Home");
                 }
@@ -128,13 +113,39 @@ namespace CarpoolSystem.Controllers
                     {
                         isValid = true;
                     }
-
                 }
             }
 
             return isValid;
         }
 
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult ChangePassword(Models.ChangePasswordModel pw)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new MainDbEntities())
+                {
+                    var sysUser = db.Users.CreateObject();
+                    var crypto = new SimpleCrypto.PBKDF2();
+
+                    if (pw.OldPassword.Equals(crypto.Compute(sysUser.Password, sysUser.PasswordSalt)) && pw.ConfirmPassword.Equals(pw.NewPassword))
+                    {
+                        var encrpPass = crypto.Compute(pw.NewPassword);
+                        sysUser.Password = encrpPass;
+                        db.SaveChanges();
+                    }            
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            return View();
+        }
     }
 }

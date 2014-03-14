@@ -62,4 +62,21 @@ namespace CarpoolSystem.Models
         [Display(Name = "Password: ")]
         public string Password { get; set; }
     }
+    public class ChangePasswordModel
+    {
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Old password: ")]
+        public string OldPassword { get; set; }
+        
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "New password: ")]
+        public string NewPassword { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Confirm password: ")]
+        public string ConfirmPassword { get; set; }
+    }
 }

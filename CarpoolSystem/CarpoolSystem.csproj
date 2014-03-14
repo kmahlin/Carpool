@@ -100,6 +100,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\LogOut.aspx" />
     <Content Include="Views\Account\Registration.aspx" />
