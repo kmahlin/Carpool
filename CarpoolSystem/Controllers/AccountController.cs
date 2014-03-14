@@ -66,40 +66,45 @@ namespace CarpoolSystem.Controllers
             {
                 using (var db = new MainDbEntities())
                 {
-                    Guid userIdGuid = Guid.NewGuid();
-                    var crypto = new SimpleCrypto.PBKDF2();
+                    var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
 
-                    var encrpPass = crypto.Compute(user.Password);
+                    if(userNameCheck.Count()==0)
+                    {
+                        Guid userIdGuid = Guid.NewGuid();
+                        var crypto = new SimpleCrypto.PBKDF2();
 
-                    var sysUser = db.Users.CreateObject();
-                    var sysProfile = db.Profiles.CreateObject();
+                        var encrpPass = crypto.Compute(user.Password);
 
-
-                    sysUser.UserName = user.UserName;
-                    sysUser.Password = encrpPass;
-                    sysUser.PasswordSalt = crypto.Salt;
-
-                    //sysUser.Password = user.Password;
-                    //sysUser.PasswordSalt = "123";
+                        var sysUser = db.Users.CreateObject();
+                        var sysProfile = db.Profiles.CreateObject();
 
 
-                    sysProfile.FirstName = user.FirstName;
-                    sysProfile.LastName = user.LastName;
-                    sysProfile.Emails = user.Email;
-                    sysProfile.CreateDate = DateTime.Today;
-                    sysProfile.Address = user.Address;
-                    sysProfile.Phone = user.Phone;
+                        sysUser.UserName = user.UserName;
+                        sysUser.Password = encrpPass;
+                        sysUser.PasswordSalt = crypto.Salt;
 
-                    //sysProfile.ProfileId.
 
-                    //userIdGuid = new Guid(sysUser.UserId);
-                    //sysUser.UserId = userIdGuid;
 
-                    db.Profiles.AddObject(sysProfile);
-                    db.Users.AddObject(sysUser);
 
-                    db.SaveChanges();
-                    return RedirectToAction("Event", "Home");
+                        sysProfile.FirstName = user.FirstName;
+                        sysProfile.LastName = user.LastName;
+                        sysProfile.Emails = user.Email;
+                        sysProfile.CreateDate = DateTime.Today;
+                        sysProfile.Address = user.Address;
+                        sysProfile.Phone = user.Phone;
+
+                        db.Profiles.AddObject(sysProfile);
+                        db.Users.AddObject(sysUser);
+
+                        db.SaveChanges();
+                        return RedirectToAction("SuccessfulReg", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Username already exist.");
+                    }
+
+                    
                 }
             }
             else

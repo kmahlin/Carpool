@@ -28,6 +28,10 @@ namespace CarpoolSystem.Controllers
         {
             return View();
         }
+        public ActionResult SuccessfulReg()
+        {
+            return View();
+        }
 
     }
 }
