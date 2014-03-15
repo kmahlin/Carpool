@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity;
+using CarpoolSystem.Utilities;
 
 namespace CarpoolSystem.Controllers
 {
@@ -77,6 +78,7 @@ namespace CarpoolSystem.Controllers
                 using (var db = new MainDbEntities())
                 {
                     var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
+                    Emailer email = new Emailer();
 
                     if(userNameCheck.Count()==0)
                     {
@@ -103,6 +105,7 @@ namespace CarpoolSystem.Controllers
 
                         db.SaveChanges();
                         //Log user into the site
+                        email.RegistrationEmail(user.UserName, user.Email);
                         Login(user.UserName, user.Password);
                         return RedirectToAction("SuccessfulReg", "Home");
                     }
