@@ -38,10 +38,10 @@ namespace CarpoolSystem.Utilities
         {
             string subject = "CarpoolSystem: Password Change!";
             StringBuilder builder = new StringBuilder();
-            builder.Append("Thank you for registering to Carpool System \n");
-            builder.Append("Your user name is: "+ userName +"\n");
+            builder.Append("A password change has been initiated for your account: " + userName+ "\n");
             builder.Append("Your new Password is: " + password +"\n");
-            string link = "To log in, got to : <a href='http://localhost:2825/'>CarpoolSystem.com</a>";
+            string link = "To log in, please got to : <a href='http://localhost:2825/'>CarpoolSystem.com</a> and proceed to" 
+                            +" <a href='http://localhost:2825/account/ChangePassword'>CarpoolSystem.com</a> to change your password.";
             builder.Append(link);
             sendEmail(email, subject, builder.ToString());
 
