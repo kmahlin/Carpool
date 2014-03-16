@@ -127,20 +127,56 @@ namespace CarpoolSystem.Controllers
 
         [HttpPost]
         public ActionResult ChangePassword(Models.ChangePasswordModel pw)
+        {  
+            String currentUser = User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                using (var db = new MainDbEntities())
+                {          
+                    var crypto = new SimpleCrypto.PBKDF2();
+                    if (pw.ConfirmPassword.Equals(pw.NewPassword))
+                    {   if (IsVaild(currentUser,pw.OldPassword)){
+                             User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
+                             var encrpPass = crypto.Compute(pw.NewPassword);
+                             sysUser.Password = encrpPass;
+                             sysUser.PasswordSalt = crypto.Salt;
+                             db.SaveChanges();
+                        }
+                    }            
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PasswordRetrieval()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordRetrieval(Models.PasswordRetrievalModel pr)
         {
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
                 {
-                    var sysUser = db.Users.CreateObject();
                     var crypto = new SimpleCrypto.PBKDF2();
-
-                    if (pw.OldPassword.Equals(crypto.Compute(sysUser.Password, sysUser.PasswordSalt)) && pw.ConfirmPassword.Equals(pw.NewPassword))
+                    if (pr.ConfirmEmail.Equals(pr.Email))
                     {
-                        var encrpPass = crypto.Compute(pw.NewPassword);
-                        sysUser.Password = encrpPass;
+                        int start = 100000; int end = 900000; int rand;
+                        User sysUser = db.Users.FirstOrDefault(m => m.UserName == pr.UserName);
+                        Random rnd = new Random();
+                        rand = rnd.Next(start, end);
+                        sysUser.Password = crypto.Compute(rand.ToString());
+                        sysUser.PasswordSalt = crypto.Salt;
                         db.SaveChanges();
-                    }            
+
+                     //   Emailer email = new Emailer();
+                    //    email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
+                    }
                     return RedirectToAction("Login", "Account");
                 }
             }

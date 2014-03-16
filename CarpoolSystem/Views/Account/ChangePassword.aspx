@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>ChangePassword</h2>
+    <h2>Change Password</h2>
      <% using (Html.BeginForm() ){ %>
 
             <%: Html.ValidationSummary(true,"Login failed. Check your search details") %>
@@ -15,17 +15,17 @@
                         <legend>Log In Form</legend>
                  
                          <div><% = Html.LabelFor(m => m.OldPassword) %></div>
-                         <div><% = Html.TextBoxFor(m => m.OldPassword)%>
+                         <div><% = Html.PasswordFor(m => m.OldPassword)%>
                               <% = Html.ValidationMessageFor(m => m.OldPassword)%>
                          </div>
 
                          <div><% = Html.LabelFor(m => m.NewPassword)%></div>
-                         <div><% = Html.TextBoxFor(m => m.NewPassword)%>
+                         <div><% = Html.PasswordFor(m => m.NewPassword)%>
                               <% = Html.ValidationMessageFor(m => m.NewPassword)%>
                          </div>
 
                          <div><% = Html.LabelFor(m => m.ConfirmPassword)%></div>
-                         <div><% = Html.TextBoxFor(m => m.ConfirmPassword)%>
+                         <div><% = Html.PasswordFor(m => m.ConfirmPassword)%>
                               <% = Html.ValidationMessageFor(m => m.ConfirmPassword)%>
                          </div>
                             

@@ -103,6 +103,7 @@
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\LogOut.aspx" />
+    <Content Include="Views\Account\PasswordRetrieval.aspx" />
     <Content Include="Views\Account\Registration.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Event.aspx" />

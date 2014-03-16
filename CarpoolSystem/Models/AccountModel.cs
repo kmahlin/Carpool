@@ -79,4 +79,21 @@ namespace CarpoolSystem.Models
         [Display(Name = "Confirm password: ")]
         public string ConfirmPassword { get; set; }
     }
+    public class PasswordRetrievalModel
+    {
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "User Name: ")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Email: ")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Confirm Email: ")]
+        public string ConfirmEmail { get; set; }
+    }
 }

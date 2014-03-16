@@ -22,7 +22,7 @@
                             </div>
 
                              <div><% = Html.LabelFor(m => m.Password)%></div>
-                            <div><% = Html.TextBoxFor(m => m.Password)%>
+                            <div><% = Html.PasswordFor(m => m.Password)%>
                                 <% = Html.ValidationMessageFor(m => m.Password)%>
                             </div>
                             
