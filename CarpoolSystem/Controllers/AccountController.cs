@@ -69,6 +69,8 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+    
+
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
         {
@@ -123,8 +125,11 @@ namespace CarpoolSystem.Controllers
             }
             return View();
         }
-
-
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            return View();
+        }
 
         private bool IsVaild(string UserName, string password)
         {
