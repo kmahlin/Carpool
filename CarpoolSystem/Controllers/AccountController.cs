@@ -45,6 +45,16 @@ namespace CarpoolSystem.Controllers
             return View(user);
         }
 
+        //This method is for loging in a user when they register to the site
+        public void Login(string UserName, string Password)
+        {
+            if (IsVaild(UserName, Password))
+            {
+                FormsAuthentication.SetAuthCookie(UserName, false);
+            }
+
+        }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -70,7 +80,6 @@ namespace CarpoolSystem.Controllers
 
                     if(userNameCheck.Count()==0)
                     {
-                        Guid userIdGuid = Guid.NewGuid();
                         var crypto = new SimpleCrypto.PBKDF2();
 
                         var encrpPass = crypto.Compute(user.Password);
@@ -78,13 +87,9 @@ namespace CarpoolSystem.Controllers
                         var sysUser = db.Users.CreateObject();
                         var sysProfile = db.Profiles.CreateObject();
 
-
                         sysUser.UserName = user.UserName;
                         sysUser.Password = encrpPass;
                         sysUser.PasswordSalt = crypto.Salt;
-
-
-
 
                         sysProfile.FirstName = user.FirstName;
                         sysProfile.LastName = user.LastName;
@@ -97,6 +102,8 @@ namespace CarpoolSystem.Controllers
                         db.Users.AddObject(sysUser);
 
                         db.SaveChanges();
+                        //Log user into the site
+                        Login(user.UserName, user.Password);
                         return RedirectToAction("SuccessfulReg", "Home");
                     }
                     else
