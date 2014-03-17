@@ -63,13 +63,18 @@
     </Key>
     <Property Name="EventId" Type="Int32" Nullable="false" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="StartingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="EndingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="StartingTime" Type="DateTime" Nullable="false" />
-    <Property Name="EndingTime" Type="DateTime" Nullable="false" />
+    <Property Name="StartingTime" Type="Time" Nullable="false" />
+    <Property Name="EndingTime" Type="Time" Nullable="false" />
     <Property Name="EventInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Event" FromRole="Event" ToRole="Driver" />
     <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Event" ToRole="Passenger" />
+    <Property Type="String" Name="StartingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EndingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DestCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DestState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StartingState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="StartingCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Days" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Passenger">
     <Key>
