@@ -64,11 +64,16 @@
           </Key>
           <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
-          <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="StartingTime" Type="datetime" Nullable="false" />
-          <Property Name="EndingTime" Type="datetime" Nullable="false" />
-          <Property Name="EventInfo" Type="varchar(max)" />
+          <Property Name="StartingAddress" Type="varchar(max)" Nullable="false" />
+          <Property Name="EndingAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartingTime" Type="time" Nullable="false" />
+          <Property Name="EndingTime" Type="time" Nullable="false" />
+          <Property Name="EventInfo" Type="nvarchar(max)" />
+          <Property Name="DestCity" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DestState" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartingState" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartingCity" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -239,13 +244,18 @@
           </Key>
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="StartingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="EndingLocation" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="StartingTime" Type="DateTime" Nullable="false" />
           <Property Name="EndingTime" Type="DateTime" Nullable="false" />
           <Property Name="EventInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Event" FromRole="Event" ToRole="Driver" />
           <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Event" ToRole="Passenger" />
+          <Property Type="String" Name="StartingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EndingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DestCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DestState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StartingState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StartingCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Days" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -387,10 +397,15 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="MainDbModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="StartingCity" ColumnName="StartingCity" />
+                <ScalarProperty Name="StartingState" ColumnName="StartingState" />
+                <ScalarProperty Name="DestState" ColumnName="DestState" />
+                <ScalarProperty Name="DestCity" ColumnName="DestCity" />
+                <ScalarProperty Name="EndingAddress" ColumnName="EndingAddress" />
+                <ScalarProperty Name="StartingAddress" ColumnName="StartingAddress" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="StartingLocation" ColumnName="StartingLocation" />
-                <ScalarProperty Name="EndingLocation" ColumnName="EndingLocation" />
                 <ScalarProperty Name="StartingTime" ColumnName="StartingTime" />
                 <ScalarProperty Name="EndingTime" ColumnName="EndingTime" />
                 <ScalarProperty Name="EventInfo" ColumnName="EventInfo" />
@@ -453,7 +468,7 @@
       <Diagram Name="MainDbModel" ZoomLevel="86">
         <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="5" PointY="6.375" Height="2.5571907552083317" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="2.375" PointY="5.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.25" PointY="5.25" Height="2.7494921874999987" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.25" PointY="5.25" Height="3.7109993489583335" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8" PointY="2.375" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.375" PointY="2" Height="2.5571907552083313" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.125" PointY="1.5" Height="2.5571907552083322" IsExpanded="true" />
@@ -462,8 +477,8 @@
           <ConnectorPoint PointX="3.875" PointY="6.9324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="5.78125" />
-          <ConnectorPoint PointX="3.875" PointY="5.78125" />
+          <ConnectorPoint PointX="8.25" PointY="5.92968625" />
+          <ConnectorPoint PointX="3.875" PointY="5.92968625" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_User" ManuallyRouted="false">
           <ConnectorPoint PointX="6.59375" PointY="4.0571907552083317" />

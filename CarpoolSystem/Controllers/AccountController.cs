@@ -46,7 +46,7 @@ namespace CarpoolSystem.Controllers
             return View(user);
         }
 
-        //This method is for loging in a user when they register to the site
+        //This method is for logging in a user when they register to the site
         public void Login(string UserName, string Password)
         {
             if (IsVaild(UserName, Password))
@@ -167,7 +167,9 @@ namespace CarpoolSystem.Controllers
                 {          
                     var crypto = new SimpleCrypto.PBKDF2();
                     if (pw.ConfirmPassword.Equals(pw.NewPassword))
-                    {   if (IsVaild(currentUser,pw.OldPassword)){
+                    {   
+                        if (IsVaild(currentUser,pw.OldPassword))
+                        {
                              User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
                              var encrpPass = crypto.Compute(pw.NewPassword);
                              sysUser.Password = encrpPass;
