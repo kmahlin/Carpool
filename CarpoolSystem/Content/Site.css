@@ -188,7 +188,7 @@ fieldset
 {
     margin: 1em 0;
     padding: 1em;
-    border: 1px solid #CCC;
+    border: 0px solid #CCC;
 }
 
 fieldset p 
@@ -341,4 +341,38 @@ div#title
 .tri-state
 {
     width: 6em;
+}
+
+/* Added Styles for CarpoolSystem
+-------------------------------------------------------- */
+
+#wrapper 
+{
+    margin-left:auto;
+    margin-right:auto;
+    height:auto; 
+    width:auto;
+}
+
+.inner1
+{
+  width: auto; 
+  margin:5px; 
+  padding: .2em; 
+  float:left;
+  padding: 0px 10% 0px 0px;
+}
+
+.inner2
+{
+  width: auto; 
+  margin:5px; 
+  padding: .2em; 
+  float:left;
+  clear: left;
+}
+
+.title
+{
+   padding: 0% 0% 0% 15%
 }
