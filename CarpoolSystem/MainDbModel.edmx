@@ -244,8 +244,8 @@
           </Key>
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="StartingTime" Type="DateTime" Nullable="false" />
-          <Property Name="EndingTime" Type="DateTime" Nullable="false" />
+          <Property Name="StartingTime" Type="Time" Nullable="false" />
+          <Property Name="EndingTime" Type="Time" Nullable="false" />
           <Property Name="EventInfo" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Event" FromRole="Event" ToRole="Driver" />
           <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Event" ToRole="Passenger" />

@@ -748,7 +748,7 @@ namespace CarpoolSystem
         /// <param name="startingState">Initial value of the StartingState property.</param>
         /// <param name="startingCity">Initial value of the StartingCity property.</param>
         /// <param name="days">Initial value of the Days property.</param>
-        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.DateTime startingTime, global::System.DateTime endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
+        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.TimeSpan startingTime, global::System.TimeSpan endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
         {
             Event @event = new Event();
             @event.EventId = eventId;
@@ -825,7 +825,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime StartingTime
+        public global::System.TimeSpan StartingTime
         {
             get
             {
@@ -840,8 +840,8 @@ namespace CarpoolSystem
                 OnStartingTimeChanged();
             }
         }
-        private global::System.DateTime _StartingTime;
-        partial void OnStartingTimeChanging(global::System.DateTime value);
+        private global::System.TimeSpan _StartingTime;
+        partial void OnStartingTimeChanging(global::System.TimeSpan value);
         partial void OnStartingTimeChanged();
     
         /// <summary>
@@ -849,7 +849,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime EndingTime
+        public global::System.TimeSpan EndingTime
         {
             get
             {
@@ -864,8 +864,8 @@ namespace CarpoolSystem
                 OnEndingTimeChanged();
             }
         }
-        private global::System.DateTime _EndingTime;
-        partial void OnEndingTimeChanging(global::System.DateTime value);
+        private global::System.TimeSpan _EndingTime;
+        partial void OnEndingTimeChanging(global::System.TimeSpan value);
         partial void OnEndingTimeChanged();
     
         /// <summary>
