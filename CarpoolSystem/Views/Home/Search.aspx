@@ -20,14 +20,14 @@
                                 <% = Html.ValidationMessageFor(m => m.Title)%>
                             </div>
 
-                             <div><% = Html.LabelFor(m => m.StartingLocation)%></div>
-                            <div><% = Html.TextBoxFor(m => m.StartingLocation)%>
-                                <% = Html.ValidationMessageFor(m => m.StartingLocation)%>
+                             <div><% = Html.LabelFor(m => m.StartingAddress)%></div>
+                            <div><% = Html.TextBoxFor(m => m.StartingAddress)%>
+                                <% = Html.ValidationMessageFor(m => m.StartingAddress)%>
                             </div>
 
-                             <div><% = Html.LabelFor(m => m.EndingLocation) %></div>
-                            <div><% = Html.TextBoxFor(m => m.EndingLocation)%>
-                                <% = Html.ValidationMessageFor(m => m.EndingLocation)%>
+                             <div><% = Html.LabelFor(m => m.DestAddress)%></div>
+                            <div><% = Html.TextBoxFor(m => m.DestAddress)%>
+                                <% = Html.ValidationMessageFor(m => m.DestAddress)%>
                             </div>
 
                              <div><% = Html.LabelFor(m => m.StartTime) %></div>
