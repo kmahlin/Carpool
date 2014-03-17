@@ -59,11 +59,16 @@
     </Key>
     <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="StartingLocation" Type="varchar(max)" Nullable="false" />
-    <Property Name="EndingLocation" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartingTime" Type="datetime" Nullable="false" />
-    <Property Name="EndingTime" Type="datetime" Nullable="false" />
-    <Property Name="EventInfo" Type="varchar(max)" />
+    <Property Name="StartingAddress" Type="varchar(max)" Nullable="false" />
+    <Property Name="EndingAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndingTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventInfo" Type="nvarchar(max)" />
+    <Property Name="DestCity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DestState" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingState" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartingCity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Passenger">
     <Key>
@@ -82,7 +87,6 @@
     <Property Name="CreateDate" Type="datetime" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Phone" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="User">

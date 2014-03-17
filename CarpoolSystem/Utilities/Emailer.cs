@@ -12,7 +12,6 @@ namespace CarpoolSystem.Utilities
     {
         private MailMessage email;
         private SmtpClient smtp;
-        private string recipients;
 
         public Emailer()
         {

@@ -46,7 +46,7 @@ namespace CarpoolSystem.Controllers
             return View(user);
         }
 
-        //This method is for loging in a user when they register to the site
+        //This method is for logging in a user when they register to the site
         public void Login(string UserName, string Password)
         {
             if (IsVaild(UserName, Password))
@@ -74,7 +74,6 @@ namespace CarpoolSystem.Controllers
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
         {
-
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
@@ -94,12 +93,11 @@ namespace CarpoolSystem.Controllers
                         sysUser.UserName = user.UserName;
                         sysUser.Password = encrpPass;
                         sysUser.PasswordSalt = crypto.Salt;
-
+						
                         sysProfile.FirstName = user.FirstName;
                         sysProfile.LastName = user.LastName;
                         sysProfile.Emails = user.Email;
                         sysProfile.CreateDate = DateTime.Today;
-                        sysProfile.Address = user.Address;
                         sysProfile.Phone = user.Phone;
 
                         db.Profiles.AddObject(sysProfile);
@@ -115,8 +113,6 @@ namespace CarpoolSystem.Controllers
                     {
                         ModelState.AddModelError("", "Username already exist.");
                     }
-
-                    
                 }
             }
             else
@@ -148,13 +144,77 @@ namespace CarpoolSystem.Controllers
                     {
                         isValid = true;
                     }
-
                 }
             }
 
             return isValid;
         }
 
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult ChangePassword(Models.ChangePasswordModel pw)
+        {  
+            String currentUser = User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                using (var db = new MainDbEntities())
+                {          
+                    var crypto = new SimpleCrypto.PBKDF2();
+                    if (pw.ConfirmPassword.Equals(pw.NewPassword))
+                    {   
+                        if (IsVaild(currentUser,pw.OldPassword))
+                        {
+                             User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
+                             var encrpPass = crypto.Compute(pw.NewPassword);
+                             sysUser.Password = encrpPass;
+                             sysUser.PasswordSalt = crypto.Salt;
+                             db.SaveChanges();
+                        }
+                    }            
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PasswordRetrieval()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordRetrieval(Models.PasswordRetrievalModel pr)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new MainDbEntities())
+                {
+                    var crypto = new SimpleCrypto.PBKDF2();
+                    if (pr.ConfirmEmail.Equals(pr.Email))
+                    {
+                        int start = 100000; int end = 900000; int rand;
+                        User sysUser = db.Users.FirstOrDefault(m => m.UserName == pr.UserName);
+                        Random rnd = new Random();
+                        rand = rnd.Next(start, end);
+                        sysUser.Password = crypto.Compute(rand.ToString());
+                        sysUser.PasswordSalt = crypto.Salt;
+                        db.SaveChanges();
+
+                        Emailer email = new Emailer();
+                        email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
+                    }
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+
+            return View();
+        }
     }
 }
