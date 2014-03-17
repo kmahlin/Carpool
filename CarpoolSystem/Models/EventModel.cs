@@ -45,11 +45,11 @@ namespace CarpoolSystem.Models
 
         [Required]
         [Display(Name = "Start Time")]
-        public TimeSpan StartTime { get; set; }
+        public string StartingTime { get; set; }
 
         [Required]
         [Display(Name = "End Time")]
-        public TimeSpan EndTime { get; set; }
+        public string EndingTime { get; set; }
 
 
         [StringLength(4000)]
@@ -127,11 +127,11 @@ namespace CarpoolSystem.Models
 
         [Required]
         [Display(Name = "Start Time")]
-        public TimeSpan StartTime { get; set; }
+        public string StartingTime { get; set; }
 
         [Required]
         [Display(Name = "End Time")]
-        public TimeSpan EndTime { get; set; }
+        public string EndingTime { get; set; }
 
 
         [StringLength(4000)]

@@ -748,7 +748,7 @@ namespace CarpoolSystem
         /// <param name="startingState">Initial value of the StartingState property.</param>
         /// <param name="startingCity">Initial value of the StartingCity property.</param>
         /// <param name="days">Initial value of the Days property.</param>
-        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.TimeSpan startingTime, global::System.TimeSpan endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
+        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.String startingTime, global::System.String endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
         {
             Event @event = new Event();
             @event.EventId = eventId;
@@ -825,7 +825,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.TimeSpan StartingTime
+        public global::System.String StartingTime
         {
             get
             {
@@ -835,13 +835,13 @@ namespace CarpoolSystem
             {
                 OnStartingTimeChanging(value);
                 ReportPropertyChanging("StartingTime");
-                _StartingTime = StructuralObject.SetValidValue(value);
+                _StartingTime = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("StartingTime");
                 OnStartingTimeChanged();
             }
         }
-        private global::System.TimeSpan _StartingTime;
-        partial void OnStartingTimeChanging(global::System.TimeSpan value);
+        private global::System.String _StartingTime;
+        partial void OnStartingTimeChanging(global::System.String value);
         partial void OnStartingTimeChanged();
     
         /// <summary>
@@ -849,7 +849,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.TimeSpan EndingTime
+        public global::System.String EndingTime
         {
             get
             {
@@ -859,13 +859,13 @@ namespace CarpoolSystem
             {
                 OnEndingTimeChanging(value);
                 ReportPropertyChanging("EndingTime");
-                _EndingTime = StructuralObject.SetValidValue(value);
+                _EndingTime = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("EndingTime");
                 OnEndingTimeChanged();
             }
         }
-        private global::System.TimeSpan _EndingTime;
-        partial void OnEndingTimeChanging(global::System.TimeSpan value);
+        private global::System.String _EndingTime;
+        partial void OnEndingTimeChanging(global::System.String value);
         partial void OnEndingTimeChanged();
     
         /// <summary>

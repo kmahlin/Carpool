@@ -51,16 +51,16 @@ namespace CarpoolSystem.Controllers
                     newEvent.Title = userEvent.Title;
 
                     newEvent.StartingAddress = userEvent.StartingAddress;
-                    newEvent.DestCity = userEvent.StartingCity;
-                    newEvent.DestState = userEvent.StartingState;
+                    newEvent.StartingCity = userEvent.StartingCity;
+                    newEvent.StartingState = userEvent.StartingState;
 
                     newEvent.EndingAddress = userEvent.DestAddress;
                     newEvent.DestCity = userEvent.DestCity;
                     newEvent.DestState = userEvent.DestState;
 
                     // these datetimes need to be changed to user datetimes
-                    newEvent.StartingTime = TimeSpan.MaxValue;
-                    newEvent.EndingTime = TimeSpan.MaxValue;
+                    newEvent.StartingTime = userEvent.StartingTime;
+                    newEvent.EndingTime = userEvent.EndingTime;
 
                     newEvent.EventInfo = userEvent.EventInfo;
                     newEvent.Days = userEvent.Days;
