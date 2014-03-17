@@ -30,14 +30,14 @@
                                 <% = Html.ValidationMessageFor(m => m.DestAddress)%>
                             </div>
 
-                             <div><% = Html.LabelFor(m => m.StartTime) %></div>
-                            <div><% = Html.TextBoxFor(m => m.StartTime)%>
-                                <% = Html.ValidationMessageFor(m => m.StartTime)%>
+                             <div><% = Html.LabelFor(m => m.StartingTime)%></div>
+                            <div><% = Html.TextBoxFor(m => m.StartingTime)%>
+                                <% = Html.ValidationMessageFor(m => m.StartingTime)%>
                             </div>
 
-                             <div><% = Html.LabelFor(m => m.EndTime) %></div>
-                            <div><% = Html.TextBoxFor(m => m.EndTime)%>
-                                <% = Html.ValidationMessageFor(m => m.EndTime)%>
+                             <div><% = Html.LabelFor(m => m.EndingTime) %></div>
+                            <div><% = Html.TextBoxFor(m => m.EndingTime)%>
+                                <% = Html.ValidationMessageFor(m => m.EndingTime)%>
                             </div>
 
                              <div><% = Html.LabelFor(m => m.EventInfo) %></div>

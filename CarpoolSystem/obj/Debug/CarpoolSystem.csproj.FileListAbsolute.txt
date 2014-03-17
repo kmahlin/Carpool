@@ -21,3 +21,4 @@ C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\bin\CarpoolSystem.pdb
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\bin\SimpleCrypto.dll
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.dll
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.pdb
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.csprojResolveAssemblyReference.cache

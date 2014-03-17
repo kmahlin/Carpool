@@ -70,14 +70,14 @@
                                 <div style = "font-weight: bold ; padding: 0em 0em .8em 0em">
                                 I want to leave the Starting location by...
                                 </div>
-                                <div><% = Html.TextBoxFor(m => m.StartTime)%>
-                                <% = Html.ValidationMessageFor(m => m.StartTime)%>
+                                <div><% = Html.TextBoxFor(m => m.StartingTime)%>
+                                <% = Html.ValidationMessageFor(m => m.StartingTime)%>
                                 </div>
                                 <div style = "font-weight: bold ; padding: .8em 0em .8em 0em">
                                 I want to leave the destination location by...
                                 </div>
-                                <div><% = Html.TextBoxFor(m => m.EndTime)%>
-                                <% = Html.ValidationMessageFor(m => m.EndTime)%>
+                                <div><% = Html.TextBoxFor(m => m.EndingTime)%>
+                                <% = Html.ValidationMessageFor(m => m.EndingTime)%>
                                 </div>
                             </div>
 
