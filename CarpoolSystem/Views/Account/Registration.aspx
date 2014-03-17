@@ -36,11 +36,6 @@
                                 <% = Html.ValidationMessageFor(m => m.Email)%>
                             </div>
 
-                            <div><% = Html.LabelFor(m => m.Address) %></div>
-                            <div><% = Html.TextBoxFor(m => m.Address)%>
-                                <% = Html.ValidationMessageFor(m => m.Address)%>
-                            </div>
-
                             <div><% = Html.LabelFor(m => m.Phone) %></div>
                             <div><% = Html.TextBoxFor(m => m.Phone)%>
                                 <% = Html.ValidationMessageFor(m => m.Phone)%>
