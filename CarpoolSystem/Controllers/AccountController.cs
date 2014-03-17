@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity;
+using CarpoolSystem.Utilities;
 
 namespace CarpoolSystem.Controllers
 {
@@ -45,6 +46,16 @@ namespace CarpoolSystem.Controllers
             return View(user);
         }
 
+        //This method is for loging in a user when they register to the site
+        public void Login(string UserName, string Password)
+        {
+            if (IsVaild(UserName, Password))
+            {
+                FormsAuthentication.SetAuthCookie(UserName, false);
+            }
+
+        }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -58,6 +69,8 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+    
+
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
         {
@@ -65,26 +78,42 @@ namespace CarpoolSystem.Controllers
             {
                 using (var db = new MainDbEntities())
                 {
-                    Guid userIdGuid = Guid.NewGuid();
-                    var crypto = new SimpleCrypto.PBKDF2();
-                    var encrpPass = crypto.Compute(user.Password);
-                    var sysUser = db.Users.CreateObject();
-                    var sysProfile = db.Profiles.CreateObject();
+                    var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
+                    Emailer email = new Emailer();
 
-                    sysUser.UserName = user.UserName;
-                    sysUser.Password = encrpPass;
-                    sysUser.PasswordSalt = crypto.Salt;
-                    sysProfile.FirstName = user.FirstName;
-                    sysProfile.LastName = user.LastName;
-                    sysProfile.Emails = user.Email;
-                    sysProfile.CreateDate = DateTime.Today;
-                    sysProfile.Address = user.Address;
-                    sysProfile.Phone = user.Phone;
+                    if(userNameCheck.Count()==0)
+                    {
+                        var crypto = new SimpleCrypto.PBKDF2();
 
-                    db.Profiles.AddObject(sysProfile);
-                    db.Users.AddObject(sysUser);
-                    db.SaveChanges();
-                    return RedirectToAction("Event", "Home");
+                        var encrpPass = crypto.Compute(user.Password);
+
+                        var sysUser = db.Users.CreateObject();
+                        var sysProfile = db.Profiles.CreateObject();
+
+                        sysUser.UserName = user.UserName;
+                        sysUser.Password = encrpPass;
+                        sysUser.PasswordSalt = crypto.Salt;
+						
+                        sysProfile.FirstName = user.FirstName;
+                        sysProfile.LastName = user.LastName;
+                        sysProfile.Emails = user.Email;
+                        sysProfile.CreateDate = DateTime.Today;
+                        sysProfile.Address = user.Address;
+                        sysProfile.Phone = user.Phone;
+
+                        db.Profiles.AddObject(sysProfile);
+                        db.Users.AddObject(sysUser);
+
+                        db.SaveChanges();
+                        //Log user into the site
+                        email.RegistrationEmail(user.UserName, user.Email);
+                        Login(user.UserName, user.Password);
+                        return RedirectToAction("SuccessfulReg", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Username already exist.");
+                    }
                 }
             }
             else
@@ -93,8 +122,11 @@ namespace CarpoolSystem.Controllers
             }
             return View();
         }
-
-
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            return View();
+        }
 
         private bool IsVaild(string UserName, string password)
         {
@@ -174,8 +206,8 @@ namespace CarpoolSystem.Controllers
                         sysUser.PasswordSalt = crypto.Salt;
                         db.SaveChanges();
 
-                     //   Emailer email = new Emailer();
-                    //    email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
+                        Emailer email = new Emailer();
+                        email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
                     }
                     return RedirectToAction("Login", "Account");
                 }

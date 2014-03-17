@@ -96,4 +96,40 @@ namespace CarpoolSystem.Models
         [Display(Name = "Confirm Email: ")]
         public string ConfirmEmail { get; set; }
     }
+
+    public class  ProfileModel
+    {
+
+      
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(200)]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Phone")]
+        public Int64 Phone { get; set; }
+
+
+        [Required]
+        [StringLength(20, MinimumLength = 6)]
+        [Display(Name = "Password: ")]
+        public string Password { get; set; }
+    }
 }

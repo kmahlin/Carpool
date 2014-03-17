@@ -18,13 +18,30 @@ namespace CarpoolSystem.Controllers
 
         public ActionResult Event()
         {
+            string currentlyLoggedInUser = User.Identity.Name;
+            if (currentlyLoggedInUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
+
         public ActionResult About()
         {
             return View();
         }
+
         public ActionResult Search()
+        {
+            string currentlyLoggedInUser = User.Identity.Name;
+            if (currentlyLoggedInUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View();
+        }
+
+        public ActionResult SuccessfulReg()
         {
             return View();
         }
