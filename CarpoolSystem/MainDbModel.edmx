@@ -92,7 +92,6 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Phone" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -276,7 +275,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Phone" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
         </EntityType>
@@ -429,7 +427,6 @@
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -470,7 +467,7 @@
         <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="2.375" PointY="5.125" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.25" PointY="5.25" Height="3.7109993489583335" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8" PointY="2.375" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.375" PointY="2" Height="2.5571907552083313" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.375" PointY="2" Height="2.3648893229166665" IsExpanded="true" />
         <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.125" PointY="1.5" Height="2.5571907552083322" IsExpanded="true" />
         <AssociationConnector Association="MainDbModel.FK_Driver_Car" ManuallyRouted="false">
           <ConnectorPoint PointX="5" PointY="6.9324446614583337" />

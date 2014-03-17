@@ -31,11 +31,6 @@ namespace CarpoolSystem.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(200)]
-        [Display(Name = "Address")]
-        public string Address { get; set; }
-
-        [Required]
         [Display(Name = "Phone")]
         public Int64 Phone { get; set; }
 

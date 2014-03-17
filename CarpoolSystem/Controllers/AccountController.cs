@@ -98,7 +98,6 @@ namespace CarpoolSystem.Controllers
                         sysProfile.LastName = user.LastName;
                         sysProfile.Emails = user.Email;
                         sysProfile.CreateDate = DateTime.Today;
-                        sysProfile.Address = user.Address;
                         sysProfile.Phone = user.Phone;
 
                         db.Profiles.AddObject(sysProfile);

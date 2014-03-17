@@ -1320,9 +1320,8 @@ namespace CarpoolSystem
         /// <param name="createDate">Initial value of the CreateDate property.</param>
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
-        /// <param name="address">Initial value of the Address property.</param>
         /// <param name="phone">Initial value of the Phone property.</param>
-        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.String address, global::System.Int64 phone)
+        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.Int64 phone)
         {
             Profile profile = new Profile();
             profile.ProfileId = profileId;
@@ -1330,7 +1329,6 @@ namespace CarpoolSystem
             profile.CreateDate = createDate;
             profile.FirstName = firstName;
             profile.LastName = lastName;
-            profile.Address = address;
             profile.Phone = phone;
             return profile;
         }
@@ -1461,30 +1459,6 @@ namespace CarpoolSystem
         private global::System.String _LastName;
         partial void OnLastNameChanging(global::System.String value);
         partial void OnLastNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Address
-        {
-            get
-            {
-                return _Address;
-            }
-            set
-            {
-                OnAddressChanging(value);
-                ReportPropertyChanging("Address");
-                _Address = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Address");
-                OnAddressChanged();
-            }
-        }
-        private global::System.String _Address;
-        partial void OnAddressChanging(global::System.String value);
-        partial void OnAddressChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

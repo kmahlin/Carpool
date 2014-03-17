@@ -95,7 +95,6 @@
     <Property Name="CreateDate" Type="DateTime" Nullable="false" />
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Phone" Type="Int64" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
   </EntityType>
