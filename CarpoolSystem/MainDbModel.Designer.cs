@@ -739,19 +739,29 @@ namespace CarpoolSystem
         /// </summary>
         /// <param name="eventId">Initial value of the EventId property.</param>
         /// <param name="title">Initial value of the Title property.</param>
-        /// <param name="startingLocation">Initial value of the StartingLocation property.</param>
-        /// <param name="endingLocation">Initial value of the EndingLocation property.</param>
         /// <param name="startingTime">Initial value of the StartingTime property.</param>
         /// <param name="endingTime">Initial value of the EndingTime property.</param>
-        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.String startingLocation, global::System.String endingLocation, global::System.DateTime startingTime, global::System.DateTime endingTime)
+        /// <param name="startingAddress">Initial value of the StartingAddress property.</param>
+        /// <param name="endingAddress">Initial value of the EndingAddress property.</param>
+        /// <param name="destCity">Initial value of the DestCity property.</param>
+        /// <param name="destState">Initial value of the DestState property.</param>
+        /// <param name="startingState">Initial value of the StartingState property.</param>
+        /// <param name="startingCity">Initial value of the StartingCity property.</param>
+        /// <param name="days">Initial value of the Days property.</param>
+        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.String startingTime, global::System.String endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
         {
             Event @event = new Event();
             @event.EventId = eventId;
             @event.Title = title;
-            @event.StartingLocation = startingLocation;
-            @event.EndingLocation = endingLocation;
             @event.StartingTime = startingTime;
             @event.EndingTime = endingTime;
+            @event.StartingAddress = startingAddress;
+            @event.EndingAddress = endingAddress;
+            @event.DestCity = destCity;
+            @event.DestState = destState;
+            @event.StartingState = startingState;
+            @event.StartingCity = startingCity;
+            @event.Days = days;
             return @event;
         }
 
@@ -815,55 +825,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String StartingLocation
-        {
-            get
-            {
-                return _StartingLocation;
-            }
-            set
-            {
-                OnStartingLocationChanging(value);
-                ReportPropertyChanging("StartingLocation");
-                _StartingLocation = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("StartingLocation");
-                OnStartingLocationChanged();
-            }
-        }
-        private global::System.String _StartingLocation;
-        partial void OnStartingLocationChanging(global::System.String value);
-        partial void OnStartingLocationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String EndingLocation
-        {
-            get
-            {
-                return _EndingLocation;
-            }
-            set
-            {
-                OnEndingLocationChanging(value);
-                ReportPropertyChanging("EndingLocation");
-                _EndingLocation = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EndingLocation");
-                OnEndingLocationChanged();
-            }
-        }
-        private global::System.String _EndingLocation;
-        partial void OnEndingLocationChanging(global::System.String value);
-        partial void OnEndingLocationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime StartingTime
+        public global::System.String StartingTime
         {
             get
             {
@@ -873,13 +835,13 @@ namespace CarpoolSystem
             {
                 OnStartingTimeChanging(value);
                 ReportPropertyChanging("StartingTime");
-                _StartingTime = StructuralObject.SetValidValue(value);
+                _StartingTime = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("StartingTime");
                 OnStartingTimeChanged();
             }
         }
-        private global::System.DateTime _StartingTime;
-        partial void OnStartingTimeChanging(global::System.DateTime value);
+        private global::System.String _StartingTime;
+        partial void OnStartingTimeChanging(global::System.String value);
         partial void OnStartingTimeChanged();
     
         /// <summary>
@@ -887,7 +849,7 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime EndingTime
+        public global::System.String EndingTime
         {
             get
             {
@@ -897,13 +859,13 @@ namespace CarpoolSystem
             {
                 OnEndingTimeChanging(value);
                 ReportPropertyChanging("EndingTime");
-                _EndingTime = StructuralObject.SetValidValue(value);
+                _EndingTime = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("EndingTime");
                 OnEndingTimeChanged();
             }
         }
-        private global::System.DateTime _EndingTime;
-        partial void OnEndingTimeChanging(global::System.DateTime value);
+        private global::System.String _EndingTime;
+        partial void OnEndingTimeChanging(global::System.String value);
         partial void OnEndingTimeChanged();
     
         /// <summary>
@@ -929,6 +891,174 @@ namespace CarpoolSystem
         private global::System.String _EventInfo;
         partial void OnEventInfoChanging(global::System.String value);
         partial void OnEventInfoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StartingAddress
+        {
+            get
+            {
+                return _StartingAddress;
+            }
+            set
+            {
+                OnStartingAddressChanging(value);
+                ReportPropertyChanging("StartingAddress");
+                _StartingAddress = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StartingAddress");
+                OnStartingAddressChanged();
+            }
+        }
+        private global::System.String _StartingAddress;
+        partial void OnStartingAddressChanging(global::System.String value);
+        partial void OnStartingAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EndingAddress
+        {
+            get
+            {
+                return _EndingAddress;
+            }
+            set
+            {
+                OnEndingAddressChanging(value);
+                ReportPropertyChanging("EndingAddress");
+                _EndingAddress = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EndingAddress");
+                OnEndingAddressChanged();
+            }
+        }
+        private global::System.String _EndingAddress;
+        partial void OnEndingAddressChanging(global::System.String value);
+        partial void OnEndingAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DestCity
+        {
+            get
+            {
+                return _DestCity;
+            }
+            set
+            {
+                OnDestCityChanging(value);
+                ReportPropertyChanging("DestCity");
+                _DestCity = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DestCity");
+                OnDestCityChanged();
+            }
+        }
+        private global::System.String _DestCity;
+        partial void OnDestCityChanging(global::System.String value);
+        partial void OnDestCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DestState
+        {
+            get
+            {
+                return _DestState;
+            }
+            set
+            {
+                OnDestStateChanging(value);
+                ReportPropertyChanging("DestState");
+                _DestState = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DestState");
+                OnDestStateChanged();
+            }
+        }
+        private global::System.String _DestState;
+        partial void OnDestStateChanging(global::System.String value);
+        partial void OnDestStateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StartingState
+        {
+            get
+            {
+                return _StartingState;
+            }
+            set
+            {
+                OnStartingStateChanging(value);
+                ReportPropertyChanging("StartingState");
+                _StartingState = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StartingState");
+                OnStartingStateChanged();
+            }
+        }
+        private global::System.String _StartingState;
+        partial void OnStartingStateChanging(global::System.String value);
+        partial void OnStartingStateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String StartingCity
+        {
+            get
+            {
+                return _StartingCity;
+            }
+            set
+            {
+                OnStartingCityChanging(value);
+                ReportPropertyChanging("StartingCity");
+                _StartingCity = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("StartingCity");
+                OnStartingCityChanged();
+            }
+        }
+        private global::System.String _StartingCity;
+        partial void OnStartingCityChanging(global::System.String value);
+        partial void OnStartingCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Days
+        {
+            get
+            {
+                return _Days;
+            }
+            set
+            {
+                OnDaysChanging(value);
+                ReportPropertyChanging("Days");
+                _Days = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Days");
+                OnDaysChanged();
+            }
+        }
+        private global::System.String _Days;
+        partial void OnDaysChanging(global::System.String value);
+        partial void OnDaysChanged();
 
         #endregion
 
@@ -1190,9 +1320,8 @@ namespace CarpoolSystem
         /// <param name="createDate">Initial value of the CreateDate property.</param>
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
-        /// <param name="address">Initial value of the Address property.</param>
         /// <param name="phone">Initial value of the Phone property.</param>
-        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.String address, global::System.Int64 phone)
+        public static Profile CreateProfile(global::System.Int32 profileId, global::System.String emails, global::System.DateTime createDate, global::System.String firstName, global::System.String lastName, global::System.Int64 phone)
         {
             Profile profile = new Profile();
             profile.ProfileId = profileId;
@@ -1200,7 +1329,6 @@ namespace CarpoolSystem
             profile.CreateDate = createDate;
             profile.FirstName = firstName;
             profile.LastName = lastName;
-            profile.Address = address;
             profile.Phone = phone;
             return profile;
         }
@@ -1331,30 +1459,6 @@ namespace CarpoolSystem
         private global::System.String _LastName;
         partial void OnLastNameChanging(global::System.String value);
         partial void OnLastNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Address
-        {
-            get
-            {
-                return _Address;
-            }
-            set
-            {
-                OnAddressChanging(value);
-                ReportPropertyChanging("Address");
-                _Address = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Address");
-                OnAddressChanged();
-            }
-        }
-        private global::System.String _Address;
-        partial void OnAddressChanging(global::System.String value);
-        partial void OnAddressChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
