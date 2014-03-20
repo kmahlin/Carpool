@@ -123,7 +123,7 @@ namespace CarpoolSystem.Controllers
         }
         [HttpGet]
         public ActionResult Profile()
-        {
+        {   
             String currentUser = User.Identity.Name;
             using (var db = new MainDbEntities())
             {
