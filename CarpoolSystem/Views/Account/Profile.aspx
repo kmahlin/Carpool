@@ -9,9 +9,6 @@
     <h2>Profile</h2>
 
     <fieldset>
-        <legend>Fields</legend>
-        
-      
         <div class="display-label"><strong>Email</strong></div>
         <div class="display-field"><%: Model.Emails %></div>
         
@@ -23,18 +20,17 @@
         
         <div class="display-label"><strong>LastName</strong></div>
         <div class="display-field"><%: Model.LastName %></div>
-        
-        <div class="display-label"><strong>Address</strong></div>
-        <div class="display-field"><%: Model.Address %></div>
-        
+       
         <div class="display-label"><strong>Phone</strong></div>
         <div class="display-field"><%: Model.Phone %></div>
+
         
     </fieldset>
+ 
     <p>
 
         <%: Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) %> |
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Event", "Event") %>
     </p>
 
 </asp:Content>
