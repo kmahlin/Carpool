@@ -123,12 +123,17 @@ namespace CarpoolSystem.Controllers
         }
         [HttpGet]
         public ActionResult Profile()
-        {
+        {   
             String currentUser = User.Identity.Name;
+
+            if (currentUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             using (var db = new MainDbEntities())
             {
                 var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.UserId);
+                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
                 return View(results);
             }
         }

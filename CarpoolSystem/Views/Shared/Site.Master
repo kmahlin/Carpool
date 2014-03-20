@@ -14,18 +14,20 @@
         <div id="header">
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
+            
+                <%: Html.ActionLink("About", "About", "Home")%>   <%: Html.ActionLink("Event", "Event", "Home")%>  <%: Html.ActionLink("Search", "Search", "Home")%>  
+                      
+                    
+                    
+                 
             </div>   
               
             
             <div id="menucontainer">
             
                 <ul id="menu">              
-                    <%--<li><%: Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("About", "About", "Home")%></li>
-                    <li><%: Html.ActionLink("Login", "LogIn", "Account")%></li>
-                    <li><%: Html.ActionLink("Register", "Registration", "Account")%></li>
-                    <li><%: Html.ActionLink("Event", "Event", "Home")%></li>
-                    <li><%: Html.ActionLink("Event", "Event", "Home")%></li>--%>
+                 <%--   <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
+                    --%>
                 </ul>
             
             </div>
