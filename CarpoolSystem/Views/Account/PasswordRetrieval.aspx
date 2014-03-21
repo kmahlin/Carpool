@@ -8,7 +8,7 @@
     <h2>Password Retrieval</h2>
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Password Retrieval failed. Check your search details") %>
+            <%: Html.ValidationSummary(true,"Password Retrieval failed. Check invalid username or email") %>
                 <div> 
                     <fieldset>
                         <legend>Password Retrieval Form</legend>

@@ -11,7 +11,7 @@
 
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Event create failed. Check your login details") %>
+            <%: Html.ValidationSummary(true,"Event create failed. Check your details") %>
                 <div id = "warpper">
                     <fieldset>
                         <legend>Event Create Form</legend>

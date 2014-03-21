@@ -9,10 +9,10 @@
     <h2>Change Password</h2>
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Login failed. Check your search details") %>
+            <%: Html.ValidationSummary(true,"Change Password Form contains invaild information. Please check your field details") %>
                 <div> 
                     <fieldset>
-                        <legend>Log In Form</legend>
+                        <legend>Would you like to change your password?</legend>
                  
                          <div><% = Html.LabelFor(m => m.OldPassword) %></div>
                          <div><% = Html.PasswordFor(m => m.OldPassword)%>

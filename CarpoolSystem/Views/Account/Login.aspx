@@ -8,13 +8,14 @@
        
     <h2>Welcome to Kalonji's Carpool System</h2>
 
+    <h3><%: ViewData["Message"] %></h3>
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Login failed. Check your search details") %>
+            <%: Html.ValidationSummary(true,"Login failed. Check your login details") %>
                 <div>
      
                     <fieldset>
-                        <legend>Log In Form</legend>
+                        <legend>Please Log in</legend>
                  
                            <div><% = Html.LabelFor(m => m.UserName) %></div>
                             <div><% = Html.TextBoxFor(m => m.UserName)%>
@@ -36,5 +37,6 @@
                 </p> 
 
         <% } %>
-             <p>Not registered? <%: Html.ActionLink("Click Here", "Registration", "Account")%></p>
+             <div>Not registered? <%: Html.ActionLink("Click Here", "Registration", "Account")%></div>
+             <div>Forgot your password? <%: Html.ActionLink("recover account", "PasswordRetrieval", "Account")%></div>
 </asp:Content>

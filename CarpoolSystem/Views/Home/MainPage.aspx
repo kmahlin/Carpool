@@ -25,7 +25,7 @@
         </form>
      --> 
     <p>
-        <%: Html.ActionLink("Search an event", "Search", "Home") %> |
+        <%: Html.ActionLink("Search an event or user", "Search", "Home") %> |
         <%: Html.ActionLink("Create an event", "Event", "Home") %> |
         <%: Html.ActionLink("My Profile", "Profile","Account") %>
     </p>

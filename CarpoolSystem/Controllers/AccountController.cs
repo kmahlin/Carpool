@@ -23,13 +23,8 @@ namespace CarpoolSystem.Controllers
         [HttpPost]
         public ActionResult LogIn(Models.LogInModel user)
         {
+
             
-            var errors = ModelState
-        .Where(x => x.Value.Errors.Count > 0)
-        .Select(x => new { x.Key, x.Value.Errors })
-        .ToArray();
-
-
             if (ModelState.IsValid)
             {
                 if (IsVaild(user.UserName, user.Password))
@@ -42,7 +37,6 @@ namespace CarpoolSystem.Controllers
                     ModelState.AddModelError("", "Login Data is incorrect.");
                 }
             }
-
             return View(user);
         }
 
@@ -162,6 +156,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -183,6 +181,7 @@ namespace CarpoolSystem.Controllers
                              sysUser.Password = encrpPass;
                              sysUser.PasswordSalt = crypto.Salt;
                              db.SaveChanges();
+
                         }
                     }            
                     return RedirectToAction("PasswordChangeOk", "Account");
@@ -198,6 +197,8 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+        //this method is for when a user forgets their 
+        //password and needs it emailed to them
         [HttpGet]
         public ActionResult PasswordRetrieval()
         {
@@ -225,11 +226,23 @@ namespace CarpoolSystem.Controllers
                         Emailer email = new Emailer();
                         email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
                     }
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("PasswordChangeOk", "Account");
                 }
             }
 
             return View();
+        }
+
+        // returns true if user is logged in, false otherwise
+        public bool isLoggedIn()
+        {
+            bool isLoggedIn = false;
+            string currentlyLoggedInUser = User.Identity.Name;
+            if (currentlyLoggedInUser.Length == 0)
+            {
+                isLoggedIn = true;
+            }
+            return isLoggedIn;
         }
     }
 }

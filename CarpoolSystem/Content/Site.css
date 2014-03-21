@@ -376,3 +376,30 @@ div#title
 {
    padding: 0% 0% 0% 15%
 }
+
+#maindisplaylinks
+{
+    font-size:1.1em;
+    display:block;
+    text-align:right;
+    margin:10px;
+    color:White;
+}
+
+#maindisplaylinks a:link
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#maindisplaylinks a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+#maindisplaylinks a:hover
+{
+    color: white;
+    text-decoration: none;
+}

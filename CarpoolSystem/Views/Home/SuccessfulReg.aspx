@@ -15,14 +15,10 @@
                 <div>
                     <fieldset>
                         <legend>useful links</legend>
-                 
-                           <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("About", "About", "Home")%></li>
-                     <li><%: Html.ActionLink("Event", "Event", "Home")%></li>
-                         <li><%: Html.ActionLink("Search", "Search", "Home")%></li>
-
-
-                            
+                            <%: Html.ActionLink("Home", "Index", "Home")%>
+                            <%: Html.ActionLink("About", "About", "Home")%>
+                            <%: Html.ActionLink("Event", "Event", "Home")%>
+                            <%: Html.ActionLink("Search", "Search", "Home")%>
                     </fieldset>
 
 

@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Profile</h2>
+    <h2>Your Profile</h2>
 
     <fieldset>
         <div class="display-label"><strong>Email</strong></div>
@@ -28,9 +28,8 @@
     </fieldset>
  
     <p>
-
-        <%: Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) %> |
-        <%: Html.ActionLink("Event", "Event") %>
+        <%: Html.ActionLink("Change Password?", "ChangePassword", "Account")%> |
+        <%: Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) %> 
     </p>
 
 </asp:Content>

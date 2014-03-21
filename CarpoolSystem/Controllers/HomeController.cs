@@ -8,16 +8,10 @@ namespace CarpoolSystem.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Event()
         {
-            string currentlyLoggedInUser = User.Identity.Name;
-            if (currentlyLoggedInUser.Length == 0)
+            if (isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -130,6 +124,11 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult MainPage()
         {
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
            return View();
         }
 
@@ -141,11 +140,11 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Search()
         {
-            string currentlyLoggedInUser = User.Identity.Name;
-            if (currentlyLoggedInUser.Length == 0)
+            if (isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
+
             return View();
         }
 
@@ -177,10 +176,26 @@ namespace CarpoolSystem.Controllers
                 }
             }
         }
-
         public ActionResult SuccessfulReg()
         {
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
+
+        // returns true if user is logged in, false otherwise
+        public bool isLoggedIn()
+        {
+            bool isLoggedIn = false;
+            string currentlyLoggedInUser = User.Identity.Name;
+            if (currentlyLoggedInUser.Length == 0)
+            {
+                isLoggedIn = true;
+            }
+            return isLoggedIn;
+        }
+
     }
 }

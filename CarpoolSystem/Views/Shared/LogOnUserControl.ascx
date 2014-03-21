@@ -4,6 +4,7 @@
 %>
         Welcome <b><%: Page.User.Identity.Name %></b>!
         [ <%: Html.ActionLink("Log Off", "LogOut", "Account") %> ]
+        [ <%: Html.ActionLink("Profile", "Profile", "Account") %> ]
 <%
     }
     else {
