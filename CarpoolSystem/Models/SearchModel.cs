@@ -8,6 +8,8 @@ namespace CarpoolSystem.Models
 {
     public class SearchModel
     {
+        public bool radioButton { get; set; }
+
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 

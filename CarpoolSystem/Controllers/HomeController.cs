@@ -128,22 +128,30 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(Models.SearchModel search)
+        public ActionResult SearchResults(Models.SearchModel search)
         {
-            
+            // this method searches site by starting state or by user
             using (var db = new MainDbEntities())
             {
-                List<Event> EventList;
-                List<User> UserList;
-                if (search.StartingState != null)
+                IEnumerable<Event> EventList;
+                IEnumerable<User> UserList;
+                // if radio buttion is true, then we're searching by Starting state
+                if (search.StartingState != null && search.radioButton == true)
                 {
                     EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
-                    return PartialView("_SearchEvent", EventList);
+                    ViewData["EventResults"] = EventList;
+                    return PartialView("_SearchEvent");
+                }
+                // if radio buttion is false, then we're searching by user
+                else if (search.UserName != null && search.radioButton == false)
+                {
+                    UserList = db.Users.Where(c => c.UserName == search.UserName).ToList();
+                    ViewData["UserResults"] = UserList;
+                    return PartialView("_SearchUser");
                 }
                 else
                 {
-                    UserList = db.Users.Where(c => c.UserName  == search.UserName).ToList();
-                    return View(UserList);
+                    return View();
                 }
             }
         }

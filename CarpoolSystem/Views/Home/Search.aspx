@@ -8,22 +8,45 @@
 
     <h2>Search</h2>
 
-     <% using (Html.BeginForm() ){ %>
+     <% using (Ajax.BeginForm("SearchResults", // <<Action Name
+                new AjaxOptions
+                {
+                    UpdateTargetId = "ResultsDiv", // << element to update
+                    InsertionMode = InsertionMode.Replace, //replace content
+                    HttpMethod = "POST",
+                }))
+        { %>
 
-            <%: Html.ValidationSummary(true,"Search failed. Check your search details") %>
+            <%: Html.ValidationSummary(true, "Search failed. Check your search details")%>
                 <div>
                     <fieldset>
-                        <legend>Event Search Form</legend>
+                        <legend></legend>
                  
-                           <div><% = Html.LabelFor(m => m.StartingState) %></div>
+                           <div>
+                               <%= Html.RadioButtonFor(m => m.radioButton, true) %> 
+                               Search an Event by starting state
+                           </div>
+                           <p></p>
+                           
                             <div><% = Html.TextBoxFor(m => m.StartingState)%>
                                 <% = Html.ValidationMessageFor(m => m.StartingState)%>
                             </div>
 
-                             <div><% = Html.LabelFor(m => m.UserName)%></div>
+                            <h3>Or</h3>
+                            <p></p>
+
+                             <div>
+                                 <%= Html.RadioButtonFor(m => m.radioButton, false)%> 
+                                 Search the site for a user
+                             </div>
+                             <p></p>
                             <div><% = Html.TextBoxFor(m => m.UserName)%>
                                 <% = Html.ValidationMessageFor(m => m.UserName)%>
                             </div>
+
+                            
+                            
+                            
 
                     </fieldset>
                 </div>
@@ -32,10 +55,18 @@
                 </p>
 
         <% } %>
-         <div >
-        <% Html.RenderPartial("_SearchEvent"); %>
+
+
+         <div id = "ResultsDiv" >
+        <%: Html.Partial("_SearchEvent") %>
         </div>
 
-        
+
+        <script src="<%= Url.Content("~/Scripts/MicrosoftAjax.debug.js") %>" 
+		    type="text/javascript"></script>  
+        <script src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.debug.js") %>" 
+		    type="text/javascript"></script>
+        <script src="<%= Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js") %>" 
+		    type="text/javascript"></script>
 
 </asp:Content>
