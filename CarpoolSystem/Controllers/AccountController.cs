@@ -121,8 +121,19 @@ namespace CarpoolSystem.Controllers
         }
         [HttpGet]
         public ActionResult Profile()
-        {
-            return View();
+        {   
+            String currentUser = User.Identity.Name;
+
+            if (currentUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            using (var db = new MainDbEntities())
+            {
+                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
+                return View(results);
+            }
         }
 
         private bool IsVaild(string UserName, string password)

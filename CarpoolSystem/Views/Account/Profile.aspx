@@ -1,4 +1,4 @@
-﻿<%@ Page Title="registration" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Models.ProfileModel>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<CarpoolSystem.Profile>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Profile
@@ -6,49 +6,32 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Welcome to profile page</h2>
+    <h2>Profile</h2>
 
-     <% using (Html.BeginForm() ){ %>
+    <fieldset>
+        <div class="display-label"><strong>Email</strong></div>
+        <div class="display-field"><%: Model.Emails %></div>
+        
+        <div class="display-label"><strong>Create Date</strong></div>
+        <div class="display-field"><%: String.Format("{0:g}", Model.CreateDate) %></div>
+        
+        <div class="display-label"><strong>FirstName</strong></div>
+        <div class="display-field"><%: Model.FirstName %></div>
+        
+        <div class="display-label"><strong>LastName</strong></div>
+        <div class="display-field"><%: Model.LastName %></div>
+       
+        <div class="display-label"><strong>Phone</strong></div>
+        <div class="display-field"><%: Model.Phone %></div>
 
-            <%: Html.ValidationSummary(true,"command failed") %>
-                <div>
-                    <fieldset>
-                        <legend>Registration Form</legend>
+        
+    </fieldset>
+ 
+    <p>
 
-                            <div><% = Html.LabelFor(m => m.FirstName) %></div>
-                            <div><% = Html.TextBoxFor(m => m.FirstName)%>
-                                <% = Html.ValidationMessageFor(m => m.FirstName)%>
-                            </div>
-
-                            <div><% = Html.LabelFor(m => m.LastName) %></div>
-                            <div><% = Html.TextBoxFor(m => m.LastName)%>
-                                <% = Html.ValidationMessageFor(m => m.LastName)%>
-                            </div>
-
-                            <div><% = Html.LabelFor(m => m.Email) %></div>
-                            <div><% = Html.TextBoxFor(m => m.Email)%>
-                                <% = Html.ValidationMessageFor(m => m.Email)%>
-                            </div>
-
-                            <div><% = Html.LabelFor(m => m.Phone) %></div>
-                            <div><% = Html.TextBoxFor(m => m.Phone)%>
-                                <% = Html.ValidationMessageFor(m => m.Phone)%>
-                            </div>
-                            
-                            <div><% = Html.LabelFor(m => m.Password) %></div>
-                            <div><% = Html.PasswordFor(m => m.Password) %>
-                                <% = Html.ValidationMessageFor(m => m.Password) %>
-                            </div>
-
-                    </fieldset>
-
-
-                </div>
-
-                <p>
-                    <input type="submit" value="register" />
-                </p>
-
-        <% } %>
+        <%: Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) %> |
+        <%: Html.ActionLink("Event", "Event") %>
+    </p>
 
 </asp:Content>
+
