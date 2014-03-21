@@ -8,9 +8,6 @@ namespace CarpoolSystem.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
             return View();
@@ -36,15 +33,11 @@ namespace CarpoolSystem.Controllers
                     .Where(x => x.Value.Errors.Count > 0)
                     .Select(x => new { x.Key, x.Value.Errors })
                     .ToArray();
-
-            
-
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
                 {
                     //Need a user/car/event before you can have a driver
-
                     //Event Section
                     var newEvent = db.Events.CreateObject();
 
@@ -77,13 +70,10 @@ namespace CarpoolSystem.Controllers
                     //expcitly state that there are x number of seats for passenger
                     newCar.SeatsLeft = userEvent.TotalSeats;
 
-
                     db.Events.AddObject(newEvent);
                     db.Cars.AddObject(newCar);
 
                     db.SaveChanges();
-
-
                     // Driver Section
                     //create add id's to driver table
                     var driver = db.Drivers.CreateObject();
@@ -95,13 +85,11 @@ namespace CarpoolSystem.Controllers
                     User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
                     driver.UserId = sysUser.UserId;
 
-
                     db.Drivers.AddObject(driver);
                     db.SaveChanges();
 
-                    return RedirectToAction("Event", "Home");
+                    return RedirectToAction("EventDisplay", "Home");
                 }
-
             }
             else
             {
@@ -110,6 +98,40 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult EventDisplay()
+        {
+            string currentUser = User.Identity.Name;
+            using (var db = new MainDbEntities())
+            {
+                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+
+                var lastDriverId = 0;
+                var lastDriverEventId = 0;
+                for (int i = 0; i < driver.Count(); i++)
+                {
+                      lastDriverId = driver[i].DriverId;
+                   // lastDriverEventId = driver.g
+                    lastDriverEventId = driver[i].EventId;
+                }
+
+                var car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
+                var events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
+
+                var model = new Models.EventDisplayModel();
+                model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
+                model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
+
+                return View(model);
+            }     
+        }
+
+        [HttpGet]
+        public ActionResult MainPage()
+        {
+           return View();
+        }
 
         public ActionResult About()
         {
@@ -135,14 +157,14 @@ namespace CarpoolSystem.Controllers
             {
                 IEnumerable<Event> EventList;
                 IEnumerable<User> UserList;
-                // if radio buttion is true, then we're searching by Starting state
+                // if radio button is true, then we're searching by Starting state
                 if (search.StartingState != null && search.radioButton == true)
                 {
                     EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
                     ViewData["EventResults"] = EventList;
                     return PartialView("_SearchEvent");
                 }
-                // if radio buttion is false, then we're searching by user
+                // if radio button is false, then we're searching by user
                 else if (search.UserName != null && search.radioButton == false)
                 {
                     UserList = db.Users.Where(c => c.UserName == search.UserName).ToList();
@@ -160,6 +182,5 @@ namespace CarpoolSystem.Controllers
         {
             return View();
         }
-
     }
 }

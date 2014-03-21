@@ -54,7 +54,7 @@
                     <input type="submit" value="Search" />
                 </p>
 
-        <% } %>
+        <% } %> 
 
 
          <div id = "ResultsDiv" >

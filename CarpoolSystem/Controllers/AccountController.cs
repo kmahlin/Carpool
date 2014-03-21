@@ -35,7 +35,7 @@ namespace CarpoolSystem.Controllers
                 if (IsVaild(user.UserName, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    return RedirectToAction("Search", "Home");
+                    return RedirectToAction("MainPage", "Home");
                 }
                 else
                 {
@@ -68,8 +68,6 @@ namespace CarpoolSystem.Controllers
         {
             return View();
         }
-
-    
 
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
@@ -123,8 +121,19 @@ namespace CarpoolSystem.Controllers
         }
         [HttpGet]
         public ActionResult Profile()
-        {
-            return View();
+        {   
+            String currentUser = User.Identity.Name;
+
+            if (currentUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            using (var db = new MainDbEntities())
+            {
+                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
+                return View(results);
+            }
         }
 
         private bool IsVaild(string UserName, string password)
@@ -176,10 +185,16 @@ namespace CarpoolSystem.Controllers
                              db.SaveChanges();
                         }
                     }            
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("PasswordChangeOk", "Account");
                 }
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PasswordChangeOk()
+        {
             return View();
         }
 

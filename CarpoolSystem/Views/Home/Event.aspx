@@ -124,15 +124,8 @@
                                 <div><% = Html.TextBoxFor(m => m.TotalSeats)%>
                                     <% = Html.ValidationMessageFor(m => m.TotalSeats)%>
                                 </div>
-                           
-                           </div>
-
-                           
-
-                            
+                          </div>
                     </fieldset>
-
-
                 </div>
 
                 <p>
