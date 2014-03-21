@@ -9,117 +9,43 @@
     <h2>Here is your event creation summary</h2>
 
     <fieldset>
-        <div class ="inner1" style = "font-weight: bold;color: Black">
-            <div class="display-label">Title: </div>
-        </div>
         <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().Title %></div>
-        </div>
+                <div class="display-label"><strong>Title: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().Title %></div>
+                <div class="display-label"><strong>Starting Address: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().StartingAddress %></div>
+                <div class="display-label"><strong>Starting City: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().StartingCity %></div>
+                <div class="display-label"><strong>Starting State: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().StartingState %></div>
+                <div class="display-label"><strong>Ending Address: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().EndingAddress %></div>
+                <div class="display-label"><strong>Destination City: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().DestCity %></div>
+                <div class="display-label"><strong>Destination State: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().DestState %></div>
+                <div class="display-label"><strong>Starting Time: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().StartingTime %></div>
+                <div class="display-label"><strong>Ending Time: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().EndingTime %></div>
+                <div class="display-label"><strong>Event Info: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().EventInfo %></div>
+                <div class="display-label"><strong>Days: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().Days %></div>
+            </div>
 
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Starting Address: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().StartingAddress %></div>
-        </div>
-    
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Starting City: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().StartingCity %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Starting State: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().StartingState %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Ending Address: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().EndingAddress %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Destination City: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().DestCity %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Destination State: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().DestState %></div>
-        </div>
-      
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Starting Time: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().StartingTime %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Ending Time: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().EndingTime %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Event Info: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().EventInfo %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Days: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.EventSearch.Last().Days %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Car Make: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.CarSearch.Last().CarMake %></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Car Model: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.CarSearch.Last().CarModel%></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Car Year: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.CarSearch.Last().CarYear%></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Car Color: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.CarSearch.Last().CarColor%></div>
-        </div>
-
-        <div class ="inner1" style = "clear: left;font-weight: bold;color: Black">
-            <div class="display-label">Total Seats: </div>
-        </div>
-        <div class ="inner1">
-            <div class="display-field"><%: Model.CarSearch.Last().TotalSeats%></div>
-        </div>
+            <div class ="inner1">
+                <div class="display-label"><strong>Car Make: </strong></div>
+                <div class="display-field"><%: Model.CarSearch.Last().CarMake %></div>
+                <div class="display-label"><strong>Car Model: </strong></div>
+                <div class="display-field"><%: Model.CarSearch.Last().CarModel%></div>
+                <div class="display-label"><strong>Car Year: </strong></div>
+                <div class="display-field"><%: Model.CarSearch.Last().CarYear%></div>
+                <div class="display-label"><strong>Car Color: </strong></div>
+                <div class="display-field"><%: Model.CarSearch.Last().CarColor%></div>
+                <div class="display-label"><strong>Total Seats: </strong></div>
+                <div class="display-field"><%: Model.CarSearch.Last().TotalSeats%></div>
+            </div>
     </fieldset>
     <p>
         <%: Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
