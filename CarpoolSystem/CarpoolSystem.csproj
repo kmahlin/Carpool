@@ -113,6 +113,7 @@
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\Search.aspx" />
     <Content Include="Views\Home\SuccessfulReg.aspx" />
+    <Content Include="Views\Home\_SearchEvent.ascx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

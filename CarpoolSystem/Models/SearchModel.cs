@@ -8,9 +8,8 @@ namespace CarpoolSystem.Models
 {
     public class SearchModel
     {
-        [Display(Name = "Starting City")]
-        public string StartingCity { get; set; }
-
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Display(Name = "Starting State")]
         public string StartingState { get; set; }

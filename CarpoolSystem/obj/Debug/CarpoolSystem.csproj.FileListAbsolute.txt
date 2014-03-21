@@ -21,3 +21,8 @@ C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\bin\CarpoolSystem.pdb
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\bin\SimpleCrypto.dll
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.dll
 C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.pdb
+F:\Git\home\kevin\Carpool\CarpoolSystem\bin\CarpoolSystem.dll
+F:\Git\home\kevin\Carpool\CarpoolSystem\bin\CarpoolSystem.pdb
+F:\Git\home\kevin\Carpool\CarpoolSystem\bin\SimpleCrypto.dll
+F:\Git\home\kevin\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.dll
+F:\Git\home\kevin\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.pdb

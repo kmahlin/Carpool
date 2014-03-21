@@ -130,24 +130,21 @@ namespace CarpoolSystem.Controllers
         [HttpPost]
         public ActionResult Search(Models.SearchModel search)
         {
+            
             using (var db = new MainDbEntities())
             {
-                var results = new Models.EventSearchModel();
-
-                //TODO: Return search query to view
-
-
-                //results =
-                //(
-                //    from p in db.Events
-                //    where (p.DestState == search.StartingState) && (p.DestCity == search.StartingCity)
-                //    select p
-                //).ToList();
-
-                ViewData["results"] = results;
-
-                return View();
-                //return PartialView("_SearchByStateCity");
+                List<Event> EventList;
+                List<User> UserList;
+                if (search.StartingState != null)
+                {
+                    EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
+                    return PartialView("_SearchEvent", EventList);
+                }
+                else
+                {
+                    UserList = db.Users.Where(c => c.UserName  == search.UserName).ToList();
+                    return View(UserList);
+                }
             }
         }
 
