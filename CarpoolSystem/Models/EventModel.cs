@@ -83,45 +83,36 @@ namespace CarpoolSystem.Models
 
         [Required]
         [Display(Name = "Number of Seats")]
-        public Int32 TotalSeats { get; set; }
-
-       
+        public Int32 TotalSeats { get; set; }       
     }
 
-    public class EventSearchModel
+    public class EventDisplayModel
     {
         [Required]
-        [StringLength(50)]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Starting Address")]
         public string StartingAddress { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Starting City")]
         public string StartingCity { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Starting State")]
         public string StartingState { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Destination Address")]
-        public string DestAddress { get; set; }
+        public string EndingAddress { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Destination City")]
         public string DestCity { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Destination State")]
         public string DestState { get; set; }
 
@@ -133,16 +124,37 @@ namespace CarpoolSystem.Models
         [Display(Name = "End Time")]
         public string EndingTime { get; set; }
 
-
-        [StringLength(4000)]
+        [Required]
         [Display(Name = "Event Infomation")]
         public string EventInfo { get; set; }
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Days")]
         public string Days { get; set; }
 
-    }
+        //Car Information
+        [Required]
+        [Display(Name = "Make")]
+        public string CarMake { get; set; }
 
+        [Required]
+        [Display(Name = "Model")]
+        public string CarModel { get; set; }
+
+        [Required]
+        [Display(Name = "Year")]
+        public Int32 CarYear { get; set; }
+
+        [Required]
+        [Display(Name = "Color")]
+        public string CarColor { get; set; }
+
+        [Required]
+        [Display(Name = "Number of Seats")]
+        public Int32 TotalSeats { get; set; }
+
+        public IEnumerable<CarpoolSystem.Event> EventSearch { get; set; }
+        public IEnumerable<CarpoolSystem.Car> CarSearch { get; set; }
+
+    }
 }

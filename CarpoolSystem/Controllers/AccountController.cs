@@ -35,7 +35,7 @@ namespace CarpoolSystem.Controllers
                 if (IsVaild(user.UserName, user.Password))
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    return RedirectToAction("Search", "Home");
+                    return RedirectToAction("MainPage", "Home");
                 }
                 else
                 {
@@ -68,8 +68,6 @@ namespace CarpoolSystem.Controllers
         {
             return View();
         }
-
-    
 
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
@@ -176,10 +174,16 @@ namespace CarpoolSystem.Controllers
                              db.SaveChanges();
                         }
                     }            
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("PasswordChangeOk", "Account");
                 }
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult PasswordChangeOk()
+        {
             return View();
         }
 
