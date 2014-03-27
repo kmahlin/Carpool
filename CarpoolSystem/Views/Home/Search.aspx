@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Search</h2>
+    <h2>Search event by state</h2>
 
      <% using (Ajax.BeginForm("SearchResults", // <<Action Name
                 new AjaxOptions
@@ -21,32 +21,13 @@
                 <div>
                     <fieldset>
                         <legend></legend>
-                 
-                           <div>
-                               <%= Html.RadioButtonFor(m => m.radioButton, true) %> 
-                               Search an Event by starting state
-                           </div>
-                           <p></p>
-                           
-                            <div><% = Html.TextBoxFor(m => m.StartingState)%>
+                            <div><% = Html.TextBoxFor(m => m.StartingState, new { placeholder = "Starting State" })%>
                                 <% = Html.ValidationMessageFor(m => m.StartingState)%>
                             </div>
 
-                            <h3>Or</h3>
-                            <p></p>
-
-                             <div>
-                                 <%= Html.RadioButtonFor(m => m.radioButton, false)%> 
-                                 Search the site for a user
-                             </div>
-                             <p></p>
-                            <div><% = Html.TextBoxFor(m => m.UserName)%>
-                                <% = Html.ValidationMessageFor(m => m.UserName)%>
+                            <div><% = Html.TextBoxFor(m => m.DestState, new { placeholder = "Ending State" })%>
+                                <% = Html.ValidationMessageFor(m => m.DestState)%>
                             </div>
-
-                            
-                            
-                            
 
                     </fieldset>
                 </div>
@@ -55,7 +36,7 @@
                 </p>
 
         <% } %> 
-
+        <div id="googleMap" style="height:150px;"></div>
 
          <div id = "ResultsDiv" >
         <%: Html.Partial("_SearchEvent") %>
@@ -68,5 +49,8 @@
 		    type="text/javascript"></script>
         <script src="<%= Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js") %>" 
 		    type="text/javascript"></script>
+        <script src="../../Scripts/googleMap.js" 
+            type="text/javascript"></script>
+
 
 </asp:Content>

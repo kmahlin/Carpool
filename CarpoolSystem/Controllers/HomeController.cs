@@ -140,6 +140,9 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Search()
         {
+            Models.SearchModel search = new Models.SearchModel();
+            search.StartingState = "pick a state";
+
             if (isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
@@ -154,26 +157,42 @@ namespace CarpoolSystem.Controllers
             // this method searches site by starting state or by user
             using (var db = new MainDbEntities())
             {
-                IEnumerable<Event> EventList;
-                IEnumerable<User> UserList;
-                // if radio button is true, then we're searching by Starting state
-                if (search.StartingState != null && search.radioButton == true)
+
+                List<Event> AllEvents = new List<Event>();
+                // if the input is for a starting and ending location
+                if (search.StartingState != null && search.DestState != null)
                 {
-                    EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
-                    ViewData["EventResults"] = EventList;
-                    return PartialView("_SearchEvent");
+                    IEnumerable<Event> StartToDest = db.Events.Where(c => c.StartingState == search.StartingState
+                                                                        && c.DestState == search.DestState).ToList();
+                    ViewData["EventResults"] = StartToDest;
                 }
-                // if radio button is false, then we're searching by user
-                else if (search.UserName != null && search.radioButton == false)
-                {
-                    UserList = db.Users.Where(c => c.UserName == search.UserName).ToList();
-                    ViewData["UserResults"] = UserList;
-                    return PartialView("_SearchUser");
-                }
+                //If one or either of the fields are null, just return what's in start or end queries
                 else
                 {
-                    return View();
+                    //either the startlist or Dest list will be populated, not both
+                    IEnumerable<Event> StartList;
+                    StartList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
+
+                    IEnumerable<Event> DestList;
+                    DestList = db.Events.Where(c => c.DestState == search.DestState).ToList();
+
+                    foreach (var item in StartList)
+                    {
+                        AllEvents.Add(item);
+                    }
+
+                    foreach (var item in DestList)
+                    {
+
+                        if (StartList.FirstOrDefault(c => c.EventId == item.EventId) == null)
+                        {
+                            AllEvents.Add(item);
+                        }
+                    }
+
+                    ViewData["EventResults"] = AllEvents;
                 }
+                return PartialView("_SearchEvent");
             }
         }
         public ActionResult SuccessfulReg()
