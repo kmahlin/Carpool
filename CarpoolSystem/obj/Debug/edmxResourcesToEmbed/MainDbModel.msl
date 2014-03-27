@@ -27,6 +27,7 @@
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="MainDbModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Days" ColumnName="Days" />
           <ScalarProperty Name="StartingCity" ColumnName="StartingCity" />
           <ScalarProperty Name="StartingState" ColumnName="StartingState" />
@@ -54,6 +55,7 @@
     <EntitySetMapping Name="Profiles">
       <EntityTypeMapping TypeName="MainDbModel.Profile">
         <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
           <ScalarProperty Name="Emails" ColumnName="Emails" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -71,6 +73,18 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="MainDbModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

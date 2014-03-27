@@ -60,6 +60,8 @@ namespace CarpoolSystem.Models
         [StringLength(50)]
         [Display(Name = "Days")]
         public string Days { get; set; }
+        
+        public bool TypeRadio { get; set; }
 
         //Car Information
         [Required]
@@ -157,43 +159,4 @@ namespace CarpoolSystem.Models
         public IEnumerable<CarpoolSystem.Car> CarSearch { get; set; }
 
     }
-	
-	public class EventSearchModel
-    {
-        [Display(Name = "Title")]
-        public string Title { get; set; }
-
-        [Display(Name = "Starting Address")]
-        public string StartingAddress { get; set; }
-
-        [Display(Name = "Starting City")]
-        public string StartingCity { get; set; }
-
-        [Display(Name = "Starting State")]
-        public string StartingState { get; set; }
-
-        [Display(Name = "Destination Address")]
-        public string EndingAddress { get; set; }
-
-        [Display(Name = "Destination City")]
-        public string DestCity { get; set; }
-
-        [Display(Name = "Destination State")]
-        public string DestState { get; set; }
-
-        [Display(Name = "Start Time")]
-        public string StartingTime { get; set; }
-
-        [Display(Name = "End Time")]
-        public string EndingTime { get; set; }
-
-        [Display(Name = "Event Infomation")]
-        public string EventInfo { get; set; }
-
-        [Display(Name = "Days")]
-        public string Days { get; set; }
-
-
-    }
-	
 }

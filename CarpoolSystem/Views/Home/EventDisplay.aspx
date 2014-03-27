@@ -12,6 +12,8 @@
         <div class = "inner1">
                 <div class="display-label"><strong>Title: </strong></div>
                 <div class="display-field"><%: Model.EventSearch.Last().Title %></div>
+                <div class="display-label"><strong>Travel Type: </strong></div>
+                <div class="display-field"><%: Model.EventSearch.Last().Type %></div>
                 <div class="display-label"><strong>Starting Address: </strong></div>
                 <div class="display-field"><%: Model.EventSearch.Last().StartingAddress %></div>
                 <div class="display-label"><strong>Starting City: </strong></div>
@@ -48,7 +50,7 @@
             </div>
     </fieldset>
     <p>
-        <%: Html.ActionLink("Back to search", "Search") %>
+        <%: Html.ActionLink("Search for event", "Search") %>
     </p>
 
 </asp:Content>

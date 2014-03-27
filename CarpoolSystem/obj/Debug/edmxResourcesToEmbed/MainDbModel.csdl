@@ -31,6 +31,15 @@
       <End Role="Profile" EntitySet="Profiles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Comments" EntityType="MainDbModel.Comment" />
+    <AssociationSet Name="FK_Comment_Event" Association="MainDbModel.FK_Comment_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="MainDbModel.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Car">
     <Key>
@@ -75,6 +84,8 @@
     <Property Type="String" Name="StartingState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="StartingCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Days" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="MainDbModel.FK_Comment_Event" FromRole="Event" ToRole="Comment" />
+    <Property Type="String" Name="Type" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Passenger">
     <Key>
@@ -97,6 +108,7 @@
     <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="Phone" Type="Int64" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
+    <Property Type="String" Name="ImagePath" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -110,6 +122,7 @@
     <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_User" FromRole="User" ToRole="Driver" />
     <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_User" FromRole="User" ToRole="Passenger" />
     <NavigationProperty Name="Profile" Relationship="MainDbModel.FK_User_Profile" FromRole="User" ToRole="Profile" />
+    <NavigationProperty Name="Comments" Relationship="MainDbModel.FK_Comment_User" FromRole="User" ToRole="Comment" />
   </EntityType>
   <Association Name="FK_Driver_Car">
     <End Role="Car" Type="MainDbModel.Car" Multiplicity="1" />
@@ -180,6 +193,43 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Type="Int32" Name="CommentId" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="EventId" Nullable="false" />
+    <NavigationProperty Name="Event" Relationship="MainDbModel.FK_Comment_Event" FromRole="Comment" ToRole="Event" />
+    <NavigationProperty Name="User" Relationship="MainDbModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
+    <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreateDate" />
+  </EntityType>
+  <Association Name="FK_Comment_Event">
+    <End Type="MainDbModel.Event" Role="Event" Multiplicity="1" />
+    <End Type="MainDbModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Type="MainDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="MainDbModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

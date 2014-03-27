@@ -15,10 +15,22 @@
                 <div id = "warpper">
                     <fieldset>
                         <legend>Event Create Form</legend>
+
                             <div class ="title"><% = Html.LabelFor(m => m.Title) %></div>
                             <div class ="title"><% = Html.TextBoxFor(m => m.Title)%>
                                 <% = Html.ValidationMessageFor(m => m.Title)%>
                             </div>
+
+                            <br />
+                             <h3>Travel Type</h3>
+                            <div>
+                               <%= Html.RadioButtonFor(m => m.TypeRadio, true) %> 
+                               Commuter/Recurring (i.e. School commuter, daily commute, etc.)
+                           </div>
+                           <div>
+                               <%= Html.RadioButtonFor(m => m.TypeRadio, false) %> 
+                               One Time Event (i.e. sporting event, concert, etc.)
+                           </div>
                  
                            
                             <div class ="inner1" >

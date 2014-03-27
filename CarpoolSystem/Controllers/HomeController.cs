@@ -12,10 +12,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Event()
         {
-            if (isLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            //if (isLoggedIn())
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
             return View();
         }
 
@@ -46,12 +46,22 @@ namespace CarpoolSystem.Controllers
                     newEvent.DestCity = userEvent.DestCity;
                     newEvent.DestState = userEvent.DestState;
 
-                    // these datetimes need to be changed to user datetimes
                     newEvent.StartingTime = userEvent.StartingTime;
                     newEvent.EndingTime = userEvent.EndingTime;
 
                     newEvent.EventInfo = userEvent.EventInfo;
                     newEvent.Days = userEvent.Days;
+
+                    if (userEvent.TypeRadio == true)
+                    {
+                        //reccurring/commuter is checked
+                        newEvent.Type = "recurring";
+                    }
+                    else
+                    {
+                        // one time event is checked
+                        newEvent.Type = "non-recurring";
+                    }
 
                     //car Section
                     var newCar = db.Cars.CreateObject();
@@ -83,6 +93,7 @@ namespace CarpoolSystem.Controllers
                     db.Drivers.AddObject(driver);
                     db.SaveChanges();
 
+                    // using -1 as a check to indicated an event was just created
                     return RedirectToAction("EventDisplay", "Home", new { id = -1 });
                 }
             }
