@@ -7,11 +7,20 @@
     <Schema Namespace="MainDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="MainDbModelStoreContainer">
           <EntitySet Name="Car" EntityType="MainDbModel.Store.Car" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comment" EntityType="MainDbModel.Store.Comment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Driver" EntityType="MainDbModel.Store.Driver" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Event" EntityType="MainDbModel.Store.Event" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Passenger" EntityType="MainDbModel.Store.Passenger" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profile" EntityType="MainDbModel.Store.Profile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="MainDbModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Comment_Event" Association="MainDbModel.Store.FK_Comment_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="MainDbModel.Store.FK_Comment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Driver_Car" Association="MainDbModel.Store.FK_Driver_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="Driver" EntitySet="Driver" />
@@ -49,6 +58,17 @@
           <Property Name="TotalSeats" Type="int" Nullable="false" />
           <Property Name="SeatsLeft" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Driver">
           <Key>
             <PropertyRef Name="DriverId" />
@@ -74,6 +94,7 @@
           <Property Name="StartingState" Type="nvarchar(max)" Nullable="false" />
           <Property Name="StartingCity" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -93,6 +114,7 @@
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -104,6 +126,30 @@
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PasswordSalt" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_Comment_Event">
+          <End Role="Event" Type="MainDbModel.Store.Event" Multiplicity="1" />
+          <End Role="Comment" Type="MainDbModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Role="User" Type="MainDbModel.Store.User" Multiplicity="1" />
+          <End Role="Comment" Type="MainDbModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Driver_Car">
           <End Role="Car" Type="MainDbModel.Store.Car" Multiplicity="1" />
           <End Role="Driver" Type="MainDbModel.Store.Driver" Multiplicity="*" />
@@ -211,6 +257,15 @@
             <End Role="Profile" EntitySet="Profiles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Comments" EntityType="MainDbModel.Comment" />
+          <AssociationSet Name="FK_Comment_Event" Association="MainDbModel.FK_Comment_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="MainDbModel.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Car">
           <Key>
@@ -255,6 +310,8 @@
           <Property Type="String" Name="StartingState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="StartingCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Days" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="MainDbModel.FK_Comment_Event" FromRole="Event" ToRole="Comment" />
+          <Property Type="String" Name="Type" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Passenger">
           <Key>
@@ -277,6 +334,7 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Phone" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="MainDbModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
+          <Property Type="String" Name="ImagePath" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -290,6 +348,7 @@
           <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_User" FromRole="User" ToRole="Driver" />
           <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_User" FromRole="User" ToRole="Passenger" />
           <NavigationProperty Name="Profile" Relationship="MainDbModel.FK_User_Profile" FromRole="User" ToRole="Profile" />
+          <NavigationProperty Name="Comments" Relationship="MainDbModel.FK_Comment_User" FromRole="User" ToRole="Comment" />
         </EntityType>
         <Association Name="FK_Driver_Car">
           <End Role="Car" Type="MainDbModel.Car" Multiplicity="1" />
@@ -363,6 +422,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Type="Int32" Name="CommentId" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="EventId" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="MainDbModel.FK_Comment_Event" FromRole="Comment" ToRole="Event" />
+          <NavigationProperty Name="User" Relationship="MainDbModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateDate" />
+        </EntityType>
+        <Association Name="FK_Comment_Event">
+          <End Type="MainDbModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="MainDbModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Type="MainDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="MainDbModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -395,6 +491,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="MainDbModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Days" ColumnName="Days" />
                 <ScalarProperty Name="StartingCity" ColumnName="StartingCity" />
                 <ScalarProperty Name="StartingState" ColumnName="StartingState" />
@@ -422,6 +519,7 @@
           <EntitySetMapping Name="Profiles">
             <EntityTypeMapping TypeName="MainDbModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="Emails" ColumnName="Emails" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -439,6 +537,18 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MainDbModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -463,36 +573,49 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MainDbModel" ZoomLevel="86">
-        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="5" PointY="6.375" Height="2.5571907552083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="2.375" PointY="5.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="8.25" PointY="5.25" Height="3.7109993489583335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8" PointY="2.375" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="1.375" PointY="2" Height="2.3648893229166665" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.125" PointY="1.5" Height="2.5571907552083322" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Car" Width="1.5" PointX="3" PointY="6.625" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Driver" Width="1.5" PointX="3" PointY="3.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Event" Width="1.5" PointX="5.875" PointY="3.75" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Passenger" Width="1.5" PointX="8.625" PointY="0.625" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.Profile" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainDbModel.User" Width="1.5" PointX="5.875" PointY="0.625" Height="2.7494921874999996" IsExpanded="true" />
         <AssociationConnector Association="MainDbModel.FK_Driver_Car" ManuallyRouted="false">
-          <ConnectorPoint PointX="5" PointY="6.9324446614583337" />
-          <ConnectorPoint PointX="3.875" PointY="6.9324446614583337" />
+          <ConnectorPoint PointX="3.75" PointY="6.625" />
+          <ConnectorPoint PointX="3.75" PointY="6.1148893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.25" PointY="5.92968625" />
-          <ConnectorPoint PointX="3.875" PointY="5.92968625" />
+          <ConnectorPoint PointX="5.875" PointY="4.9324446614583337" />
+          <ConnectorPoint PointX="4.5" PointY="4.9324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Driver_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.59375" PointY="4.0571907552083317" />
-          <ConnectorPoint PointX="6.59375" PointY="5.4218725" />
-          <ConnectorPoint PointX="3.875" PointY="5.4218725" />
+          <ConnectorPoint PointX="5.875" PointY="3.3744921874999996" />
+          <ConnectorPoint PointX="5.5" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="4.875" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="4.875" PointY="3.375" />
+          <ConnectorPoint PointX="4.5" PointY="3.75" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_Event" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.875" PointY="5.25" />
-          <ConnectorPoint PointX="8.875" PointY="4.3552864583333335" />
+          <ConnectorPoint PointX="7.375" PointY="6.9826464843749987" />
+          <ConnectorPoint PointX="10.03125" PointY="6.9826464843749987" />
+          <ConnectorPoint PointX="10.03125" PointY="2.6052864583333335" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_Passenger_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.625" PointY="3.2160953776041659" />
-          <ConnectorPoint PointX="8" PointY="3.2160953776041659" />
+          <ConnectorPoint PointX="7.375" PointY="1.6151432291666668" />
+          <ConnectorPoint PointX="8.625" PointY="1.6151432291666668" />
         </AssociationConnector>
         <AssociationConnector Association="MainDbModel.FK_User_Profile" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.875" PointY="3.0285953776041659" />
-          <ConnectorPoint PointX="5.125" PointY="3.0285953776041659" />
+          <ConnectorPoint PointX="4.5" PointY="1.9324446614583331" />
+          <ConnectorPoint PointX="5.875" PointY="1.9324446614583331" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="MainDbModel.Comment" Width="1.5" PointX="8.375" PointY="3.5" Height="1.9802864583333317" />
+        <AssociationConnector Association="MainDbModel.FK_Comment_Event" >
+          <ConnectorPoint PointX="7.375" PointY="4.9035953776041659" />
+          <ConnectorPoint PointX="8.375" PointY="4.9035953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="MainDbModel.FK_Comment_User" >
+          <ConnectorPoint PointX="7.375" PointY="3.0211393229166665" />
+          <ConnectorPoint PointX="8.46875" PointY="3.0211393229166665" />
+          <ConnectorPoint PointX="8.46875" PointY="3.5" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
