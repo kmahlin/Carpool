@@ -48,8 +48,7 @@
             </div>
     </fieldset>
     <p>
-        <%: Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) %> |
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Back to search", "Search") %>
     </p>
 
 </asp:Content>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Runtime.InteropServices;
 
 namespace CarpoolSystem.Controllers
 {
@@ -82,7 +83,7 @@ namespace CarpoolSystem.Controllers
                     db.Drivers.AddObject(driver);
                     db.SaveChanges();
 
-                    return RedirectToAction("EventDisplay", "Home");
+                    return RedirectToAction("EventDisplay", "Home", new { id = -1 });
                 }
             }
             else
@@ -93,25 +94,41 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult EventDisplay()
+        public ActionResult EventDisplay(int id)
         {
             string currentUser = User.Identity.Name;
             using (var db = new MainDbEntities())
             {
-                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-                var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+                List<CarpoolSystem.Car> car = new List<CarpoolSystem.Car>();
+                List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
 
-                var lastDriverId = 0;
-                var lastDriverEventId = 0;
-                for (int i = 0; i < driver.Count(); i++)
+                //when id is negative we are displaying a newly created event
+                //otherwise (else) it's an event search
+                if (id < 0 )
                 {
-                      lastDriverId = driver[i].DriverId;
-                   // lastDriverEventId = driver.g
-                    lastDriverEventId = driver[i].EventId;
-                }
+                    var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                    var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
 
-                var car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
-                var events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
+                    var lastDriverId = 0;
+                    var lastDriverEventId = 0;
+                    for (int i = 0; i < driver.Count(); i++)
+                    {
+                        lastDriverId = driver[i].DriverId;
+                        lastDriverEventId = driver[i].EventId;
+                    }
+
+                    car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
+                    events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
+
+                }
+                else
+                {
+                    var eventDisplay = db.Events.FirstOrDefault(c => c.EventId == id);
+                    var driver = db.Drivers.FirstOrDefault(c => c.EventId == eventDisplay.EventId);
+
+                    car.Add(db.Cars.FirstOrDefault(c => c.CarId == driver.CarId));
+                    events.Add(eventDisplay);
+                }                
 
                 var model = new Models.EventDisplayModel();
                 model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;

@@ -25,7 +25,7 @@
                     { %>
     
             <tr>
-                <td><%: item.Title %></td>
+                <td><%: Html.ActionLink(item.Title, "EventDisplay", new { id = item.EventId })%></td>
                 <td><%: item.StartingTime %></td>
                 <td><%: item.EndingTime %></td>
                 <td><%: item.StartingAddress %></td>
