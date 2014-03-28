@@ -27,13 +27,15 @@
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="MainDbModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EventEndDate" ColumnName="EventEndDate" />
+          <ScalarProperty Name="EventStartDate" ColumnName="EventStartDate" />
+          <ScalarProperty Name="DestAddress" ColumnName="DestAddress" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Days" ColumnName="Days" />
           <ScalarProperty Name="StartingCity" ColumnName="StartingCity" />
           <ScalarProperty Name="StartingState" ColumnName="StartingState" />
           <ScalarProperty Name="DestState" ColumnName="DestState" />
           <ScalarProperty Name="DestCity" ColumnName="DestCity" />
-          <ScalarProperty Name="EndingAddress" ColumnName="EndingAddress" />
           <ScalarProperty Name="StartingAddress" ColumnName="StartingAddress" />
           <ScalarProperty Name="EventId" ColumnName="EventId" />
           <ScalarProperty Name="Title" ColumnName="Title" />

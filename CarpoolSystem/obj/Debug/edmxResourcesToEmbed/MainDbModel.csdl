@@ -78,7 +78,6 @@
     <NavigationProperty Name="Drivers" Relationship="MainDbModel.FK_Driver_Event" FromRole="Event" ToRole="Driver" />
     <NavigationProperty Name="Passengers" Relationship="MainDbModel.FK_Passenger_Event" FromRole="Event" ToRole="Passenger" />
     <Property Type="String" Name="StartingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="EndingAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="DestCity" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="DestState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="StartingState" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -86,6 +85,9 @@
     <Property Type="String" Name="Days" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Comments" Relationship="MainDbModel.FK_Comment_Event" FromRole="Event" ToRole="Comment" />
     <Property Type="String" Name="Type" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="DestAddress" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EventStartDate" Nullable="false" />
+    <Property Type="String" Name="EventEndDate" Nullable="false" />
   </EntityType>
   <EntityType Name="Passenger">
     <Key>

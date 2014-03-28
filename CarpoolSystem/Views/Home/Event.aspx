@@ -24,7 +24,7 @@
                             <br />
                              <h3>Travel Type</h3>
                             <div>
-                               <%= Html.RadioButtonFor(m => m.TypeRadio, true) %> 
+                               <%= Html.RadioButtonFor(m => m.TypeRadio, true, new { @checked = "checked" })%> 
                                Commuter/Recurring (i.e. School commuter, daily commute, etc.)
                            </div>
                            <div>
@@ -49,9 +49,6 @@
                                 <div><% = Html.TextBoxFor(m => m.StartingState)%>
                                 <% = Html.ValidationMessageFor(m => m.StartingState)%>
                                 </div>
-
-                                
-
                             </div>
 
                             
@@ -72,8 +69,6 @@
                                 <div><% = Html.TextBoxFor(m => m.DestState)%>
                                     <% = Html.ValidationMessageFor(m => m.DestState)%>
                                 </div>
-
-                                
                             </div>
 
 
@@ -93,7 +88,18 @@
                                 </div>
                             </div>
 
+                             <div class = "inner2">
+                                <h3>Start and End date of Event</h3>
+                                <div><% = Html.LabelFor(m => m.EventStartDate) %></div>
+                                <div><% = Html.TextBoxFor(m => m.EventStartDate)%>
+                                    <% = Html.ValidationMessageFor(m => m.EventStartDate)%>
+                                </div>
 
+                                <div><% = Html.LabelFor(m => m.EventEndDate)%></div>
+                                <div><% = Html.TextBoxFor(m => m.EventEndDate)%>
+                                    <% = Html.ValidationMessageFor(m => m.EventEndDate)%>
+                                </div>
+                            </div>
 
                             <div class = "inner2">
                                 <h3>Days of the week</h3>

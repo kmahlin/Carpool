@@ -21,7 +21,7 @@
                 <div class="display-label"><strong>Starting State: </strong></div>
                 <div class="display-field"><%: Model.EventSearch.Last().StartingState %></div>
                 <div class="display-label"><strong>Ending Address: </strong></div>
-                <div class="display-field"><%: Model.EventSearch.Last().EndingAddress %></div>
+                <div class="display-field"><%: Model.EventSearch.Last().DestAddress %></div>
                 <div class="display-label"><strong>Destination City: </strong></div>
                 <div class="display-field"><%: Model.EventSearch.Last().DestCity %></div>
                 <div class="display-label"><strong>Destination State: </strong></div>

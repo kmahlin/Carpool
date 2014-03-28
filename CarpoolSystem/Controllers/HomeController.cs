@@ -42,7 +42,7 @@ namespace CarpoolSystem.Controllers
                     newEvent.StartingCity = userEvent.StartingCity;
                     newEvent.StartingState = userEvent.StartingState;
 
-                    newEvent.EndingAddress = userEvent.DestAddress;
+                    newEvent.DestAddress = userEvent.DestAddress;
                     newEvent.DestCity = userEvent.DestCity;
                     newEvent.DestState = userEvent.DestState;
 
@@ -62,6 +62,9 @@ namespace CarpoolSystem.Controllers
                         // one time event is checked
                         newEvent.Type = "non-recurring";
                     }
+
+                    newEvent.EventStartDate = userEvent.EventStartDate;
+                    newEvent.EventEndDate = userEvent.EventEndDate;
 
                     //car Section
                     var newCar = db.Cars.CreateObject();

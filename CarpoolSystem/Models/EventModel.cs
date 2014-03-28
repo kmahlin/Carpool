@@ -60,8 +60,17 @@ namespace CarpoolSystem.Models
         [StringLength(50)]
         [Display(Name = "Days")]
         public string Days { get; set; }
-        
+
+        [Required]
         public bool TypeRadio { get; set; }
+
+        [Required]
+        [Display(Name = "Start On Date")]
+        public string EventStartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End On Date")]
+        public string EventEndDate { get; set; }
 
         //Car Information
         [Required]

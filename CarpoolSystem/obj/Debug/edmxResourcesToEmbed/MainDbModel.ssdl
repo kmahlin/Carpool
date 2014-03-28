@@ -80,7 +80,7 @@
     <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="StartingAddress" Type="varchar(max)" Nullable="false" />
-    <Property Name="EndingAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DestAddress" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartingTime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EndingTime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EventInfo" Type="nvarchar(max)" />
@@ -89,7 +89,9 @@
     <Property Name="StartingState" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartingCity" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Type" Type="nchar" MaxLength="10" />
+    <Property Name="Type" Type="nchar" MaxLength="15" />
+    <Property Name="EventStartDate" Type="nchar" Nullable="false" MaxLength="45" />
+    <Property Name="EventEndDate" Type="nchar" Nullable="false" MaxLength="45" />
   </EntityType>
   <EntityType Name="Passenger">
     <Key>

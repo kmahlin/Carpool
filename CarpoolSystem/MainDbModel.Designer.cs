@@ -1031,13 +1031,15 @@ namespace CarpoolSystem
         /// <param name="startingTime">Initial value of the StartingTime property.</param>
         /// <param name="endingTime">Initial value of the EndingTime property.</param>
         /// <param name="startingAddress">Initial value of the StartingAddress property.</param>
-        /// <param name="endingAddress">Initial value of the EndingAddress property.</param>
         /// <param name="destCity">Initial value of the DestCity property.</param>
         /// <param name="destState">Initial value of the DestState property.</param>
         /// <param name="startingState">Initial value of the StartingState property.</param>
         /// <param name="startingCity">Initial value of the StartingCity property.</param>
         /// <param name="days">Initial value of the Days property.</param>
-        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.String startingTime, global::System.String endingTime, global::System.String startingAddress, global::System.String endingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days)
+        /// <param name="destAddress">Initial value of the DestAddress property.</param>
+        /// <param name="eventStartDate">Initial value of the EventStartDate property.</param>
+        /// <param name="eventEndDate">Initial value of the EventEndDate property.</param>
+        public static Event CreateEvent(global::System.Int32 eventId, global::System.String title, global::System.String startingTime, global::System.String endingTime, global::System.String startingAddress, global::System.String destCity, global::System.String destState, global::System.String startingState, global::System.String startingCity, global::System.String days, global::System.String destAddress, global::System.String eventStartDate, global::System.String eventEndDate)
         {
             Event @event = new Event();
             @event.EventId = eventId;
@@ -1045,12 +1047,14 @@ namespace CarpoolSystem
             @event.StartingTime = startingTime;
             @event.EndingTime = endingTime;
             @event.StartingAddress = startingAddress;
-            @event.EndingAddress = endingAddress;
             @event.DestCity = destCity;
             @event.DestState = destState;
             @event.StartingState = startingState;
             @event.StartingCity = startingCity;
             @event.Days = days;
+            @event.DestAddress = destAddress;
+            @event.EventStartDate = eventStartDate;
+            @event.EventEndDate = eventEndDate;
             return @event;
         }
 
@@ -1210,30 +1214,6 @@ namespace CarpoolSystem
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String EndingAddress
-        {
-            get
-            {
-                return _EndingAddress;
-            }
-            set
-            {
-                OnEndingAddressChanging(value);
-                ReportPropertyChanging("EndingAddress");
-                _EndingAddress = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EndingAddress");
-                OnEndingAddressChanged();
-            }
-        }
-        private global::System.String _EndingAddress;
-        partial void OnEndingAddressChanging(global::System.String value);
-        partial void OnEndingAddressChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.String DestCity
         {
             get
@@ -1372,6 +1352,78 @@ namespace CarpoolSystem
         private global::System.String _Type;
         partial void OnTypeChanging(global::System.String value);
         partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DestAddress
+        {
+            get
+            {
+                return _DestAddress;
+            }
+            set
+            {
+                OnDestAddressChanging(value);
+                ReportPropertyChanging("DestAddress");
+                _DestAddress = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DestAddress");
+                OnDestAddressChanged();
+            }
+        }
+        private global::System.String _DestAddress;
+        partial void OnDestAddressChanging(global::System.String value);
+        partial void OnDestAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EventStartDate
+        {
+            get
+            {
+                return _EventStartDate;
+            }
+            set
+            {
+                OnEventStartDateChanging(value);
+                ReportPropertyChanging("EventStartDate");
+                _EventStartDate = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EventStartDate");
+                OnEventStartDateChanged();
+            }
+        }
+        private global::System.String _EventStartDate;
+        partial void OnEventStartDateChanging(global::System.String value);
+        partial void OnEventStartDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EventEndDate
+        {
+            get
+            {
+                return _EventEndDate;
+            }
+            set
+            {
+                OnEventEndDateChanging(value);
+                ReportPropertyChanging("EventEndDate");
+                _EventEndDate = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EventEndDate");
+                OnEventEndDateChanged();
+            }
+        }
+        private global::System.String _EventEndDate;
+        partial void OnEventEndDateChanging(global::System.String value);
+        partial void OnEventEndDateChanged();
 
         #endregion
 
