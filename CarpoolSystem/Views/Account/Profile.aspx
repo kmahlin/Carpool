@@ -29,7 +29,7 @@
  
     <p>
         <%: Html.ActionLink("Change Password?", "ChangePassword", "Account")%> |
-        <%: Html.ActionLink("Edit", "Edit", new { id=Model.ProfileId }) %> 
+        <%: Html.ActionLink("Edit", "EditProfile", new { id=Model.ProfileId }) %> 
     </p>
 
 </asp:Content>

@@ -33,7 +33,7 @@
                     <td><%: item.StartingAddress %></td>
                     <td><%: item.StartingState %></td>
                     <td><%: item.StartingCity %></td>
-                    <td><%: item.EndingAddress %> </td>
+                    <td><%: item.DestAddress %> </td>
                     <td><%: item.DestCity %></td>
                     <td><%: item.DestState %></td>
                     <td><%: item.Days %></td>

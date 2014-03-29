@@ -92,10 +92,12 @@ namespace CarpoolSystem.Models
         public string ConfirmEmail { get; set; }
     }
 
-    public class  ProfileModel
+    public class  EditProfileModel
     {
-
-      
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Email")]
+        public string Emails { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -108,23 +110,7 @@ namespace CarpoolSystem.Models
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(50)]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(200)]
-        [Display(Name = "Address")]
-        public string Address { get; set; }
-
-        [Required]
         [Display(Name = "Phone")]
         public Int64 Phone { get; set; }
-
-
-        [Required]
-        [StringLength(20, MinimumLength = 6)]
-        [Display(Name = "Password: ")]
-        public string Password { get; set; }
     }
 }

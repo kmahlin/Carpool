@@ -130,6 +130,61 @@ namespace CarpoolSystem.Controllers
             }
         }
 
+        public ActionResult EditProfile(int id)
+        {
+
+            String currentUser = User.Identity.Name;
+            if (currentUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            using (var db = new MainDbEntities())
+            {
+                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == id);
+                return View(results);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(Models.EditProfileModel userProfile)
+        {
+            String currentUser = User.Identity.Name;
+            if (currentUser.Length == 0)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (ModelState.IsValid)
+            {
+                using (var db = new MainDbEntities())
+                {
+                    try
+                    {
+                        var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                        var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
+
+                        results.Emails = userProfile.Emails;
+                        results.FirstName = userProfile.FirstName;
+                        results.LastName = userProfile.LastName;
+                        results.Phone = userProfile.Phone;
+                        db.SaveChanges();
+                        return RedirectToAction("Profile", "Account");
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError("", "An error occured while saving profile changes");
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please varify the updated information is correct");
+            }
+            return View();
+        }
+
+
         private bool IsVaild(string UserName, string password)
         {
             //encryption

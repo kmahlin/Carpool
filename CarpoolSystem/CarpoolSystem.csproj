@@ -173,6 +173,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\EditProfile.aspx" />
     <Content Include="Views\Account\Login.aspx" />
     <Content Include="Views\Account\LogOut.aspx" />
     <Content Include="Views\Account\PasswordChangeOk.aspx" />
