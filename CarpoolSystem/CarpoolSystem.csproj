@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainDbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Managers\DatabaseManager.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\SearchModel.cs" />

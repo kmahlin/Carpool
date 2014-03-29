@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Here is your event creation summary</h2>
+    <h2>Carpool Event Summary</h2>
 
     <fieldset>
         <div class = "inner1">

@@ -36,7 +36,7 @@
                 </p>
 
         <% } %> 
-        <div id="googleMap" style="height:150px;"></div>
+        <%--<div id="googleMap" style="height:150px;"></div>--%>
 
          <div id = "ResultsDiv" >
         <%: Html.Partial("_SearchEvent") %>

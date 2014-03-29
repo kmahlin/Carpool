@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Runtime.InteropServices;
+using CarpoolSystem.Managers;
 
 namespace CarpoolSystem.Controllers
 {
@@ -12,10 +13,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Event()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (!isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -30,75 +31,24 @@ namespace CarpoolSystem.Controllers
                     .ToArray();
             if (ModelState.IsValid)
             {
-                using (var db = new MainDbEntities())
-                {
-                    //Need a user/car/event before you can have a driver
-                    //Event Section
-                    var newEvent = db.Events.CreateObject();
+                DatabaseManager dbManager = new DatabaseManager();
+                
+                dbManager.createEvent(userEvent.Title, userEvent.StartingAddress, userEvent.StartingCity,
+                    userEvent.StartingState,userEvent.DestAddress,userEvent.DestCity,
+                    userEvent.DestState,userEvent.StartingTime,userEvent.EndingTime,
+                    userEvent.EventInfo,userEvent.Days,userEvent.TypeRadio,userEvent.EventStartDate,
+                    userEvent.EventEndDate);
 
-                    newEvent.Title = userEvent.Title;
+                dbManager.newCar(userEvent.CarMake,userEvent.CarModel,userEvent.CarColor,
+                    userEvent.CarYear,userEvent.TotalSeats);
 
-                    newEvent.StartingAddress = userEvent.StartingAddress;
-                    newEvent.StartingCity = userEvent.StartingCity;
-                    newEvent.StartingState = userEvent.StartingState;
+ 
+                dbManager.newDriver(User.Identity.Name);
 
-                    newEvent.DestAddress = userEvent.DestAddress;
-                    newEvent.DestCity = userEvent.DestCity;
-                    newEvent.DestState = userEvent.DestState;
 
-                    newEvent.StartingTime = userEvent.StartingTime;
-                    newEvent.EndingTime = userEvent.EndingTime;
-
-                    newEvent.EventInfo = userEvent.EventInfo;
-                    newEvent.Days = userEvent.Days;
-
-                    if (userEvent.TypeRadio == true)
-                    {
-                        //reccurring/commuter is checked
-                        newEvent.Type = "recurring";
-                    }
-                    else
-                    {
-                        // one time event is checked
-                        newEvent.Type = "non-recurring";
-                    }
-
-                    newEvent.EventStartDate = userEvent.EventStartDate;
-                    newEvent.EventEndDate = userEvent.EventEndDate;
-
-                    //car Section
-                    var newCar = db.Cars.CreateObject();
-                    newCar.CarMake = userEvent.CarColor;
-                    newCar.CarModel = userEvent.CarModel;
-                    newCar.CarColor = userEvent.CarColor;
-                    newCar.CarYear = userEvent.CarYear;
-                    newCar.TotalSeats = userEvent.TotalSeats;
-
-                    //TODO: In the view,
-                    //expcitly state that there are x number of seats for passenger
-                    newCar.SeatsLeft = userEvent.TotalSeats;
-
-                    db.Events.AddObject(newEvent);
-                    db.Cars.AddObject(newCar);
-
-                    db.SaveChanges();
-                    // Driver Section
-                    //create add id's to driver table
-                    var driver = db.Drivers.CreateObject();
-                    driver.CarId = newCar.CarId;
-                    driver.EventId = newEvent.EventId;
-
-                    //get current logged in user
-                    string currentUser = User.Identity.Name;
-                    User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
-                    driver.UserId = sysUser.UserId;
-
-                    db.Drivers.AddObject(driver);
-                    db.SaveChanges();
-
-                    // using -1 as a check to indicated an event was just created
-                    return RedirectToAction("EventDisplay", "Home", new { id = -1 });
-                }
+                // using -1 as a check to indicated an event was just created
+                return RedirectToAction("EventDisplay", "Home", new { id = -1 });
+                
             }
             else
             {
@@ -111,51 +61,64 @@ namespace CarpoolSystem.Controllers
         public ActionResult EventDisplay(int id)
         {
             string currentUser = User.Identity.Name;
-            using (var db = new MainDbEntities())
+
+            List<CarpoolSystem.Car> car = new List<CarpoolSystem.Car>();
+            List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
+            DatabaseManager dbManager = new DatabaseManager();
+
+            //when id is negative, we are displaying a newly created event
+            //otherwise (else) it's an event search
+            if (id < 0 )
             {
-                List<CarpoolSystem.Car> car = new List<CarpoolSystem.Car>();
-                List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
+                var userInfo = dbManager.getUserByName(currentUser);
+                var driverId = dbManager.getLastDriverId(userInfo.First().UserId);
+                var eventId = dbManager.getLastDriverEventId(userInfo.First().UserId);
 
-                //when id is negative we are displaying a newly created event
-                //otherwise (else) it's an event search
-                if (id < 0 )
-                {
-                    var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-                    var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+                car = dbManager.getCarList(driverId);
+                events = dbManager.getEventList(eventId);
+            }
+            // displays the called event result based on id
+            else
+            {
+                var eventDisplay = dbManager.getEventList(id);
+                var driver = dbManager.getDriverList(eventDisplay.First().EventId);
+                var carlist = dbManager.getCarList(driver.First().CarId);
 
-                    var lastDriverId = 0;
-                    var lastDriverEventId = 0;
-                    for (int i = 0; i < driver.Count(); i++)
-                    {
-                        lastDriverId = driver[i].DriverId;
-                        lastDriverEventId = driver[i].EventId;
-                    }
+                car.Add(carlist.First());
+                events.Add(eventDisplay.First());
+            }                
 
-                    car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
-                    events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
+            var model = new Models.EventDisplayModel();
+            model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
+            model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
 
-                }
-                else
-                {
-                    var eventDisplay = db.Events.FirstOrDefault(c => c.EventId == id);
-                    var driver = db.Drivers.FirstOrDefault(c => c.EventId == eventDisplay.EventId);
-
-                    car.Add(db.Cars.FirstOrDefault(c => c.CarId == driver.CarId));
-                    events.Add(eventDisplay);
-                }                
-
-                var model = new Models.EventDisplayModel();
-                model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
-                model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
-
-                return View(model);
-            }     
+            return View(model);
         }
+
+        //public ActionResult UserEventDisplay()
+        //{
+
+        //    string currentUser = User.Identity.Name;
+        //    if (isLoggedIn())
+        //    {
+        //        return RedirectToAction("Login", "Account");
+        //    }
+
+        //    using (var db = new MainDbEntities())
+        //    {
+        //        List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
+        //        var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+        //        var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+
+        //    }
+
+        //    return View();
+        //}
 
         [HttpGet]
         public ActionResult MainPage()
         {
-            if (isLoggedIn())
+            if (!isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -171,13 +134,13 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Search()
         {
-            Models.SearchModel search = new Models.SearchModel();
-            search.StartingState = "pick a state";
-
-            if (isLoggedIn())
+            if (!isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
+
+            Models.SearchModel search = new Models.SearchModel();
+
 
             return View();
         }
@@ -228,7 +191,7 @@ namespace CarpoolSystem.Controllers
         }
         public ActionResult SuccessfulReg()
         {
-            if (isLoggedIn())
+            if (!isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
@@ -241,6 +204,10 @@ namespace CarpoolSystem.Controllers
             bool isLoggedIn = false;
             string currentlyLoggedInUser = User.Identity.Name;
             if (currentlyLoggedInUser.Length == 0)
+            {
+                isLoggedIn = false;
+            }
+            else
             {
                 isLoggedIn = true;
             }
