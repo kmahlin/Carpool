@@ -176,6 +176,8 @@ namespace CarpoolSystem.Managers
 
         #region Retrieval
 
+
+
         public List<CarpoolSystem.Profile> getProfilebyProfileId(int id)
         {
             var profile = db.Profiles.Where(c => c.ProfileId == id).ToList();
@@ -190,7 +192,14 @@ namespace CarpoolSystem.Managers
             return user;
         }
 
+        public List<CarpoolSystem.User> getUserByDriverId(int driverId)
+        {
+            var driverList = db.Drivers.Where(c => c.DriverId == driverId).ToList();
+            int userId = driverList.First().UserId;
+            var user = db.Users.Where(c => c.UserId == userId).ToList();
 
+            return user;
+        }
 
         public List<CarpoolSystem.User> getUserByName(string userName)
         {
@@ -202,6 +211,7 @@ namespace CarpoolSystem.Managers
         public List<CarpoolSystem.Car> getCarByDriverId(int driverId)
         {
             var driverList = db.Drivers.Where(c => c.DriverId == driverId).ToList();
+            
             int carId = driverList.First().CarId;
             var carList = db.Cars.Where(c => c.CarId == carId).ToList();
 
@@ -287,13 +297,13 @@ namespace CarpoolSystem.Managers
             var driver = db.Drivers.Where(c => c.UserId == userId).ToList();
 
             var lastDriverId = 0;
-            for (int i = 0; i < driver.Count(); i++)
+            
+            for (int i = driver.Count() - 1; i < driver.Count(); i++)
             {
-                lastDriverId = driver[i].CarId;
+                lastDriverId = driver[i].DriverId;
             }
 
             return lastDriverId;
-
         }
 
         public int getLastDriverEventId(int userId)
@@ -302,7 +312,7 @@ namespace CarpoolSystem.Managers
             var driver = db.Drivers.Where(c => c.UserId == userId).ToList();
 
             var lastDriverEventId = 0;
-            for (int i = 0; i < driver.Count(); i++)
+            for (int i = driver.Count -1; i < driver.Count(); i++)
             {
                 lastDriverEventId = driver[i].EventId;
             }

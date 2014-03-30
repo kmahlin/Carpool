@@ -66,10 +66,10 @@ namespace CarpoolSystem.Controllers
         {
             string currentUser = User.Identity.Name;
 
-            List<CarpoolSystem.Car> car = new List<CarpoolSystem.Car>();
-            List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
-            List<CarpoolSystem.User> usersPassengers = new List<CarpoolSystem.User>();
-            //List<CarpoolSystem.Driver> eventDriver = new List<CarpoolSystem.Driver>();
+            List<CarpoolSystem.Car> carList = new List<CarpoolSystem.Car>();
+            List<CarpoolSystem.Event> eventList = new List<CarpoolSystem.Event>();
+            List<CarpoolSystem.User> passengerList = new List<CarpoolSystem.User>();
+            List<CarpoolSystem.User> driverList = new List<CarpoolSystem.User>();
 
             DatabaseManager dbManager = new DatabaseManager();
 
@@ -81,32 +81,31 @@ namespace CarpoolSystem.Controllers
                 var driverId = dbManager.getLastDriverId(userInfo.First().UserId);
                 var eventId = dbManager.getLastDriverEventId(userInfo.First().UserId);
 
-                //eventDriver = dbManager.getDriverByUserId(userInfo.FirstOrDefault().UserId);
 
-                car = dbManager.getCarByDriverId(driverId);
-                events = dbManager.getEventByEventId(eventId);
+                carList = dbManager.getCarByDriverId(driverId);
+                eventList = dbManager.getEventByEventId(eventId);
+                driverList = dbManager.getUserByDriverId(driverId);
             }
             // displays the called event result based on id
             else
             {
                 var eventDisplay = dbManager.getEventByEventId(id);
                 var driver = dbManager.getDriverByEventId(eventDisplay.First().EventId);
-                var carlist = dbManager.getCarByDriverId(driver.First().DriverId);
+                var car = dbManager.getCarByDriverId(driver.First().DriverId);
 
-
-                //eventDriver = dbManager.getDriverByEventId(eventDisplay.FirstOrDefault().EventId);
-                usersPassengers = dbManager.getPassengerNames(id);
+                driverList = dbManager.getUserByDriverId(driver.FirstOrDefault().DriverId);
+                passengerList = dbManager.getPassengerNames(id);
                 
-                car.Add(carlist.First());
-                events.Add(eventDisplay.First());
+                carList.Add(car.First());
+                eventList.Add(eventDisplay.First());
             }
 
 
             var model = new Models.EventDisplayModel();
-            model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
-            model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
-            model.UserSearch = (IEnumerable<CarpoolSystem.User>)usersPassengers;
-            //model.DriverSearch = (IEnumerable<CarpoolSystem.User>)eventDriver;
+            model.CarSearch = (IEnumerable<CarpoolSystem.Car>)carList;
+            model.EventSearch = (IEnumerable<CarpoolSystem.Event>)eventList;
+            model.PassengerSearch = (IEnumerable<CarpoolSystem.User>)passengerList;
+            model.DriverSearch = (IEnumerable<CarpoolSystem.User>)driverList;
 
             ViewData["Message"] = message;
 

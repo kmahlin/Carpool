@@ -170,8 +170,7 @@ namespace CarpoolSystem.Models
 
         public IEnumerable<CarpoolSystem.Event> EventSearch { get; set; }
         public IEnumerable<CarpoolSystem.Car> CarSearch { get; set; }
-        public IEnumerable<CarpoolSystem.User> UserSearch { get; set; }
-        //public IEnumerable<CarpoolSystem.User> DriverSearch { get; set; }
-
+        public IEnumerable<CarpoolSystem.User> PassengerSearch { get; set; }
+        public IEnumerable<CarpoolSystem.User> DriverSearch { get; set; }
     }
 }

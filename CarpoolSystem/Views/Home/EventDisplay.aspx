@@ -55,8 +55,18 @@
 
             <div class = "inner1">
 
+                <h3>Driver:</h3>
+                <% foreach(var item in Model.DriverSearch) 
+                 { %>
+                    <div class="display-field"><%: Html.ActionLink(item.UserName, "MemberProfile", "Account", new { id = item.ProfileId }, null)%></div>
+                 <% } %>
+                 <br />
+            </div>
+
+            <div class = "inner1">
+
                 <h3>Passenger List:</h3>
-                <% foreach(var item in Model.UserSearch) 
+                <% foreach(var item in Model.PassengerSearch) 
                  { %>
                     <div class="display-field"><%: Html.ActionLink(item.UserName, "MemberProfile", "Account", new { id = item.ProfileId }, null)%></div>
                  <% } %>
