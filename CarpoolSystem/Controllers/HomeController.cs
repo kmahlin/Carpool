@@ -32,7 +32,11 @@ namespace CarpoolSystem.Controllers
             if (ModelState.IsValid)
             {
                 DatabaseManager dbManager = new DatabaseManager();
-                
+
+
+                //TODO: error handeling, roll back inserts on fail
+                //possible try catch block that says if any of these methods fail
+                // remove the previous inserts
                 dbManager.createEvent(userEvent.Title, userEvent.StartingAddress, userEvent.StartingCity,
                     userEvent.StartingState,userEvent.DestAddress,userEvent.DestCity,
                     userEvent.DestState,userEvent.StartingTime,userEvent.EndingTime,
@@ -74,15 +78,15 @@ namespace CarpoolSystem.Controllers
                 var driverId = dbManager.getLastDriverId(userInfo.First().UserId);
                 var eventId = dbManager.getLastDriverEventId(userInfo.First().UserId);
 
-                car = dbManager.getCarList(driverId);
-                events = dbManager.getEventList(eventId);
+                car = dbManager.getCarByDriverId(driverId);
+                events = dbManager.getEventByEventId(eventId);
             }
             // displays the called event result based on id
             else
             {
-                var eventDisplay = dbManager.getEventList(id);
-                var driver = dbManager.getDriverList(eventDisplay.First().EventId);
-                var carlist = dbManager.getCarList(driver.First().CarId);
+                var eventDisplay = dbManager.getEventByEventId(id);
+                var driver = dbManager.getDriverByEventId(eventDisplay.First().EventId);
+                var carlist = dbManager.getCarByDriverId(driver.First().DriverId);
 
                 car.Add(carlist.First());
                 events.Add(eventDisplay.First());
@@ -95,25 +99,35 @@ namespace CarpoolSystem.Controllers
             return View(model);
         }
 
-        //public ActionResult UserEventDisplay()
-        //{
+        [HttpGet]
+        public ActionResult UserEventDisplay()
+        {
 
-        //    string currentUser = User.Identity.Name;
-        //    if (isLoggedIn())
-        //    {
-        //        return RedirectToAction("Login", "Account");
-        //    }
+            string currentUser = User.Identity.Name;
 
-        //    using (var db = new MainDbEntities())
-        //    {
-        //        List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
-        //        var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-        //        var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+            if (!isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-        //    }
 
-        //    return View();
-        //}
+            DatabaseManager dbManager = new DatabaseManager();
+
+            var userInfo = dbManager.getUserByName(currentUser);
+            var eventList = dbManager.getAllEventsByUserId(userInfo.First().UserId);
+
+            return View(eventList);
+        }
+
+        public ActionResult RemoveCarpool(int id)
+        {
+            DatabaseManager dbManager = new DatabaseManager();
+            dbManager.removeCarpoolEvent(id);
+            dbManager.saveChanges();
+
+
+            return RedirectToAction("UserEventDisplay", "Home");
+        }
 
         [HttpGet]
         public ActionResult MainPage()
@@ -139,7 +153,7 @@ namespace CarpoolSystem.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            Models.SearchModel search = new Models.SearchModel();
+            //Models.SearchModel search = new Models.SearchModel();
 
 
             return View();

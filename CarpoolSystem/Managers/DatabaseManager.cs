@@ -18,15 +18,16 @@ namespace CarpoolSystem.Managers
             return user;
         }
 
-        public List<CarpoolSystem.Car> getCarList(int driverId)
+        public List<CarpoolSystem.Car> getCarByDriverId(int driverId)
         {
-
-            var carList = db.Cars.Where(c => c.CarId == driverId).ToList();
+            var driverList = db.Drivers.Where(c => c.DriverId == driverId).ToList();
+            int carId = driverList.First().CarId;
+            var carList = db.Cars.Where(c => c.CarId == carId).ToList();
 
             return carList;
         }
 
-        public List<CarpoolSystem.Event> getEventList(int eventId)
+        public List<CarpoolSystem.Event> getEventByEventId(int eventId)
         {
 
             var eventList = db.Events.Where(c => c.EventId == eventId).ToList();
@@ -34,10 +35,46 @@ namespace CarpoolSystem.Managers
             return eventList;
         }
 
-        public List<CarpoolSystem.Driver> getDriverList(int eventId)
+        public List<CarpoolSystem.Event> getAllEventsByUserId(int userId)
+        {
+
+            //TODO, when passengers are implemented, this will need to pull from passenger table too
+            // right now it only takes into account the drive table
+           
+
+            var driverList = db.Drivers.Where(c => c.UserId == userId).ToList();
+            List<CarpoolSystem.Event> eventList = new List<CarpoolSystem.Event>();
+
+            foreach(var item in driverList)
+            {
+                var eventTemp = db.Events.Where(c => c.EventId == item.EventId).ToList();
+                eventList.Add(eventTemp.First());
+
+            }
+
+            return eventList;
+        }
+
+        public List<CarpoolSystem.Driver> getDriverByEventId(int eventId)
         {
 
             var driverList = db.Drivers.Where(c => c.EventId == eventId).ToList();
+
+            return driverList;
+        }
+
+        public List<CarpoolSystem.Passenger> getPassengerByEventId(int eventId)
+        {
+
+            var passengerList = db.Passengers.Where(c => c.EventId == eventId).ToList();
+
+            return passengerList;
+        }
+
+        public List<CarpoolSystem.Driver> getDriverByUserId(int userId)
+        {
+
+            var driverList = db.Drivers.Where(c => c.UserId == userId).ToList();
 
             return driverList;
         }
@@ -157,6 +194,35 @@ namespace CarpoolSystem.Managers
         public void saveChanges()
         {
             db.SaveChanges();
+        }
+
+        public void removeCarpoolEvent(int eventId)
+        {
+
+            var driverRecord = getDriverByEventId(eventId).FirstOrDefault();
+            if (driverRecord != null)
+            {
+                db.Drivers.DeleteObject(driverRecord);
+            }
+
+            var carRecord = getCarByDriverId(driverRecord.DriverId).FirstOrDefault();
+            if (carRecord != null)
+            {
+                db.Cars.DeleteObject(carRecord);
+            }
+
+            var passengerRecord = getPassengerByEventId(eventId).FirstOrDefault();
+            if (passengerRecord != null)
+            {
+                db.Passengers.DeleteObject(passengerRecord);
+            }
+
+            var EventRecord = getEventByEventId(eventId).FirstOrDefault();
+            if (EventRecord != null)
+            {
+                db.Events.DeleteObject(EventRecord);
+            }
+
         }
 
     }
