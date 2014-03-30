@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity;
 using CarpoolSystem.Utilities;
+using CarpoolSystem.Managers;
 
 namespace CarpoolSystem.Controllers
 {
@@ -99,7 +100,10 @@ namespace CarpoolSystem.Controllers
                         //Log user into the site
                         email.RegistrationEmail(user.UserName, user.Email);
                         Login(user.UserName, user.Password);
-                        return RedirectToAction("SuccessfulReg", "Home");
+
+                        string message = "Registration Successful!";
+
+                        return RedirectToAction("MainPage", "Home", new { message });
                     }
                     else
                     {
@@ -115,9 +119,9 @@ namespace CarpoolSystem.Controllers
         }
         [HttpGet]
         public ActionResult Profile()
-        {   
-            String currentUser = User.Identity.Name;
+        {
 
+            String currentUser = User.Identity.Name;
             if (currentUser.Length == 0)
             {
                 return RedirectToAction("Login", "Account");
@@ -129,6 +133,16 @@ namespace CarpoolSystem.Controllers
                 return View(results);
             }
         }
+
+        public ActionResult MemberProfile(int id)
+        {
+            DatabaseManager dbManager = new DatabaseManager();
+            var profile = dbManager.getProfilebyProfileId(id);
+            var user = dbManager.getUserByProfileId(id);
+            ViewData["User"] = user.FirstOrDefault().UserName;
+            return View(profile.FirstOrDefault());
+        }
+
 
         public ActionResult EditProfile(int id)
         {
@@ -209,12 +223,13 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(string message)
         {
             if (isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -222,6 +237,7 @@ namespace CarpoolSystem.Controllers
         public ActionResult ChangePassword(Models.ChangePasswordModel pw)
         {  
             String currentUser = User.Identity.Name;
+            string message = null;
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
@@ -236,19 +252,14 @@ namespace CarpoolSystem.Controllers
                              sysUser.Password = encrpPass;
                              sysUser.PasswordSalt = crypto.Salt;
                              db.SaveChanges();
+                             message = "Password Change Successful!";
 
                         }
-                    }            
-                    return RedirectToAction("PasswordChangeOk", "Account");
+                    }
+                    return RedirectToAction("ChangePassword", "Account", new {message });
                 }
             }
 
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult PasswordChangeOk()
-        {
             return View();
         }
 

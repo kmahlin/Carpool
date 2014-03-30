@@ -62,12 +62,15 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult EventDisplay(int id)
+        public ActionResult EventDisplay(int id, string message)
         {
             string currentUser = User.Identity.Name;
 
             List<CarpoolSystem.Car> car = new List<CarpoolSystem.Car>();
             List<CarpoolSystem.Event> events = new List<CarpoolSystem.Event>();
+            List<CarpoolSystem.User> usersPassengers = new List<CarpoolSystem.User>();
+            //List<CarpoolSystem.Driver> eventDriver = new List<CarpoolSystem.Driver>();
+
             DatabaseManager dbManager = new DatabaseManager();
 
             //when id is negative, we are displaying a newly created event
@@ -77,6 +80,8 @@ namespace CarpoolSystem.Controllers
                 var userInfo = dbManager.getUserByName(currentUser);
                 var driverId = dbManager.getLastDriverId(userInfo.First().UserId);
                 var eventId = dbManager.getLastDriverEventId(userInfo.First().UserId);
+
+                //eventDriver = dbManager.getDriverByUserId(userInfo.FirstOrDefault().UserId);
 
                 car = dbManager.getCarByDriverId(driverId);
                 events = dbManager.getEventByEventId(eventId);
@@ -88,15 +93,51 @@ namespace CarpoolSystem.Controllers
                 var driver = dbManager.getDriverByEventId(eventDisplay.First().EventId);
                 var carlist = dbManager.getCarByDriverId(driver.First().DriverId);
 
+
+                //eventDriver = dbManager.getDriverByEventId(eventDisplay.FirstOrDefault().EventId);
+                usersPassengers = dbManager.getPassengerNames(id);
+                
                 car.Add(carlist.First());
                 events.Add(eventDisplay.First());
-            }                
+            }
+
 
             var model = new Models.EventDisplayModel();
             model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
             model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
+            model.UserSearch = (IEnumerable<CarpoolSystem.User>)usersPassengers;
+            //model.DriverSearch = (IEnumerable<CarpoolSystem.User>)eventDriver;
+
+            ViewData["Message"] = message;
 
             return View(model);
+        }
+        public ActionResult JoinEvent(int id)
+        {
+            DatabaseManager dbManager = new DatabaseManager();
+            string message = null;
+            string currentUser = User.Identity.Name;
+
+            if (dbManager.eventMemberCheck(currentUser, id))
+            {
+                // user is already a member of event
+                // don't add to passenger list
+
+                message = "You're already a member of this event!";
+            }
+            else
+            {
+                
+                if (dbManager.eventSeatCheck(id))
+                {
+                    // there is a free seat, add user to carpool
+                    dbManager.newPassenger(currentUser, id);
+
+                    message = "You've Joined the Event!";
+                }
+            }
+            return RedirectToAction("EventDisplay", "Home", new { id = id, message });
+
         }
 
         [HttpGet]
@@ -128,14 +169,15 @@ namespace CarpoolSystem.Controllers
 
             return RedirectToAction("UserEventDisplay", "Home");
         }
-
         [HttpGet]
-        public ActionResult MainPage()
+        public ActionResult MainPage(string message)
         {
             if (!isLoggedIn())
             {
                 return RedirectToAction("Login", "Account");
             }
+
+            ViewData["Message"] = message;
 
            return View();
         }
@@ -202,14 +244,6 @@ namespace CarpoolSystem.Controllers
                 }
                 return PartialView("_SearchEvent");
             }
-        }
-        public ActionResult SuccessfulReg()
-        {
-            if (!isLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            return View();
         }
 
         // returns true if user is logged in, false otherwise

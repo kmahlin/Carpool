@@ -6,8 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Carpool Events for:</h2>
+    <h2>Carpools you're a part of:</h2>
+    <br />
 
+
+
+    <h3>You're the driver of:</h3>
     <table>
         <tr>
             <th>Title</th>
@@ -19,7 +23,7 @@
         <tr>
             <td><%: Html.ActionLink(item.Title, "EventDisplay", new { id = item.EventId })%></td>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.EventId }) %> |
+                <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.EventId }) %> |--%>
                 <%: Html.ActionLink("Delete", "RemoveCarpool", new { id = item.EventId })%>
             </td>
         </tr>
@@ -28,9 +32,21 @@
 
     </table>
 
-    <p>
-        <%: Html.ActionLink("Create New", "Create") %>
-    </p>
+        <h3>You're a passenger of:</h3>
+    <table>
+        <tr>
+            <th>Title</th>
+        </tr>
+
+    <% foreach (var item in Model) { %>
+    
+        <tr>
+            <td><%: Html.ActionLink(item.Title, "EventDisplay", new { id = item.EventId })%></td>
+        </tr>
+    
+    <% } %>
+
+    </table>
 
 </asp:Content>
 

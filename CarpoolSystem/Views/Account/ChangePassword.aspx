@@ -7,6 +7,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Change Password</h2>
+
+    <h3 style="color: green"><%: ViewData["Message"] %></h3>
+
      <% using (Html.BeginForm() ){ %>
 
             <%: Html.ValidationSummary(true,"Change Password Form contains invaild information. Please check your field details") %>

@@ -164,8 +164,14 @@ namespace CarpoolSystem.Models
         [Display(Name = "Number of Seats")]
         public Int32 TotalSeats { get; set; }
 
+        //Passenger information
+
+
+
         public IEnumerable<CarpoolSystem.Event> EventSearch { get; set; }
         public IEnumerable<CarpoolSystem.Car> CarSearch { get; set; }
+        public IEnumerable<CarpoolSystem.User> UserSearch { get; set; }
+        //public IEnumerable<CarpoolSystem.User> DriverSearch { get; set; }
 
     }
 }
