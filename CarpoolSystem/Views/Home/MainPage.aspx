@@ -21,7 +21,7 @@
         <%: Html.ActionLink("Search events", "Search", "Home") %> |
         <%: Html.ActionLink("Create an event", "Event", "Home") %> |
         <%: Html.ActionLink("My Profile", "Profile","Account") %>|
-        <%: Html.ActionLink("Manage your Carpools", "UserEventDisplay","Home") %>
+        <%: Html.ActionLink("Manage your Carpools", "ManageEvent", "Home")%>
     </p>
 
 

@@ -186,7 +186,7 @@
     <Content Include="Views\Home\EventDisplay.aspx" />
     <Content Include="Views\Home\MainPage.aspx" />
     <Content Include="Views\Home\Search.aspx" />
-    <Content Include="Views\Home\UserEventDisplay.aspx" />
+    <Content Include="Views\Home\ManageEvent.aspx" />
     <Content Include="Views\Home\_SearchEvent.ascx" />
     <Content Include="Views\Home\_SearchUser.ascx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />

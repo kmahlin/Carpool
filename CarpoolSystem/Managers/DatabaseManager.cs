@@ -226,23 +226,35 @@ namespace CarpoolSystem.Managers
             return eventList;
         }
 
-        public List<CarpoolSystem.Event> getAllEventsByUserId(int userId)
+        public List<CarpoolSystem.Event> getDriverEventsByUserId(int userId)
         {
 
-            //TODO, when passengers are implemented, this will need to pull from passenger table too
-            // right now it only takes into account the drive table
-
             var driverList = db.Drivers.Where(c => c.UserId == userId).ToList();
-            List<CarpoolSystem.Event> eventList = new List<CarpoolSystem.Event>();
+            List<CarpoolSystem.Event> driverEventList = new List<CarpoolSystem.Event>();
 
             foreach (var item in driverList)
             {
                 var eventTemp = db.Events.Where(c => c.EventId == item.EventId).ToList();
-                eventList.Add(eventTemp.First());
+                driverEventList.Add(eventTemp.First());
 
             }
 
-            return eventList;
+            return driverEventList;
+        }
+
+        public List<CarpoolSystem.Event> getPassengerEventsByUserId(int userId)
+        {
+
+            var PassengerList = db.Passengers.Where(c => c.UserId == userId).ToList();
+            List<CarpoolSystem.Event> passengerEventList = new List<CarpoolSystem.Event>();
+
+            foreach (var item in PassengerList)
+            {
+                var eventTemp = db.Events.Where(c => c.EventId == item.EventId).ToList();
+                passengerEventList.Add(eventTemp.First());
+            }
+
+            return passengerEventList;
         }
 
         public List<CarpoolSystem.Driver> getDriverByEventId(int eventId)
@@ -377,6 +389,18 @@ namespace CarpoolSystem.Managers
             {
                 db.Events.DeleteObject(EventRecord);
             }
+
+        }
+
+        public void leaveCarpoolEvent(int eventId)
+        {
+
+            var passengerRecord = getPassengerByEventId(eventId).FirstOrDefault();
+            if (passengerRecord != null)
+            {
+                db.Passengers.DeleteObject(passengerRecord);
+            }
+
 
         }
         #endregion

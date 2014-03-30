@@ -140,7 +140,7 @@ namespace CarpoolSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult UserEventDisplay()
+        public ActionResult ManageEvent()
         {
 
             string currentUser = User.Identity.Name;
@@ -151,12 +151,27 @@ namespace CarpoolSystem.Controllers
             }
 
 
+
             DatabaseManager dbManager = new DatabaseManager();
 
-            var userInfo = dbManager.getUserByName(currentUser);
-            var eventList = dbManager.getAllEventsByUserId(userInfo.First().UserId);
 
-            return View(eventList);
+            List<CarpoolSystem.Event> passengerList = new List<CarpoolSystem.Event>();
+            List<CarpoolSystem.Event> driverList = new List<CarpoolSystem.Event>();
+
+            var userInfo = dbManager.getUserByName(currentUser);
+
+            var driverEventList = dbManager.getDriverEventsByUserId(userInfo.First().UserId);
+            var passengerEventList = dbManager.getPassengerEventsByUserId(userInfo.First().UserId);
+
+            driverList = driverEventList;
+            passengerList = passengerEventList;
+
+
+            var model = new Models.ManageEventModel();
+            model.DriverEvent = (IEnumerable<CarpoolSystem.Event>)driverList;
+            model.PassengerEvent = (IEnumerable<CarpoolSystem.Event>)passengerList;
+
+            return View(model);
         }
 
         public ActionResult RemoveCarpool(int id)
@@ -165,9 +180,19 @@ namespace CarpoolSystem.Controllers
             dbManager.removeCarpoolEvent(id);
             dbManager.saveChanges();
 
+            return RedirectToAction("UserEventDisplay", "Home");
+        }
+
+        public ActionResult LeaveCarpool(int id)
+        {
+            DatabaseManager dbManager = new DatabaseManager();
+            dbManager.leaveCarpoolEvent(id);
+            dbManager.saveChanges();
 
             return RedirectToAction("UserEventDisplay", "Home");
         }
+
+
         [HttpGet]
         public ActionResult MainPage(string message)
         {
