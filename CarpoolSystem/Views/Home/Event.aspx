@@ -7,148 +7,171 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Carpool Event</h2>
+    <h2>Start a new carpool</h2>
 
      <% using (Html.BeginForm() ){ %>
 
-            <%: Html.ValidationSummary(true,"Event create failed. Check your details") %>
-                <div id = "warpper">
+            <%: Html.ValidationSummary(true,"Event creation failed. Check your details") %>
+                <div class="form-horizontal">
                     <fieldset>
-                        <legend>Event Create Form</legend>
+                        <legend></legend>
 
-                            <div class ="title"><% = Html.LabelFor(m => m.Title) %></div>
-                            <div class ="title"><% = Html.TextBoxFor(m => m.Title)%>
-                                <% = Html.ValidationMessageFor(m => m.Title)%>
+                            <div class="form-group">
+                                <h4>Title</h4>
+                                <div><% = Html.TextBoxFor(m => m.Title, new { Class = "form-control", PlaceHolder = "Give the Event a name" })%>
+                                    <% = Html.ValidationMessageFor(m => m.Title)%>
+                                </div>
                             </div>
 
-                            <br />
-                             <h3>Travel Type</h3>
-                            <div>
-                               <%= Html.RadioButtonFor(m => m.TypeRadio, true, new { @checked = "checked" })%> 
-                               Commuter/Recurring (i.e. School commuter, daily commute, etc.)
-                           </div>
-                           <div>
-                               <%= Html.RadioButtonFor(m => m.TypeRadio, false) %> 
-                               One Time Event (i.e. sporting event, concert, etc.)
-                           </div>
-                 
+                            <div class="form-group">
+                                 <h4>Travel Type</h4>
+                                <div>
+                                  <h6> <%= Html.RadioButtonFor(m => m.TypeRadio, true, new { @checked = "checked" })%> 
+                                   Commuter/Recurring (i.e. School commuter, daily commute, etc.)</h6>
+                               </div>
+                               <div>
+                                   <h6><%= Html.RadioButtonFor(m => m.TypeRadio, false) %> 
+                                   One Time Event (i.e. sporting event, concert, etc.)</h6>
+                               </div>
+                            </div>
                            
                             <div class ="inner1" >
-                            <h3>Starting Location</h3>
-                                <div><% = Html.LabelFor(m => m.StartingAddress)%></div>
-                                <div><% = Html.TextBoxFor(m => m.StartingAddress)%>
-                                    <% = Html.ValidationMessageFor(m => m.StartingAddress)%>
+
+                                <div class="form-group">
+                                <h4>Starting Location</h4>
+                                    <div><% = Html.TextBoxFor(m => m.StartingAddress, new { Class = "form-control", PlaceHolder = "Starting Street" })%>
+                                        <% = Html.ValidationMessageFor(m => m.StartingAddress)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.StartingCity)%></div>
-                                <div><% = Html.TextBoxFor(m => m.StartingCity)%>
-                                <% = Html.ValidationMessageFor(m => m.StartingCity)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.StartingCity, new { Class = "form-control", PlaceHolder = "Starting City" })%>
+                                            <% = Html.ValidationMessageFor(m => m.StartingCity)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.StartingState)%></div>
-                                <div><% = Html.TextBoxFor(m => m.StartingState)%>
-                                <% = Html.ValidationMessageFor(m => m.StartingState)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.StartingState, new { Class = "form-control", PlaceHolder = "Starting State" })%>
+                                            <% = Html.ValidationMessageFor(m => m.StartingState)%>
+                                    </div>
                                 </div>
+                                
                             </div>
 
-                            
-                            
-                            <div class ="inner1">
-                            <h3>Destination Location</h3>
-                                <div><% = Html.LabelFor(m => m.DestAddress)%></div>
-                                <div><% = Html.TextBoxFor(m => m.DestAddress)%>
-                                    <% = Html.ValidationMessageFor(m => m.DestAddress)%>
-                                </div>
-                            
-                                <div><% = Html.LabelFor(m => m.DestCity)%></div>
-                                <div><% = Html.TextBoxFor(m => m.DestCity)%>
-                                    <% = Html.ValidationMessageFor(m => m.DestCity)%>
+                            <div class ="inner1" >
+
+                                <div class="form-group">
+                                <h4>Destination Location</h4>
+                                    <div><% = Html.TextBoxFor(m => m.DestAddress, new { Class = "form-control", PlaceHolder = "Destination Street" })%>
+                                        <% = Html.ValidationMessageFor(m => m.DestAddress)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.DestState)%></div>
-                                <div><% = Html.TextBoxFor(m => m.DestState)%>
-                                    <% = Html.ValidationMessageFor(m => m.DestState)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.DestCity, new { Class = "form-control", PlaceHolder = "Destination City" })%>
+                                            <% = Html.ValidationMessageFor(m => m.DestCity)%>
+                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.DestState, new { Class = "form-control", PlaceHolder = "Destination State" })%>
+                                            <% = Html.ValidationMessageFor(m => m.DestState)%>
+                                    </div>
+                                </div>
+                                
                             </div>
 
 
                             <div class ="inner1" style = "clear: left">
-                            <h3>Departure and Returning times</h3>
-                                <div style = "font-weight: bold ; padding: 0em 0em .8em 0em">
-                                I want to leave the Starting location by...
+                                <div class="form-group">
+                                    <h4>Departure and Returning times</h4>
+                                    <div><% = Html.TextBoxFor(m => m.StartingTime, new { Class = "form-control", PlaceHolder = "Leave starting location by..." })%>
+                                    <% = Html.ValidationMessageFor(m => m.StartingTime)%>
+                                    </div>
                                 </div>
-                                <div><% = Html.TextBoxFor(m => m.StartingTime)%>
-                                <% = Html.ValidationMessageFor(m => m.StartingTime)%>
-                                </div>
-                                <div style = "font-weight: bold ; padding: .8em 0em .8em 0em">
-                                I want to leave the destination location by...
-                                </div>
-                                <div><% = Html.TextBoxFor(m => m.EndingTime)%>
-                                <% = Html.ValidationMessageFor(m => m.EndingTime)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.EndingTime, new { Class = "form-control", PlaceHolder = "Leave dest. location by..." })%>
+                                    <% = Html.ValidationMessageFor(m => m.EndingTime)%>
+                                    </div>
                                 </div>
                             </div>
+
+
 
                              <div class = "inner2">
-                                <h3>Start and End date of Event</h3>
-                                <div><% = Html.LabelFor(m => m.EventStartDate) %></div>
-                                <div><% = Html.TextBoxFor(m => m.EventStartDate)%>
-                                    <% = Html.ValidationMessageFor(m => m.EventStartDate)%>
+                                <div class="form-group">
+                                    <h4>Start and End date of Event</h4>
+                                    <div><% = Html.TextBoxFor(m => m.EventStartDate, new { Class = "form-control", PlaceHolder = "Starting Date of Event" })%>
+                                        <% = Html.ValidationMessageFor(m => m.EventStartDate)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.EventEndDate)%></div>
-                                <div><% = Html.TextBoxFor(m => m.EventEndDate)%>
-                                    <% = Html.ValidationMessageFor(m => m.EventEndDate)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.EventEndDate, new { Class = "form-control", PlaceHolder = "Ending Date of Event" })%>
+                                        <% = Html.ValidationMessageFor(m => m.EventEndDate)%>
+                                    </div>
                                 </div>
                             </div>
 
+
+
                             <div class = "inner2">
-                                <h3>Days of the week</h3>
-                                <div><% = Html.LabelFor(m => m.Days) %></div>
-                                <div><% = Html.TextBoxFor(m => m.Days)%>
-                                    <% = Html.ValidationMessageFor(m => m.Days)%>
+                                <div class="form-group">
+                                    <h4>Days of the week</h4>
+                                    <div><% = Html.TextBoxFor(m => m.Days, new { Class = "form-control", PlaceHolder = "i.e. MTWTF" })%>
+                                        <% = Html.ValidationMessageFor(m => m.Days)%>
+                                    </div>
                                 </div>
-                                
-                                <h3>Additonal Information</h3>
-                                 <div><% = Html.LabelFor(m => m.EventInfo) %></div>
-                                <div><% = Html.TextAreaFor(m => m.EventInfo)%>
-                                    <% = Html.ValidationMessageFor(m => m.EventInfo)%>
+
+                                <div class="form-group">
+                                    <h4>Additonal Information</h4>
+                                    <div><% = Html.TextAreaFor(m => m.EventInfo, new { Class = "form-control", PlaceHolder = "additional carpool information" })%>
+                                        <% = Html.ValidationMessageFor(m => m.EventInfo)%>
+                                    </div>
                                 </div>
                             </div>
 
                             
                            <div class = "inner2">
-                           <h3>Car Information</h3>
-                                <div><% = Html.LabelFor(m => m.CarMake) %></div>
-                                <div><% = Html.TextBoxFor(m => m.CarMake)%>
-                                    <% = Html.ValidationMessageFor(m => m.CarMake)%>
+                                <div class="form-group">
+                                    <h4>Car Information</h4>
+                                    <div><% = Html.TextBoxFor(m => m.CarMake, new { Class = "form-control", PlaceHolder = "Car's Make (i.e. Toyota)" })%>
+                                        <% = Html.ValidationMessageFor(m => m.CarMake)%>
+                                    </div>
                                 </div>
 
-                                 <div><% = Html.LabelFor(m => m.CarModel)%></div>
-                                <div><% = Html.TextBoxFor(m => m.CarModel)%>
-                                    <% = Html.ValidationMessageFor(m => m.CarModel)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.CarModel, new { Class = "form-control", PlaceHolder = "Car's Model (i.e. Camry)" })%>
+                                        <% = Html.ValidationMessageFor(m => m.CarModel)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.CarYear)%></div>
-                                <div><% = Html.TextBoxFor(m => m.CarYear)%>
-                                    <% = Html.ValidationMessageFor(m => m.CarYear)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.CarYear, new { Class = "form-control", PlaceHolder = "Year of car (i.e. 2005)" })%>
+                                        <% = Html.ValidationMessageFor(m => m.CarYear)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.CarColor)%></div>
-                                <div><% = Html.TextBoxFor(m => m.CarColor)%>
-                                    <% = Html.ValidationMessageFor(m => m.CarColor)%>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.CarColor, new { Class = "form-control", PlaceHolder = "Car's color" })%>
+                                        <% = Html.ValidationMessageFor(m => m.CarColor)%>
+                                    </div>
                                 </div>
 
-                                <div><% = Html.LabelFor(m => m.TotalSeats)%></div>
-                                <div><% = Html.TextBoxFor(m => m.TotalSeats)%>
-                                    <% = Html.ValidationMessageFor(m => m.TotalSeats)%>
-                                </div>
+                                <div class="form-group">
+                                    <div><% = Html.TextBoxFor(m => m.TotalSeats, new { Class = "form-control", PlaceHolder = " # of Seats available" })%>
+                                        <% = Html.ValidationMessageFor(m => m.TotalSeats)%>
+                                    </div>
+                                </div
                           </div>
                     </fieldset>
                 </div>
 
-                <p>
-                    <input type="submit" value="Create" />
-                </p>
+                <div class="form-group">
+                  <div class=" col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
 
         <% } %>
 

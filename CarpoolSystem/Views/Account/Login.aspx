@@ -12,29 +12,31 @@
      <% using (Html.BeginForm() ){ %>
 
             <%: Html.ValidationSummary(true,"Login failed. Check your login details") %>
-                <div>
-     
-                    <fieldset>
-                        <legend>Please Log in</legend>
-                 
-                           <div><% = Html.LabelFor(m => m.UserName) %></div>
-                            <div><% = Html.TextBoxFor(m => m.UserName)%>
-                                <% = Html.ValidationMessageFor(m => m.UserName)%>
-                            </div>
+                <div class="form-horizontal">
+                        <fieldset>
+                            <legend>Please Log in</legend>
 
-                             <div><% = Html.LabelFor(m => m.Password)%></div>
-                            <div><% = Html.PasswordFor(m => m.Password)%>
-                                <% = Html.ValidationMessageFor(m => m.Password)%>
-                            </div>
-                            
-                    </fieldset>
-
-
+                                <div class="form-group">
+                                   <%--<div>User name</div>--%>
+                                    <div><% = Html.TextBoxFor(m => m.UserName, new { Class = "form-control", PlaceHolder = "user name" })%>
+                                        <% = Html.ValidationMessageFor(m => m.UserName)%>
+                                    </div>
+                                </div>
+                                             
+                                <div class="form-group">
+                                    <%--<div>Password</div>--%>
+                                    <div><% = Html.PasswordFor(m => m.Password, new { Class = "form-control", PlaceHolder = "password" })%>
+                                        <% = Html.ValidationMessageFor(m => m.Password) %>
+                                    </div>
+                                </div>
+                        </fieldset>
                 </div>
 
-                <p>
-                    <input type="submit" value="Log in" />
-                </p> 
+                <div class="form-group">
+                  <div class=" col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
 
         <% } %>
              <div>Not registered? <%: Html.ActionLink("Click Here", "Registration", "Account")%></div>

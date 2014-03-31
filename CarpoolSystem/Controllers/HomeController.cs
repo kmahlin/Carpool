@@ -180,7 +180,7 @@ namespace CarpoolSystem.Controllers
             dbManager.removeCarpoolEvent(id);
             dbManager.saveChanges();
 
-            return RedirectToAction("UserEventDisplay", "Home");
+            return RedirectToAction("ManageEvent", "Home");
         }
 
         public ActionResult LeaveCarpool(int id)
@@ -189,7 +189,7 @@ namespace CarpoolSystem.Controllers
             dbManager.leaveCarpoolEvent(id);
             dbManager.saveChanges();
 
-            return RedirectToAction("UserEventDisplay", "Home");
+            return RedirectToAction("ManageEvent", "Home");
         }
 
 

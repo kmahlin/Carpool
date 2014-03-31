@@ -12,50 +12,52 @@
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend></legend>
+            <div class="form-horizontal">
+
+                <div class="form-group">
+                    <div>Email</div>
+                    <div><% = Html.TextBoxFor(m => m.Emails, new { Class = "form-control" })%>
+                        <% = Html.ValidationMessageFor(m => m.Emails)%>
+                    </div>
+                </div>
             
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Emails) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Emails) %>
-                <%: Html.ValidationMessageFor(model => model.Emails) %>
+                <div class="form-group">
+                    <div>First name</div>
+                    <div><% = Html.TextBoxFor(m => m.FirstName, new { Class = "form-control" })%>
+                        <% = Html.ValidationMessageFor(m => m.FirstName)%>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div>Last name</div>
+                    <div><% = Html.TextBoxFor(m => m.LastName, new { Class = "form-control" })%>
+                        <% = Html.ValidationMessageFor(m => m.LastName)%>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div>Phone</div>
+                    <div><% = Html.TextBoxFor(m => m.Phone, new { Class = "form-control" })%>
+                        <% = Html.ValidationMessageFor(m => m.Phone)%>
+                    </div>
+                </div>
+
             </div>
             
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.FirstName) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.FirstName) %>
-                <%: Html.ValidationMessageFor(model => model.FirstName) %>
-            </div>
             
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.LastName) %>
+            <div class="form-group">
+                <div class=" col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.LastName) %>
-                <%: Html.ValidationMessageFor(model => model.LastName) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Phone) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Phone) %>
-                <%: Html.ValidationMessageFor(model => model.Phone) %>
-            </div>
-            
-            <p>
-                <input type="submit" value="Save"  />
-            </p>
         </fieldset>
 
     <% } %>
 
-    <div>
+<%--    <div>
         <%: Html.ActionLink("Back to profile", "Profile") %>
-    </div>
+    </div>--%>
 
 </asp:Content>
 

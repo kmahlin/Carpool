@@ -21,19 +21,24 @@
                 <div>
                     <fieldset>
                         <legend></legend>
-                            <div><% = Html.TextBoxFor(m => m.StartingState, new { placeholder = "Starting State" })%>
+                        <div class="form-group">
+                            <div><% = Html.TextBoxFor(m => m.StartingState, new { Class = "form-control", placeholder = "Starting State" })%>
                                 <% = Html.ValidationMessageFor(m => m.StartingState)%>
                             </div>
-
-                            <div><% = Html.TextBoxFor(m => m.DestState, new { placeholder = "Ending State" })%>
+                        </div>
+                        <div class="form-group">
+                            <div><% = Html.TextBoxFor(m => m.DestState, new { Class = "form-control", placeholder = "Ending State" })%>
                                 <% = Html.ValidationMessageFor(m => m.DestState)%>
                             </div>
+                        </div>
 
                     </fieldset>
                 </div>
-                <p>
-                    <input type="submit" value="Search" />
-                </p>
+                <div class="form-group">
+                  <div class=" col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
 
         <% } %> 
         <%--<div id="googleMap" style="height:150px;"></div>--%>

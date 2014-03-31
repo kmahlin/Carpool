@@ -13,29 +13,37 @@
      <% using (Html.BeginForm() ){ %>
 
             <%: Html.ValidationSummary(true,"Change Password Form contains invaild information. Please check your field details") %>
-                <div> 
+                <div class="form-horizontal">
                     <fieldset>
                         <legend>Would you like to change your password?</legend>
-                 
-                         <div><% = Html.LabelFor(m => m.OldPassword) %></div>
-                         <div><% = Html.PasswordFor(m => m.OldPassword)%>
-                              <% = Html.ValidationMessageFor(m => m.OldPassword)%>
-                         </div>
+                        <div class="form-group">
+                            <%--<div>Old Password</div>--%>
+                            <div><% = Html.PasswordFor(m => m.OldPassword, new { Class = "form-control", PlaceHolder = "Old Password" })%>
+                                <% = Html.ValidationMessageFor(m => m.OldPassword)%>
+                            </div>
+                        </div>
 
-                         <div><% = Html.LabelFor(m => m.NewPassword)%></div>
-                         <div><% = Html.PasswordFor(m => m.NewPassword)%>
-                              <% = Html.ValidationMessageFor(m => m.NewPassword)%>
-                         </div>
+                        <div class="form-group">
+                            <%--<div>New Password</div>--%>
+                            <div><% = Html.PasswordFor(m => m.NewPassword, new { Class = "form-control", PlaceHolder = "New Password" })%>
+                                <% = Html.ValidationMessageFor(m => m.NewPassword)%>
+                            </div>
+                        </div>
 
-                         <div><% = Html.LabelFor(m => m.ConfirmPassword)%></div>
-                         <div><% = Html.PasswordFor(m => m.ConfirmPassword)%>
-                              <% = Html.ValidationMessageFor(m => m.ConfirmPassword)%>
-                         </div>
+                        <div class="form-group">
+                            <%--<div>Confirm Password</div>--%>
+                            <div><% = Html.PasswordFor(m => m.ConfirmPassword, new { Class = "form-control", PlaceHolder = "Confirm Password" })%>
+                                <% = Html.ValidationMessageFor(m => m.ConfirmPassword)%>
+                            </div>
+                        </div>
                             
                     </fieldset>
                 </div>
-                <p>
-                   <input type="submit" value="Log in" />
-                </p>
+
+                <div class="form-group">
+                  <div class=" col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
         <% } %>
 </asp:Content>

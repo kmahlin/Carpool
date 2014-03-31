@@ -11,19 +11,18 @@
 
 
 
-    <h3>You're the driver of:</h3>
+    <h4>You're the driver of:</h4>
     <table>
-<%--        <tr>
-            <th>Title</th>
-            <th>Modify event</th>
-        </tr>--%>
 
     <% foreach (var item in Model.DriverEvent) { %>
         <tr>
             <td><%: Html.ActionLink(item.Title, "EventDisplay", new { id = item.EventId })%></td>
             <td>
                 <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.EventId }) %> |--%>
-                <%: Html.ActionLink("Delete carpool?", "RemoveCarpool", new { id = item.EventId })%>
+                <%--<%: Html.ActionLink("Delete carpool?", "RemoveCarpool", new { id = item.EventId })%>--%>
+                <a href="<%: Url.Action("RemoveCarpool", "Home", new { id = item.EventId }) %>">
+                    <button class="btn btn-danger">Delete carpool?</button>
+                </a>
             </td>
         </tr>
     
@@ -31,18 +30,18 @@
 
     </table>
 
-        <h3>You're a passenger of:</h3>
+        <h4>You're a passenger of:</h4>
     <table>
-        <%--<tr>
-            <th>Title</th>
-        </tr>--%>
 
     <% foreach (var item in Model.PassengerEvent) { %>
     
         <tr>
             <td><%: Html.ActionLink(item.Title, "EventDisplay", new { id = item.EventId })%></td>
             <td>
-            <%: Html.ActionLink("Leave carpool?", "LeaveCarpool", new { id = item.EventId })%>
+            <%--<%: Html.ActionLink("Leave carpool?", "LeaveCarpool", new { id = item.EventId })%>--%>
+            <a href="<%: Url.Action("LeaveCarpool", "Home", new { id = item.EventId }) %>">
+                <button class="btn btn-warning">Leave carpool?</button>
+            </a>
             </td>
         </tr>
     

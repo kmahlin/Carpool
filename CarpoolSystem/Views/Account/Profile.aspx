@@ -28,9 +28,14 @@
     </fieldset>
  
     <p>
-        <%: Html.ActionLink("Change Password?", "ChangePassword", "Account")%> |
-        <%: Html.ActionLink("Edit Profile", "EditProfile", new { id=Model.ProfileId }) %> 
+        <a href="<%: Url.Action("ChangePassword", "Account") %>">
+                    <button class="btn btn-primary">Change Password?</button>
+        </a>
+        <a href="<%: Url.Action("EditProfile", "Account", new { id=Model.ProfileId }) %>">
+                    <button class="btn btn-primary">Edit Profile?</button>
+        </a>
     </p>
+
 
 </asp:Content>
 

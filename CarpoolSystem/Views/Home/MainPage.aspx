@@ -11,9 +11,10 @@
     <h3><%: ViewData["Message"] %></h3>
 
 
-    <div style = "clear: left;font-weight: bold">
-            <div class="display-label">Please choose your option: </div>
-    </div>
+    <%--<div class="emerland"><p>Emerland</p></div>--%>
+    <div class="display-label">Please choose your option: </div>
+    
+
 
 
     <p>

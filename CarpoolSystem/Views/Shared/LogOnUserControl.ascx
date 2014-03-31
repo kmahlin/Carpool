@@ -2,14 +2,18 @@
 <%
     if (Request.IsAuthenticated) {
 %>
-        Welcome <b><%: Page.User.Identity.Name %></b>!
-        [ <%: Html.ActionLink("Log Off", "LogOut", "Account") %> ]
-        [ <%: Html.ActionLink("Profile", "Profile", "Account") %> ]
+       
+        <li><a href="<%= Url.Action("Profile", "Account") %>">Welcome <b><%: Page.User.Identity.Name %></b>!</a></li>
+        <li><a href="<%= Url.Action("LogOut", "Account") %>">Log Off</a></li>
+
+        <%--[ <%: Html.ActionLink("Log Off", "LogOut", "Account") %> ]--%>
+        <%--[ <%: Html.ActionLink("Profile", "Profile", "Account") %> ]--%>
 <%
     }
     else {
 %> 
-        [ <%: Html.ActionLink("Log On", "Login", "Account") %> ]
+        <li><a href="<%= Url.Action("Login", "Account") %>">Log On</a></li>
+        <%--[ <%: Html.ActionLink("Log On", "Login", "Account") %> ]--%>
 <%
     }
 %>

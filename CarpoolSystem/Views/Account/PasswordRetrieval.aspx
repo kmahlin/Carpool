@@ -9,30 +9,39 @@
      <% using (Html.BeginForm() ){ %>
 
             <%: Html.ValidationSummary(true,"Password Retrieval failed. Check invalid username or email") %>
-                <div> 
+                <div class="form-horizontal"> 
                     <fieldset>
-                        <legend>Password Retrieval Form</legend>
+                        <legend></legend>
                  
-                         <div><% = Html.LabelFor(m => m.UserName) %></div>
-                         <div><% = Html.TextBoxFor(m => m.UserName)%>
-                              <% = Html.ValidationMessageFor(m => m.UserName)%>
-                         </div>
+                         <div class="form-group">
+                            <%--<div>User name</div>--%>
+                            <div><% = Html.TextBoxFor(m => m.UserName, new { Class = "form-control", PlaceHolder = "User name" })%>
+                                <% = Html.ValidationMessageFor(m => m.UserName)%>
+                            </div>
+                        </div>
 
-                         <div><% = Html.LabelFor(m => m.Email)%></div>
-                         <div><% = Html.TextBoxFor(m => m.Email)%>
-                              <% = Html.ValidationMessageFor(m => m.Email)%>
-                         </div>
+                         <div class="form-group">
+                            <%--<div>Email</div>--%>
+                            <div><% = Html.TextBoxFor(m => m.Email, new { Class = "form-control", PlaceHolder = "Email" })%>
+                                <% = Html.ValidationMessageFor(m => m.Email)%>
+                            </div>
+                        </div>
 
-                         <div><% = Html.LabelFor(m => m.ConfirmEmail)%></div>
-                         <div><% = Html.TextBoxFor(m => m.ConfirmEmail)%>
-                              <% = Html.ValidationMessageFor(m => m.ConfirmEmail)%>
-                         </div>
+                        <div class="form-group">
+                            <%--<div>Confirm Email</div>--%>
+                            <div><% = Html.TextBoxFor(m => m.ConfirmEmail, new { Class = "form-control", PlaceHolder = "Confirm Email" })%>
+                                <% = Html.ValidationMessageFor(m => m.ConfirmEmail)%>
+                            </div>
+                        </div>
                             
                     </fieldset>
                 </div>
-                <p>
-                   <input type="submit" value="Submit" />
-                </p>
+
+                <div class="form-group">
+                  <div class=" col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
         <% } %>
 
 </asp:Content>

@@ -71,20 +71,18 @@
                     <div class="display-field"><%: Html.ActionLink(item.UserName, "MemberProfile", "Account", new { id = item.ProfileId }, null)%></div>
                  <% } %>
                  <br />
-                 
-                <a href="<%: Url.Action("JoinEvent", "Home", new { id = Model.EventSearch.Last().EventId }) %>">
-                    <button>Join Carpool?</button>
+                <a href="<%: Url.Action("JoinEvent", "Home", new { id = Model.EventSearch.Last().EventId}) %>">
+                    <button class="btn btn-primary">Join Carpool?</button>
                 </a>
             </div>
 
     </fieldset>
     <p>
         <a href="<%: Url.Action("Search", "Home") %>">
-            <button>Search for event</button>
+            <button class="btn btn-primary">Search for event</button>
         </a>
-        <br />
         <a href="<%: Url.Action("MainPage", "Home") %>">
-            <button>back to main</button>
+            <button class="btn btn-primary">back to Main</button>
         </a>
     </p>
 
