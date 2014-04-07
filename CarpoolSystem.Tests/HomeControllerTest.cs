@@ -46,34 +46,19 @@ namespace CarpoolSystem.Tests
         }
 
         [TestMethod]
-        public void Test_Home_Index()
+        public void Test_Event_ReturnView()
         {
-
+            //Arrange 
             var controller = new HomeController();
-            var expected = "EventDisplay";
-            var actual = ((ViewResult)controller.EventDisplay()).ViewName;
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.Event()).ViewName;
+
+            //Assert
             Assert.AreEqual(expected, actual);
         }
 
-
-
-
-
-
-
-        //[TestClass()]
-        //public void Test_Retriving_Event_Data_From_Database()
-        //{
-
-        //    //Arrange 
-        //    var mockSet = new Mock<MainDbEntities>();
-
-
-        //    //Act
-
-
-        //    //Assert
-        //}
 
 
     }

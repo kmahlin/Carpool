@@ -156,10 +156,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            if (isLoggedIn())
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            //if (isLoggedIn())
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
             return View();
         }
 

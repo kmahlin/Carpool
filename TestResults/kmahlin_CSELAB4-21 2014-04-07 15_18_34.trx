@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="90a811f5-e545-4f29-a01b-b7058050d115" name="kmahlin@CSELAB4-21 2014-04-07 15:18:34" runUser="CS.UNL.EDU\kmahlin" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="dc77f63d-4f3b-4d04-8235-d61f9e9fb4cf">
+    <Deployment runDeploymentRoot="kmahlin_CSELAB4-21 2014-04-07 15_18_34">
+      <DeploymentItem filename="D:\Git\home\kevin\Carpool\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll" />
+      <DeploymentItem filename="D:\Git\home\kevin\Carpool\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll" />
+      <DeploymentItem filename="D:\Git\home\kevin\Carpool\CarpoolSystem\bin\CarpoolSystem.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-04-07T15:18:34.1321432-05:00" queuing="2014-04-07T15:18:40.7081432-05:00" start="2014-04-07T15:18:40.8061432-05:00" finish="2014-04-07T15:18:56.6331432-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="CSELAB4-21" outcome="Error" timestamp="2014-04-07T15:18:56.6321432-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_Home_Index" storage="d:\git\home\kevin\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="2b53b24a-785b-4545-ed8f-b18cfdfaa110">
+      <Execution id="f5a2f92b-3e1c-4a0a-ad72-6f070e937b1e" />
+      <TestMethod codeBase="D:/Git/home/kevin/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.HomeControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Home_Index" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="2b53b24a-785b-4545-ed8f-b18cfdfaa110" executionId="f5a2f92b-3e1c-4a0a-ad72-6f070e937b1e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f5a2f92b-3e1c-4a0a-ad72-6f070e937b1e" testId="2b53b24a-785b-4545-ed8f-b18cfdfaa110" testName="Test_Home_Index" computerName="CSELAB4-21" duration="00:00:14.5460000" startTime="2014-04-07T15:18:42.0871432-05:00" endTime="2014-04-07T15:18:56.6331432-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f5a2f92b-3e1c-4a0a-ad72-6f070e937b1e">
+    </UnitTestResult>
+  </Results>
+</TestRun>
