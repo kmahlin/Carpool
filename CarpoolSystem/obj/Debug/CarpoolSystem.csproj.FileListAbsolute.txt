@@ -31,3 +31,4 @@ C:\Users\Kevin\Desktop\Git stuff, save save save\Git\home\kevin\Carpool\CarpoolS
 C:\Users\Kevin\Desktop\Git stuff, save save save\Git\home\kevin\Carpool\CarpoolSystem\bin\SimpleCrypto.dll
 C:\Users\Kevin\Desktop\Git stuff, save save save\Git\home\kevin\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.dll
 C:\Users\Kevin\Desktop\Git stuff, save save save\Git\home\kevin\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.pdb
+C:\Users\Kevin\Desktop\Git stuff, save save save\Git\home\kevin\Carpool\CarpoolSystem\obj\Debug\CarpoolSystem.csprojResolveAssemblyReference.cache

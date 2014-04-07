@@ -5,6 +5,8 @@ using CarpoolSystem.Models;
 using CarpoolSystem.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
+using System.Collections.Specialized;
+using  System.Globalization;
 
 namespace CarpoolSystem.Tests
 {
@@ -13,44 +15,45 @@ namespace CarpoolSystem.Tests
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Test_Event_ModelState_IsValid()
+        public void Test_Event_ModelState_Invalid()
         {
-
             //Arrange 
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
+            controller.ViewData.ModelState.Clear();
 
-            EventModel model = new EventModel
+            var model = new EventModel();
+
+            var modelBinder = new ModelBindingContext()
             {
-                 Title = "Event1",
-                 StartingAddress = "TheBestStreet",
-                 StartingCity = "TheBestCity",
-                 StartingState = "THeBestSTate",
-                 DestAddress = "TheWorstStreet",
-                 DestCity = "TheWorstCity",
-                 DestState = "TheWorstState",
-                 StartingTime = "10:00AM",
-                 EndingTime = "5:00PM",
-                 EventInfo = "CARPOOOOOOOOOLLLLLL",
-                 Days = "MWFTS",
-                 CarMake = "Ford",
-                 CarModel = "F150",
-                 CarYear = 2015,
-                 CarColor = "White",
-                 TotalSeats = 5,
+                ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(
+                                  () => model, model.GetType()),
+                ValueProvider = new NameValueCollectionValueProvider(
+                                    new NameValueCollection(), CultureInfo.InvariantCulture)
             };
 
 
             //Act
+            var binder = new DefaultModelBinder().BindModel(
+                 new ControllerContext(), modelBinder);
+            controller.ModelState.Clear();
+            controller.ModelState.Merge(modelBinder.ModelState);
 
-            controller.Event(model);
+            ViewResult result = (ViewResult)controller.Event(model);
 
-                //controller .ModelState.AddModelError("key","error message");
             //Assert
+            Assert.IsTrue(!result.ViewData.ModelState.IsValid);
 
-            Assert.IsTrue(controller.ViewData.ModelState.Count == 0, "ModelState is Valid");
         }
 
+        [TestMethod]
+        public void Test_Home_Index()
+        {
 
+            var controller = new HomeController();
+            var expected = "EventDisplay";
+            var actual = ((ViewResult)controller.EventDisplay()).ViewName;
+            Assert.AreEqual(expected, actual);
+        }
 
 
 
