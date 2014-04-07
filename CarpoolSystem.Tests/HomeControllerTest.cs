@@ -58,7 +58,20 @@ namespace CarpoolSystem.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        
+
+        [TestMethod]
+        public void Test_EventDisplay_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.EventDisplay()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
         [TestMethod]
         public void Test_MainPage_ReturnView()
         {
@@ -68,19 +81,6 @@ namespace CarpoolSystem.Tests
 
             //Act
             var actual = ((ViewResult)controller.MainPage()).ViewName;
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
-        [TestMethod]
-        public void Test_About_ReturnView()
-        {
-            //Arrange 
-            var controller = new HomeController();
-            var expected = "";
-
-            //Act
-            var actual = ((ViewResult)controller.About()).ViewName;
 
             //Assert
             Assert.AreEqual(expected, actual);
@@ -111,18 +111,6 @@ namespace CarpoolSystem.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
-        public void Test_SuccessfulReg_ReturnView()
-        {
-            //Arrange 
-            var controller = new HomeController();
-            var expected = "";
-
-            //Act
-            var actual = ((ViewResult)controller.SuccessfulReg()).ViewName;
-
-            //Assert
-            Assert.AreEqual(expected, actual);
-        }
+       
     }
 }
