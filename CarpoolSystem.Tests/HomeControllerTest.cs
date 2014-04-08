@@ -111,6 +111,18 @@ namespace CarpoolSystem.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
-       
+        [TestMethod]
+        public void Test_SuccessfulReg_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.SuccessfulReg()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
