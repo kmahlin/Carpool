@@ -24,3 +24,16 @@ D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.p
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.csprojResolveAssemblyReference.cache
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.dll
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.pdb
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.dll.config
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.pdb
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\Moq.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\SimpleCrypto.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.pdb
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\Moq.xml
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.pdb
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.dll
+C:\Users\Kevin\Documents\GitHub\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.pdb
