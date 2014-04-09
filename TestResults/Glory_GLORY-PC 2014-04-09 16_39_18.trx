@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="27f68ddd-4cc1-4a46-a961-4621e245484c" name="Glory@GLORY-PC 2014-04-09 16:39:18" runUser="Glory-PC\Glory" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="fde03fff-85e0-485c-8200-80910fb614e3">
+    <Deployment userDeploymentRoot="C:\Users\Glory\Documents\GitHub\Carpool\TestResults" useDefaultDeploymentRoot="false" runDeploymentRoot="Glory_GLORY-PC 2014-04-09 16_39_18">
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\CarpoolSystem\bin\CarpoolSystem.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-04-09T16:39:18.8103672-05:00" queuing="2014-04-09T16:39:18.9923776-05:00" start="2014-04-09T16:39:18.9993780-05:00" finish="2014-04-09T16:39:19.3974008-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_ChangePassword_Mismatch_Invalid_Post" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de">
+      <Execution id="e1f0f0f4-ca9b-46de-87a2-4f427e027a8c" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ChangePassword_Mismatch_Invalid_Post" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de" executionId="e1f0f0f4-ca9b-46de-87a2-4f427e027a8c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="e1f0f0f4-ca9b-46de-87a2-4f427e027a8c" testId="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de" testName="Test_ChangePassword_Mismatch_Invalid_Post" computerName="GLORY-PC" duration="00:00:00.1598414" startTime="2014-04-09T16:39:19.0023782-05:00" endTime="2014-04-09T16:39:19.3803998-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1f0f0f4-ca9b-46de-87a2-4f427e027a8c">
+    </UnitTestResult>
+  </Results>
+</TestRun>

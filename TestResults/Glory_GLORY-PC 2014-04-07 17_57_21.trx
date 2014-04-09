@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="9e5914af-4151-4569-927d-7740f0bfff54" name="Glory@GLORY-PC 2014-04-07 17:57:21" runUser="Glory-PC\Glory" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="cb105739-9e4b-42f4-80fa-f134d563178e">
+    <Deployment runDeploymentRoot="Glory_GLORY-PC 2014-04-07 17_57_21">
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\CarpoolSystem\bin\CarpoolSystem.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-04-07T17:57:21.0841235-05:00" queuing="2014-04-07T17:57:22.9002274-05:00" start="2014-04-07T17:57:23.0962386-05:00" finish="2014-04-07T18:04:14.7097815-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="7" executed="3" passed="2" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="4" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="GLORY-PC" outcome="Error" timestamp="2014-04-07T18:04:14.7077814-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_PasswordChangeOk_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="29d92cf9-f432-a0b6-0159-38cb9d7bf1b5">
+      <Execution id="f00e8e56-f03a-43f4-8639-93457af2b0df" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_PasswordChangeOk_ReturnView" />
+    </UnitTest>
+    <UnitTest name="Test_Registration_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="dd2171bc-4fa0-469d-00a5-8bf8946c3e04">
+      <Execution id="dfd9dd5b-c765-4e6e-9a2e-9817a26e86e2" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Registration_ReturnView" />
+    </UnitTest>
+    <UnitTest name="Test_ChangePassword_Mismatch_Invalid_Post" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de">
+      <Execution id="e42bf6b9-bc0c-4bc3-9d5e-fe80491a7d38" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ChangePassword_Mismatch_Invalid_Post" />
+    </UnitTest>
+    <UnitTest name="Test_Profile_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="b6ce8f95-61d2-2173-8797-88edd1497619">
+      <Execution id="45c3cb0e-470d-4099-9add-50a20679bf3f" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Profile_ReturnView" />
+    </UnitTest>
+    <UnitTest name="Test_ChangePassword_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="92f40d24-77c6-1528-f717-4ede891619da">
+      <Execution id="7c4cc4ae-7919-49be-b91c-eacc8c61cf15" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_ChangePassword_ReturnView" />
+    </UnitTest>
+    <UnitTest name="Test_PasswordRetrieval_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="c774fbd0-ec6a-6ba1-2a9f-dab886deaf56">
+      <Execution id="473c0b5a-217b-4d8b-9dfd-ceb98c7d4bd1" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_PasswordRetrieval_ReturnView" />
+    </UnitTest>
+    <UnitTest name="Test_Login_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="c11acf36-e8bc-9520-4582-7c2365e061ad">
+      <Execution id="161ea8aa-b1cf-48ed-bb9a-e20308efd3f7" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.AccountControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Login_ReturnView" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="29d92cf9-f432-a0b6-0159-38cb9d7bf1b5" executionId="f00e8e56-f03a-43f4-8639-93457af2b0df" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="92f40d24-77c6-1528-f717-4ede891619da" executionId="7c4cc4ae-7919-49be-b91c-eacc8c61cf15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de" executionId="e42bf6b9-bc0c-4bc3-9d5e-fe80491a7d38" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6ce8f95-61d2-2173-8797-88edd1497619" executionId="45c3cb0e-470d-4099-9add-50a20679bf3f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c11acf36-e8bc-9520-4582-7c2365e061ad" executionId="161ea8aa-b1cf-48ed-bb9a-e20308efd3f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c774fbd0-ec6a-6ba1-2a9f-dab886deaf56" executionId="473c0b5a-217b-4d8b-9dfd-ceb98c7d4bd1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd2171bc-4fa0-469d-00a5-8bf8946c3e04" executionId="dfd9dd5b-c765-4e6e-9a2e-9817a26e86e2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f00e8e56-f03a-43f4-8639-93457af2b0df" testId="29d92cf9-f432-a0b6-0159-38cb9d7bf1b5" testName="Test_PasswordChangeOk_ReturnView" computerName="GLORY-PC" duration="00:00:00.0544770" startTime="2014-04-07T17:57:23.2292462-05:00" endTime="2014-04-07T17:57:24.2553049-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f00e8e56-f03a-43f4-8639-93457af2b0df">
+    </UnitTestResult>
+    <UnitTestResult executionId="7c4cc4ae-7919-49be-b91c-eacc8c61cf15" testId="92f40d24-77c6-1528-f717-4ede891619da" testName="Test_ChangePassword_ReturnView" computerName="GLORY-PC" duration="00:00:00.0004619" startTime="2014-04-07T17:57:24.2723058-05:00" endTime="2014-04-07T17:57:24.2783062-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7c4cc4ae-7919-49be-b91c-eacc8c61cf15">
+    </UnitTestResult>
+    <UnitTestResult executionId="e42bf6b9-bc0c-4bc3-9d5e-fe80491a7d38" testId="b4c2dcaa-15e0-8ff7-7e32-754b71dc30de" testName="Test_ChangePassword_Mismatch_Invalid_Post" computerName="GLORY-PC" duration="00:06:50.4224749" startTime="2014-04-07T17:57:24.2863066-05:00" endTime="2014-04-07T18:04:14.7087815-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e42bf6b9-bc0c-4bc3-9d5e-fe80491a7d38">
+    </UnitTestResult>
+    <UnitTestResult executionId="45c3cb0e-470d-4099-9add-50a20679bf3f" testId="b6ce8f95-61d2-2173-8797-88edd1497619" testName="Test_Profile_ReturnView" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45c3cb0e-470d-4099-9add-50a20679bf3f">
+    </UnitTestResult>
+    <UnitTestResult executionId="161ea8aa-b1cf-48ed-bb9a-e20308efd3f7" testId="c11acf36-e8bc-9520-4582-7c2365e061ad" testName="Test_Login_ReturnView" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="161ea8aa-b1cf-48ed-bb9a-e20308efd3f7">
+    </UnitTestResult>
+    <UnitTestResult executionId="473c0b5a-217b-4d8b-9dfd-ceb98c7d4bd1" testId="c774fbd0-ec6a-6ba1-2a9f-dab886deaf56" testName="Test_PasswordRetrieval_ReturnView" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="473c0b5a-217b-4d8b-9dfd-ceb98c7d4bd1">
+    </UnitTestResult>
+    <UnitTestResult executionId="dfd9dd5b-c765-4e6e-9a2e-9817a26e86e2" testId="dd2171bc-4fa0-469d-00a5-8bf8946c3e04" testName="Test_Registration_ReturnView" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dfd9dd5b-c765-4e6e-9a2e-9817a26e86e2">
+    </UnitTestResult>
+  </Results>
+</TestRun>

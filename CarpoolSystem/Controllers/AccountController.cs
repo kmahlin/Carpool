@@ -166,7 +166,9 @@ namespace CarpoolSystem.Controllers
         [HttpPost]
         public ActionResult ChangePassword(Models.ChangePasswordModel pw)
         {  
-            String currentUser = User.Identity.Name;
+           String currentUser = "Tester";
+
+            String message = "";
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
@@ -181,14 +183,15 @@ namespace CarpoolSystem.Controllers
                              sysUser.Password = encrpPass;
                              sysUser.PasswordSalt = crypto.Salt;
                              db.SaveChanges();
-
+                             return RedirectToAction("PasswordChangeOk", "Account");
                         }
-                    }            
-                    return RedirectToAction("PasswordChangeOk", "Account");
+                        message = "Invalid user";
+                    }
+                    message = "Password doesn't match";
                 }
             }
-
-            return View();
+            ViewData["message"] = message;
+            return View(message);
         }
 
         [HttpGet]
