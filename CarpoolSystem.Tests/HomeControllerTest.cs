@@ -143,5 +143,57 @@ namespace CarpoolSystem.Tests
             return controller;
         }
 
+        [TestMethod]
+        public void Test_MainPage_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.MainPage()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_About_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.About()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_Search_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.Search()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Test_SuccessfulReg_ReturnView()
+        {
+            //Arrange 
+            var controller = new HomeController();
+            var expected = "";
+
+            //Act
+            var actual = ((ViewResult)controller.SuccessfulReg()).ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
