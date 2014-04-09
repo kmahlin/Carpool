@@ -24,3 +24,16 @@ D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.p
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.csprojResolveAssemblyReference.cache
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.dll
 D:\Git\home\kevin\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.dll.config
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.Tests.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\Moq.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\SimpleCrypto.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\Moq.xml
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\bin\Debug\CarpoolSystem_Accessor.pdb
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.csprojResolveAssemblyReference.cache
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.dll
+D:\Git\GitJason\home\jason\Repository\Carpool\CarpoolSystem.Tests\obj\Debug\CarpoolSystem.Tests.pdb
