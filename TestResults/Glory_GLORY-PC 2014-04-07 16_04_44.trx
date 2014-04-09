@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="c1cbf58a-6c17-48d0-b5b9-bc5bb52e2145" name="Glory@GLORY-PC 2014-04-07 16:04:44" runUser="Glory-PC\Glory" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="174a68ad-7d66-42ff-9bf3-9061056ad208">
+    <Deployment runDeploymentRoot="Glory_GLORY-PC 2014-04-07 16_04_44">
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\CarpoolSystem\bin\CarpoolSystem.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll" />
+      <DeploymentItem filename="C:\Users\Glory\Documents\GitHub\Carpool\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2014-04-07T16:04:44.8969561-05:00" queuing="2014-04-07T16:04:50.6002823-05:00" start="2014-04-07T16:04:50.9123001-05:00" finish="2014-04-07T16:06:15.6371461-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="2" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="2" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="GLORY-PC" outcome="Error" timestamp="2014-04-07T16:06:15.6351460-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Test_Event_ModelState_Invalid" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="5a8a0495-1b72-7ab2-c36d-a8bba3765d1e">
+      <Execution id="f0c392d6-7e77-4228-be9c-053f41d911ec" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.HomeControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Event_ModelState_Invalid" />
+    </UnitTest>
+    <UnitTest name="Test_Event_ReturnView" storage="c:\users\glory\documents\github\carpool\carpoolsystem.tests\bin\debug\carpoolsystem.tests.dll" id="e0756e2a-d4a0-519e-5273-b1aa054908a5">
+      <Execution id="be8f21c5-c9d0-44ff-995c-f86177bac3ae" />
+      <TestMethod codeBase="C:/Users/Glory/Documents/GitHub/Carpool/CarpoolSystem.Tests/bin/Debug/CarpoolSystem.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CarpoolSystem.Tests.HomeControllerTest, CarpoolSystem.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Test_Event_ReturnView" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="5a8a0495-1b72-7ab2-c36d-a8bba3765d1e" executionId="f0c392d6-7e77-4228-be9c-053f41d911ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0756e2a-d4a0-519e-5273-b1aa054908a5" executionId="be8f21c5-c9d0-44ff-995c-f86177bac3ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f0c392d6-7e77-4228-be9c-053f41d911ec" testId="5a8a0495-1b72-7ab2-c36d-a8bba3765d1e" testName="Test_Event_ModelState_Invalid" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0c392d6-7e77-4228-be9c-053f41d911ec">
+    </UnitTestResult>
+    <UnitTestResult executionId="be8f21c5-c9d0-44ff-995c-f86177bac3ae" testId="e0756e2a-d4a0-519e-5273-b1aa054908a5" testName="Test_Event_ReturnView" computerName="GLORY-PC" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="be8f21c5-c9d0-44ff-995c-f86177bac3ae">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -126,7 +126,6 @@ namespace CarpoolSystem.Tests
             Assert.AreEqual(expected, actual.ToString());
         }
 
-
         /// <summary>
         /// Mocks logged in user
         /// </summary>
