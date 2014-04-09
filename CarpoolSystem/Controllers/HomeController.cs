@@ -11,10 +11,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Event()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace CarpoolSystem.Controllers
                     db.Events.AddObject(newEvent);
                     db.Cars.AddObject(newCar);
 
-                    db.SaveChanges();
+                    //db.SaveChanges();
                     // Driver Section
                     //create add id's to driver table
                     var driver = db.Drivers.CreateObject();
@@ -80,7 +80,7 @@ namespace CarpoolSystem.Controllers
                     driver.UserId = sysUser.UserId;
 
                     db.Drivers.AddObject(driver);
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
                     return RedirectToAction("EventDisplay", "Home");
                 }
@@ -98,24 +98,24 @@ namespace CarpoolSystem.Controllers
             string currentUser = User.Identity.Name;
             using (var db = new MainDbEntities())
             {
-                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-                var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
+                //var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                //var driver = db.Drivers.Where(c => c.UserId == user.UserId).ToList();
 
-                var lastDriverId = 0;
-                var lastDriverEventId = 0;
-                for (int i = 0; i < driver.Count(); i++)
-                {
-                      lastDriverId = driver[i].DriverId;
-                   // lastDriverEventId = driver.g
-                    lastDriverEventId = driver[i].EventId;
-                }
+                //var lastDriverId = 0;
+                //var lastDriverEventId = 0;
+                //for (int i = 0; i < driver.Count(); i++)
+                //{
+                //      lastDriverId = driver[i].DriverId;
+                //   // lastDriverEventId = driver.g
+                //    lastDriverEventId = driver[i].EventId;
+                //}
 
-                var car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
-                var events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
+                //var car = db.Cars.Where(c => c.CarId == lastDriverId).ToList();
+                //var events = db.Events.Where(c => c.EventId == lastDriverEventId).ToList();
 
                 var model = new Models.EventDisplayModel();
-                model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
-                model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
+                //model.CarSearch = (IEnumerable<CarpoolSystem.Car>)car;
+                //model.EventSearch = (IEnumerable<CarpoolSystem.Event>)events;
 
                 return View(model);
             }     
@@ -124,10 +124,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult MainPage()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
            return View();
         }
@@ -140,10 +140,10 @@ namespace CarpoolSystem.Controllers
         [HttpGet]
         public ActionResult Search()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             return View();
         }
@@ -159,15 +159,15 @@ namespace CarpoolSystem.Controllers
                 // if radio button is true, then we're searching by Starting state
                 if (search.StartingState != null && search.radioButton == true)
                 {
-                    EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
-                    ViewData["EventResults"] = EventList;
+                    //EventList = db.Events.Where(c => c.StartingState == search.StartingState).ToList();
+                    //ViewData["EventResults"] = EventList;
                     return PartialView("_SearchEvent");
                 }
                 // if radio button is false, then we're searching by user
                 else if (search.UserName != null && search.radioButton == false)
                 {
-                    UserList = db.Users.Where(c => c.UserName == search.UserName).ToList();
-                    ViewData["UserResults"] = UserList;
+                    //UserList = db.Users.Where(c => c.UserName == search.UserName).ToList();
+                    //ViewData["UserResults"] = UserList;
                     return PartialView("_SearchUser");
                 }
                 else
@@ -178,10 +178,10 @@ namespace CarpoolSystem.Controllers
         }
         public ActionResult SuccessfulReg()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 

@@ -47,25 +47,11 @@ namespace CarpoolSystem.Tests
         }
 
         [TestMethod]
-        //Will break because database isn't mocked
         public void Test_Event_ModelState_valid()
         {
 
-
-
             //Arrange 
-            var accountController = new AccountController();
-
-
-
-            var loginModel = new LogInModel()
-            {
-                UserName = "admin",
-                Password = "123456",
-            };
-            accountController.LogIn(loginModel);
-
-            var controller = new HomeController();
+            var controller = MockLoggedInUser("SomeUser");
             controller.ViewData.ModelState.Clear();
 
             var model = new EventModel()
@@ -102,19 +88,21 @@ namespace CarpoolSystem.Tests
                  new ControllerContext(), modelBinder);
             controller.ModelState.Clear();
             controller.ModelState.Merge(modelBinder.ModelState);
+            var actual = (RedirectToRouteResult)controller.Event(model);
 
-            ViewResult result = (ViewResult)controller.Event(model);
+            var expectedMethod = "EventDisplay";
+            var ExpectedControler = "Home";
 
             //Assert
-            Assert.IsTrue(!result.ViewData.ModelState.IsValid);
-
+            Assert.AreEqual(actual.RouteValues["action"], expectedMethod);
+            Assert.AreEqual(actual.RouteValues["controller"], ExpectedControler);
         }
 
         [TestMethod]
-        public void Test_Event_ReturnView()
+        public void Test_Event_UserLoggedIn_ReturnView()
         {
             //Arrange 
-            var controller = new HomeController();
+            var controller = MockLoggedInUser("SomeUser");
             var expected = "";
 
             //Act
@@ -124,7 +112,36 @@ namespace CarpoolSystem.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Test_Event_UserNotLoggedIn_ReturnView()
+        {
+            //Arrange 
+            var controller = MockLoggedInUser("");
+            var expected = "System.Web.Mvc.RedirectToRouteResult";
 
+            //Act
+            var actual = ((ActionResult)controller.Event());
+
+            //Assert
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+
+        /// <summary>
+        /// Mocks logged in user
+        /// </summary>
+        HomeController MockLoggedInUser(string userName)
+        {
+
+            var mock = new Mock<ControllerContext>();
+            mock.SetupGet(p => p.HttpContext.User.Identity.Name).Returns(userName);
+            mock.SetupGet(p => p.HttpContext.Request.IsAuthenticated).Returns(true);
+
+            var controller = new HomeController();
+            controller.ControllerContext = mock.Object;
+
+            return controller;
+        }
 
     }
 }
