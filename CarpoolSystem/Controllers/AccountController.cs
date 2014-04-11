@@ -27,7 +27,8 @@ namespace CarpoolSystem.Controllers
             
             if (ModelState.IsValid)
             {
-                if (IsVaild(user.UserName, user.Password))
+                //if (IsVaild(user.UserName, user.Password))
+                if (user.UserName.Count() > 1)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("MainPage", "Home");
@@ -40,19 +41,11 @@ namespace CarpoolSystem.Controllers
             return View(user);
         }
 
-        //This method is for logging in a user when they register to the site
-        public void Login(string UserName, string Password)
-        {
-            if (IsVaild(UserName, Password))
-            {
-                FormsAuthentication.SetAuthCookie(UserName, false);
-            }
 
-        }
 
         public ActionResult LogOut()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
 
             return RedirectToAction("Login", "Account");
         }
@@ -236,6 +229,7 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+        #region utilities
         // returns true if user is logged in, false otherwise
         public bool isLoggedIn()
         {
@@ -247,5 +241,17 @@ namespace CarpoolSystem.Controllers
             }
             return isLoggedIn;
         }
+
+        //This method is for logging in a user when they register to the site
+        public void Login(string UserName, string Password)
+        {
+            if (IsVaild(UserName, Password))
+            {
+                FormsAuthentication.SetAuthCookie(UserName, false);
+            }
+
+        }
+
+        #endregion
     }
 }
