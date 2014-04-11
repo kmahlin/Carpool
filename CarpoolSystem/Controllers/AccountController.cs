@@ -30,7 +30,7 @@ namespace CarpoolSystem.Controllers
                 //if (IsVaild(user.UserName, user.Password))
                 if (user.UserName.Count() > 1)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    //FormsAuthentication.SetAuthCookie(user.UserName, false);
                     return RedirectToAction("MainPage", "Home");
                 }
                 else
@@ -40,8 +40,6 @@ namespace CarpoolSystem.Controllers
             }
             return View(user);
         }
-
-
 
         public ActionResult LogOut()
         {
@@ -56,6 +54,7 @@ namespace CarpoolSystem.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult Registration(Models.AccountModel user)
         {
@@ -63,10 +62,13 @@ namespace CarpoolSystem.Controllers
             {
                 using (var db = new MainDbEntities())
                 {
-                    var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
+                    //var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
+                    
                     Emailer email = new Emailer();
 
-                    if(userNameCheck.Count()==0)
+                    String currentUser = User.Identity.Name;
+                    //if(userNameCheck.Count()==0)
+                    if (currentUser.Length == 0)
                     {
                         var crypto = new SimpleCrypto.PBKDF2();
 
@@ -88,10 +90,10 @@ namespace CarpoolSystem.Controllers
                         db.Profiles.AddObject(sysProfile);
                         db.Users.AddObject(sysUser);
 
-                        db.SaveChanges();
+                        //db.SaveChanges();
                         //Log user into the site
                         email.RegistrationEmail(user.UserName, user.Email);
-                        Login(user.UserName, user.Password);
+                        //Login(user.UserName, user.Password);
                         return RedirectToAction("SuccessfulReg", "Home");
                     }
                     else
@@ -106,6 +108,8 @@ namespace CarpoolSystem.Controllers
             }
             return View();
         }
+
+    
         [HttpGet]
         public ActionResult Profile()
         {   
@@ -115,44 +119,22 @@ namespace CarpoolSystem.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            using (var db = new MainDbEntities())
-            {
-                var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
-                var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
+            string results = null;
+            //using (var db = new MainDbEntities())
+            //{
+            //    var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+            //    var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
                 return View(results);
-            }
-        }
-
-        private bool IsVaild(string UserName, string password)
-        {
-            //encryption
-            var crypto = new SimpleCrypto.PBKDF2();
-
-            bool isValid = false;
-
-            using (var db = new MainDbEntities())
-            {
-                var user = db.Users.FirstOrDefault(u => u.UserName == UserName);
-
-                if (user != null)
-                {
-                    if (user.Password == crypto.Compute(password, user.PasswordSalt))
-                    {
-                        isValid = true;
-                    }
-                }
-            }
-
-            return isValid;
+            //}
         }
 
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            //if (isLoggedIn())
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
+            if (isLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
@@ -212,12 +194,12 @@ namespace CarpoolSystem.Controllers
                     if (pr.ConfirmEmail.Equals(pr.Email))
                     {
                         int start = 100000; int end = 900000; int rand;
-                        User sysUser = db.Users.FirstOrDefault(m => m.UserName == pr.UserName);
+                        //User sysUser = db.Users.FirstOrDefault(m => m.UserName == pr.UserName);
                         Random rnd = new Random();
                         rand = rnd.Next(start, end);
-                        sysUser.Password = crypto.Compute(rand.ToString());
-                        sysUser.PasswordSalt = crypto.Salt;
-                        db.SaveChanges();
+                        //sysUser.Password = crypto.Compute(rand.ToString());
+                        //sysUser.PasswordSalt = crypto.Salt;
+                        //db.SaveChanges();
 
                         Emailer email = new Emailer();
                         email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
@@ -230,6 +212,30 @@ namespace CarpoolSystem.Controllers
         }
 
         #region utilities
+
+        private bool IsVaild(string UserName, string password)
+        {
+            //encryption
+            var crypto = new SimpleCrypto.PBKDF2();
+
+            bool isValid = false;
+
+            using (var db = new MainDbEntities())
+            {
+                var user = db.Users.FirstOrDefault(u => u.UserName == UserName);
+
+                if (user != null)
+                {
+                    if (user.Password == crypto.Compute(password, user.PasswordSalt))
+                    {
+                        isValid = true;
+                    }
+                }
+            }
+
+            return isValid;
+        }
+
         // returns true if user is logged in, false otherwise
         public bool isLoggedIn()
         {
