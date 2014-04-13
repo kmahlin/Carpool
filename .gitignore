@@ -13,3 +13,5 @@ CarpoolSystem/obj/Debug/CarpoolSystem.csproj.FileListAbsolute.txt
 TestResults/Kevin_KEVIN-PC 2014-04-13 17_37_23/Out/AgentRestart.dat
 TestResults/Kevin_KEVIN-PC 2014-04-13 17_37_23/Out/carpoolsystem.tests.dll.config
 TestResults/Kevin_KEVIN-PC 2014-04-13 17_37_23.trx
+*.trx
+*.config
