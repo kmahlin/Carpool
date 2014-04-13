@@ -8,3 +8,4 @@ CarpoolSystem/obj/Debug/CarpoolSystem.csproj.FileListAbsolute.txt
 CarpoolSystem.Tests/obj/Debug/CarpoolSystem_Accessor.pdb
 CarpoolSystem.Tests/obj/Debug/CarpoolSystem_Accessor.dll
 CarpoolSystem.Tests/obj/Debug/CarpoolSystem.Tests.csproj.FileListAbsolute.txt
+*.suo
