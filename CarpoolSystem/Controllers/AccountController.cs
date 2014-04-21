@@ -346,7 +346,8 @@ namespace CarpoolSystem.Controllers
                         var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
                         var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
 
-                        results.ImagePath = path;
+
+                        results.ImagePath = "../../Images/"+fileName;
                         db.SaveChanges();
                         return RedirectToAction("Profile", "Account");
                     }

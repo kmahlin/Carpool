@@ -47,13 +47,6 @@
                             </div>
 
                     </fieldset>
-             
-             <h3> Profile Image Upload </h3>      
-             <%using (Html.BeginForm("ImageUpload", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {  %>
-                <input type="file" name="file" />
-                <input type="submit" value="OK" />
-            <%} %>
         
 
                 </div>
