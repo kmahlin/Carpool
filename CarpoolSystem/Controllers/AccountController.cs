@@ -7,6 +7,8 @@ using System.Web.Security;
 using System.Data.Entity;
 using CarpoolSystem.Utilities;
 using CarpoolSystem.Managers;
+using System.IO;
+using CarpoolSystem.Managers;
 
 namespace CarpoolSystem.Controllers
 {
@@ -25,7 +27,7 @@ namespace CarpoolSystem.Controllers
         public ActionResult LogIn(Models.LogInModel user)
         {
 
-            
+
             if (ModelState.IsValid)
             {
                 if (IsVaild(user.UserName, user.Password))
@@ -74,7 +76,7 @@ namespace CarpoolSystem.Controllers
                     var userNameCheck = db.Users.Where(b => b.UserName == user.UserName);
                     Emailer email = new Emailer();
 
-                    if(userNameCheck.Count()==0)
+                    if (userNameCheck.Count() == 0)
                     {
                         var crypto = new SimpleCrypto.PBKDF2();
 
@@ -86,7 +88,7 @@ namespace CarpoolSystem.Controllers
                         sysUser.UserName = user.UserName;
                         sysUser.Password = encrpPass;
                         sysUser.PasswordSalt = crypto.Salt;
-						
+
                         sysProfile.FirstName = user.FirstName;
                         sysProfile.LastName = user.LastName;
                         sysProfile.Emails = user.Email;
@@ -100,6 +102,8 @@ namespace CarpoolSystem.Controllers
                         //Log user into the site
                         email.RegistrationEmail(user.UserName, user.Email);
                         Login(user.UserName, user.Password);
+
+
 
                         string message = "Registration Successful!";
 
@@ -117,6 +121,7 @@ namespace CarpoolSystem.Controllers
             }
             return View();
         }
+
         [HttpGet]
         public ActionResult Profile()
         {
@@ -235,28 +240,28 @@ namespace CarpoolSystem.Controllers
 
         [HttpPost]
         public ActionResult ChangePassword(Models.ChangePasswordModel pw)
-        {  
+        {
             String currentUser = User.Identity.Name;
             string message = null;
             if (ModelState.IsValid)
             {
                 using (var db = new MainDbEntities())
-                {          
+                {
                     var crypto = new SimpleCrypto.PBKDF2();
                     if (pw.ConfirmPassword.Equals(pw.NewPassword))
-                    {   
-                        if (IsVaild(currentUser,pw.OldPassword))
+                    {
+                        if (IsVaild(currentUser, pw.OldPassword))
                         {
-                             User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
-                             var encrpPass = crypto.Compute(pw.NewPassword);
-                             sysUser.Password = encrpPass;
-                             sysUser.PasswordSalt = crypto.Salt;
-                             db.SaveChanges();
-                             message = "Password Change Successful!";
+                            User sysUser = db.Users.FirstOrDefault(m => m.UserName == currentUser);
+                            var encrpPass = crypto.Compute(pw.NewPassword);
+                            sysUser.Password = encrpPass;
+                            sysUser.PasswordSalt = crypto.Salt;
+                            db.SaveChanges();
+                            message = "Password Change Successful!";
 
                         }
                     }
-                    return RedirectToAction("ChangePassword", "Account", new {message });
+                    return RedirectToAction("ChangePassword", "Account", new { message });
                 }
             }
 
@@ -265,6 +270,7 @@ namespace CarpoolSystem.Controllers
 
         //this method is for when a user forgets their 
         //password and needs it emailed to them
+
         [HttpGet]
         public ActionResult PasswordRetrieval()
         {
@@ -309,6 +315,49 @@ namespace CarpoolSystem.Controllers
                 isLoggedIn = true;
             }
             return isLoggedIn;
+        }
+
+        [HttpGet]
+        public ActionResult ImageUpload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ImageUpload(HttpPostedFileBase file)
+        {
+            string currentUser = User.Identity.Name;
+            // Verify that the user selected a file
+            if (file != null && file.ContentLength > 0)
+            {
+
+                // extract only the fielname
+                var fileName = Path.GetFileName(file.FileName);
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/Images"), fileName);
+                file.SaveAs(path);
+
+                //   DatabaseManager dbManager = new DatabaseManager();
+
+                using (var db = new MainDbEntities())
+                {
+                    try
+                    {
+                        var user = db.Users.FirstOrDefault(c => c.UserName == currentUser);
+                        var results = db.Profiles.FirstOrDefault(c => c.ProfileId == user.ProfileId);
+
+                        results.ImagePath = path;
+                        db.SaveChanges();
+                        return RedirectToAction("Profile", "Account");
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError("", "An error occured while saving profile changes");
+                    }
+                }
+            }
+            // redirect back to the index action to show the form once again
+            return RedirectToAction("Profile");
         }
     }
 }
