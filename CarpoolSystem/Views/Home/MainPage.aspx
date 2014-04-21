@@ -16,6 +16,10 @@
             <div class="display-label">Please choose your option: </div>
     </div>
 
+    <div style = "background-color: Black; width: 200px; height:200px;">
+        <%: Html.ActionLink("Search events", "Search", "Home") %> 
+    </div>
+
 
     <p>
         <%: Html.ActionLink("Search events", "Search", "Home") %> |

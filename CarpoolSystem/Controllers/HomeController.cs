@@ -70,12 +70,13 @@ namespace CarpoolSystem.Controllers
             List<CarpoolSystem.Event> eventList = new List<CarpoolSystem.Event>();
             List<CarpoolSystem.User> passengerList = new List<CarpoolSystem.User>();
             List<CarpoolSystem.User> driverList = new List<CarpoolSystem.User>();
+            List<CarpoolSystem.Comment> commentList = new List<CarpoolSystem.Comment>();
 
             DatabaseManager dbManager = new DatabaseManager();
 
             //when id is negative, we are displaying a newly created event
             //otherwise (else) it's an event search
-            if (id < 0 )
+            if (id < 0)
             {
                 var userInfo = dbManager.getUserByName(currentUser);
                 var driverId = dbManager.getLastDriverId(userInfo.First().UserId);
@@ -95,9 +96,11 @@ namespace CarpoolSystem.Controllers
 
                 driverList = dbManager.getUserByDriverId(driver.FirstOrDefault().DriverId);
                 passengerList = dbManager.getPassengerNames(id);
-                
+                commentList = dbManager.getCommentByEventId(id);
+
                 carList.Add(car.First());
                 eventList.Add(eventDisplay.First());
+
             }
 
 
@@ -106,11 +109,31 @@ namespace CarpoolSystem.Controllers
             model.EventSearch = (IEnumerable<CarpoolSystem.Event>)eventList;
             model.PassengerSearch = (IEnumerable<CarpoolSystem.User>)passengerList;
             model.DriverSearch = (IEnumerable<CarpoolSystem.User>)driverList;
+            model.CommentSearch = (IEnumerable<CarpoolSystem.Comment>)commentList;
 
             ViewData["Message"] = message;
 
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult CommentAdd(Models.EventDisplayModel userComment)
+        {
+
+            if (ModelState.IsValid)
+            {
+                string currentUser = User.Identity.Name;
+                DatabaseManager dbManager = new DatabaseManager();
+                dbManager.newComment(userComment, currentUser);
+
+            }
+
+            return RedirectToAction("EventDisplay", "Home", new { id = userComment.eventId });
+        }
+
+
+
+
         public ActionResult JoinEvent(int id)
         {
             DatabaseManager dbManager = new DatabaseManager();
