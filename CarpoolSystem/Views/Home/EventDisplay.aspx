@@ -88,7 +88,7 @@
             </div>
 
             <br />
-            <div class = "inner1">
+<%--            <div class = "inner1">
                 
 
 
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                  <% } %>
-            </div>
+            </div>--%>
 
 
 

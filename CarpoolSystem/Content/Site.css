@@ -374,4 +374,81 @@ div#title
 
 
 
+/* Main Page Styles
+-------------------------------------------------------- */
+.MainPage
+{
+  width: auto; 
+  margin:4%; 
+  float:left;
+  padding: 0px 10% 0px 0px;
+}
 
+
+
+
+a.event
+{
+    background: url(../../Images/site/Car_Event.png) no-repeat top left;
+    background-size: 150px 150px;
+     width: 150px;
+     height: 150px;
+     display: block;
+     text-indent: -9999px; /* hides the link text */
+}
+
+a.event:hover
+{
+    opacity: .7;
+    filter:alpha(opacity=100); 
+}
+
+
+a.search
+{
+    background: url("../../Images/site/Search.png") no-repeat top left;
+    background-size: 140px 140px;
+     width: 150px;
+     height: 150px;
+     display: block;
+     text-indent: -9999px; /* hides the link text */
+}
+
+a.search:hover
+{
+    opacity: .7;
+    filter:alpha(opacity=100); 
+}
+
+
+a.profile
+{
+    background: url("../../Images/site/profile.png") no-repeat top left;
+    background-size: 140px 140px;
+     width: 150px;
+     height: 150px;
+     display: block;
+     text-indent: -9999px; /* hides the link text */
+}
+
+a.profile:hover
+{
+    opacity: .7;
+    filter:alpha(opacity=100); 
+}
+
+a.manage
+{
+    background: url("../../Images/site/manage.gif") no-repeat top left;
+    background-size: 140px 140px;
+     width: 150px;
+     height: 150px;
+     display: block;
+     text-indent: -9999px; /* hides the link text */
+}
+
+a.manage:hover
+{
+    opacity: .7;
+    filter:alpha(opacity=100); 
+}
