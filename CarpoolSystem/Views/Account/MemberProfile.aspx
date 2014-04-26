@@ -10,6 +10,10 @@
     
     <fieldset>
         <legend>  </legend>
+
+            <object data="<%: Model.ImagePath%>" width="100" height="100">
+        <img src="../../Images/default_profile_image.gif" alt="Just testing." width="100" height="100">
+    </object>
         
         <div class="display-label"><strong>Email</strong></div>
         <div class="display-field"><%: Model.Emails %></div>

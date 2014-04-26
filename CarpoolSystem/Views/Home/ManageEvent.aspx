@@ -40,7 +40,7 @@
             <td>
             <%--<%: Html.ActionLink("Leave carpool?", "LeaveCarpool", new { id = item.EventId })%>--%>
             <a href="<%: Url.Action("LeaveCarpool", "Home", new { id = item.EventId }) %>">
-                <button class="btn btn-warning">Leave carpool?</button>
+                <button class="btn btn-warning btn-sm">Leave carpool?</button>
             </a>
             </td>
         </tr>
