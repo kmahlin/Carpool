@@ -171,12 +171,39 @@ namespace CarpoolSystem.Managers
             saveChanges();
         }
 
+        public void newComment(Models.EventDisplayModel userComment, String user)
+        {
+            //create the table object
+            var comment = db.Comments.CreateObject();
+
+            // add the variables to table object
+
+            comment.CreateDate = DateTime.Today;
+            comment.UserId = getUserByName(user).FirstOrDefault().UserId;
+            comment.Title = userComment.Title;
+            comment.Text = userComment.commentText;
+            comment.EventId = userComment.eventId;
+
+
+            //add the object to database
+            db.Comments.AddObject(comment);
+
+            //save changes
+            saveChanges();
+        }
+
 
         #endregion
 
         #region Retrieval
 
 
+        public List<CarpoolSystem.Comment> getCommentByEventId(int id)
+        {
+            var comment = db.Comments.Where(c => c.EventId == id).ToList();
+
+            return comment;
+        }
 
         public List<CarpoolSystem.Profile> getProfilebyProfileId(int id)
         {
@@ -211,7 +238,7 @@ namespace CarpoolSystem.Managers
         public List<CarpoolSystem.Car> getCarByDriverId(int driverId)
         {
             var driverList = db.Drivers.Where(c => c.DriverId == driverId).ToList();
-            
+
             int carId = driverList.First().CarId;
             var carList = db.Cars.Where(c => c.CarId == carId).ToList();
 
@@ -309,7 +336,7 @@ namespace CarpoolSystem.Managers
             var driver = db.Drivers.Where(c => c.UserId == userId).ToList();
 
             var lastDriverId = 0;
-            
+
             for (int i = driver.Count() - 1; i < driver.Count(); i++)
             {
                 lastDriverId = driver[i].DriverId;
@@ -324,7 +351,7 @@ namespace CarpoolSystem.Managers
             var driver = db.Drivers.Where(c => c.UserId == userId).ToList();
 
             var lastDriverEventId = 0;
-            for (int i = driver.Count -1; i < driver.Count(); i++)
+            for (int i = driver.Count - 1; i < driver.Count(); i++)
             {
                 lastDriverEventId = driver[i].EventId;
             }
@@ -358,7 +385,7 @@ namespace CarpoolSystem.Managers
             //increment seatsleft on car table based on this new passenger
             var driver = getDriverByEventId(eventId).FirstOrDefault();
             var car = getCarByDriverId(driver.DriverId).FirstOrDefault();
-            car.SeatsLeft = car.SeatsLeft - 1;
+            car.SeatsLeft = car.SeatsLeft + 1;
 
             saveChanges();
         }

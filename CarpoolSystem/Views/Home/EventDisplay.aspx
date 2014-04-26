@@ -8,6 +8,16 @@
 
     <h2>Carpool Event Summary</h2>
 
+    <% using (Ajax.BeginForm("CommentAdd", // <<Action Name
+                new AjaxOptions
+                {
+                    UpdateTargetId = "ResultsDiv", // << element to update
+                    InsertionMode = InsertionMode.Replace, //replace content
+                    HttpMethod = "POST",
+                }))
+        { %>
+        
+
     <h3 style="color: red"><%: ViewData["Message"]%></h3>
 
     <fieldset>
@@ -74,9 +84,38 @@
                 <a href="<%: Url.Action("JoinEvent", "Home", new { id = Model.EventSearch.Last().EventId}) %>">
                     <button class="btn btn-primary">Join Carpool?</button>
                 </a>
+
             </div>
 
+            <br />
+            <div class = "inner1">
+                
+
+
+                <div id = "ResultsDiv" >
+                    <%: Html.Partial("_CommentAdd")%>
+                </div>
+
+
+                <% foreach(var item in Model.CommentSearch) 
+                 { %>
+                    <%: item.Title %>
+                    <br />
+                    By: <%: item.User.UserName %>
+                    <br />
+                    <%: item.Text %>
+                    <br />
+                    <br />
+                 <% } %>
+
+            </div>
+
+
+
     </fieldset>
+
+    <% } %> 
+
     <p>
         <a href="<%: Url.Action("Search", "Home") %>">
             <button class="btn btn-primary">Search for event</button>

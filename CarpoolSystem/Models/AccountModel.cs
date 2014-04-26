@@ -7,9 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace CarpoolSystem.Models
 {
     public class AccountModel
-    {
-
-        
+    {    
         [Required]
         [StringLength(50)]
         [Display(Name = "User Name")]
@@ -42,6 +40,8 @@ namespace CarpoolSystem.Models
         [StringLength(20, MinimumLength = 6)]
         [Display(Name = "Password: ")]
         public string Password { get; set; }
+
+        public String image { get; set; }
 
 
     }
@@ -112,5 +112,9 @@ namespace CarpoolSystem.Models
         [Required]
         [Display(Name = "Phone")]
         public Int64 Phone { get; set; }
+
+        public String image { get; set; }
     }
+
+   
 }
