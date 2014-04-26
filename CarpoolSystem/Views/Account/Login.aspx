@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        Welcome to Kalonji's Carpool System</h2>
+        Welcome to Carpool System</h2>
     <h3>
         <%: ViewData["Message"] %></h3>
     <% using (Html.BeginForm())
