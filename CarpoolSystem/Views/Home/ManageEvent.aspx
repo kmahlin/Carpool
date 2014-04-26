@@ -21,7 +21,7 @@
                 <%--<%: Html.ActionLink("Edit", "Edit", new { id=item.EventId }) %> |--%>
                 <%--<%: Html.ActionLink("Delete carpool?", "RemoveCarpool", new { id = item.EventId })%>--%>
                 <a href="<%: Url.Action("RemoveCarpool", "Home", new { id = item.EventId }) %>">
-                    <button class="btn btn-danger">Delete carpool?</button>
+                    <button class="btn btn-danger btn-sm">Delete carpool?</button>
                 </a>
             </td>
         </tr>

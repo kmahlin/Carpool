@@ -99,15 +99,19 @@
 
                 <% foreach(var item in Model.CommentSearch) 
                  { %>
-                    <%: item.Title %>
-                    <br />
-                    By: <%: item.User.UserName %>
-                    <br />
-                    <%: item.Text %>
-                    <br />
-                    <br />
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <%: item.Title %></h3>
+                    </div>
+                    <div class="panel-body">
+                        By: <%: item.User.UserName %>
+                        <br />
+                        <br />
+                        <%: item.Text %>
+                    </div>
+                </div>
                  <% } %>
-
             </div>
 
 
