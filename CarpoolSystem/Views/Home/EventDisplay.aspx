@@ -82,13 +82,13 @@
                  <% } %>
                  <br />
                 <a href="<%: Url.Action("JoinEvent", "Home", new { id = Model.EventSearch.Last().EventId}) %>">
-                    <button class="btn btn-primary">Join Carpool?</button>
+                    <input type = "button" class="btn btn-primary" value = "Join Carpool?">
                 </a>
 
             </div>
 
             <br />
-<%--            <div class = "inner1">
+            <div class = "inner1">
                 
 
 
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                  <% } %>
-            </div>--%>
+            </div>
 
 
 
