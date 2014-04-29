@@ -264,7 +264,7 @@ namespace CarpoolSystem.Controllers
                     return RedirectToAction("ChangePassword", "Account", new { message });
                 }
             }
-
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -272,8 +272,9 @@ namespace CarpoolSystem.Controllers
         //password and needs it emailed to them
 
         [HttpGet]
-        public ActionResult PasswordRetrieval()
+        public ActionResult PasswordRetrieval(string message)
         {
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -284,6 +285,7 @@ namespace CarpoolSystem.Controllers
             {
                 using (var db = new MainDbEntities())
                 {
+                    string message = "";
                     var crypto = new SimpleCrypto.PBKDF2();
                     if (pr.ConfirmEmail.Equals(pr.Email))
                     {
@@ -297,8 +299,9 @@ namespace CarpoolSystem.Controllers
 
                         Emailer email = new Emailer();
                         email.ChangePasswordEmail(pr.UserName, pr.Email, rand.ToString());
+                        message = "New Password has been emailed";
                     }
-                    return RedirectToAction("PasswordChangeOk", "Account");
+                    return RedirectToAction("PasswordRetrieval", "Account", new { message });
                 }
             }
 

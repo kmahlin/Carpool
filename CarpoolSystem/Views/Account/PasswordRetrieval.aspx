@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Password Retrieval</h2>
      <% using (Html.BeginForm() ){ %>
+     <h3 style="color: green"><%: ViewData["Message"]%></h3>
 
             <%: Html.ValidationSummary(true,"Password Retrieval failed. Check invalid username or email") %>
                 <div class="form-horizontal"> 

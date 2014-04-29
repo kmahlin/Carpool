@@ -197,7 +197,6 @@ namespace CarpoolSystem.Managers
 
         #region Retrieval
 
-
         public List<CarpoolSystem.Comment> getCommentByEventId(int id)
         {
             var comment = db.Comments.Where(c => c.EventId == id).ToList();
@@ -314,6 +313,15 @@ namespace CarpoolSystem.Managers
             return passengerList;
         }
 
+        public List<CarpoolSystem.Passenger> getPassengerByUserNameAndEventId(string user, int eventId)
+        {
+
+            var passengerList = db.Passengers.Where(c => c.EventId == eventId & c.User.UserName == user).ToList();
+
+
+            return passengerList;
+        }
+
         public List<CarpoolSystem.Passenger> getPassengerByUserId(int userId)
         {
 
@@ -372,9 +380,10 @@ namespace CarpoolSystem.Managers
 
         #region Destroy
 
-        public void removePassenger(int eventId)
+        public void removePassenger(string userName, int eventId)
         {
-            var passengerRecord = getPassengerByEventId(eventId).FirstOrDefault();
+
+            var passengerRecord = getPassengerByUserNameAndEventId(userName, eventId).FirstOrDefault();
             if (passengerRecord != null)
             {
                 db.Passengers.DeleteObject(passengerRecord);
@@ -411,23 +420,20 @@ namespace CarpoolSystem.Managers
                 db.Passengers.DeleteObject(passengerRecord);
             }
 
+            var commentRecord = getCommentByEventId(eventId);
+            if (commentRecord != null)
+            {
+                foreach (var comment in commentRecord)
+                {
+                    db.Comments.DeleteObject(comment);
+                }
+            }
+
             var EventRecord = getEventByEventId(eventId).FirstOrDefault();
             if (EventRecord != null)
             {
                 db.Events.DeleteObject(EventRecord);
             }
-
-        }
-
-        public void leaveCarpoolEvent(int eventId)
-        {
-
-            var passengerRecord = getPassengerByEventId(eventId).FirstOrDefault();
-            if (passengerRecord != null)
-            {
-                db.Passengers.DeleteObject(passengerRecord);
-            }
-
 
         }
         #endregion

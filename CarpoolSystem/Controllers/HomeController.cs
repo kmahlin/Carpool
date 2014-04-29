@@ -209,9 +209,11 @@ namespace CarpoolSystem.Controllers
         public ActionResult LeaveCarpool(int id)
         {
             DatabaseManager dbManager = new DatabaseManager();
-            dbManager.leaveCarpoolEvent(id);
-            dbManager.saveChanges();
+            string currentlyLoggedInUser = User.Identity.Name;
 
+            dbManager.removePassenger(currentlyLoggedInUser, id);
+            dbManager.saveChanges();
+             
             return RedirectToAction("ManageEvent", "Home");
         }
 

@@ -26,24 +26,28 @@ namespace CarpoolSystem.Utilities
         {
             string subject = "Welcome to CarpoolSystem!";
             StringBuilder builder = new StringBuilder();
-            builder.Append("Thank you for registering to Carpool System \n");
+            builder.Append("Thank you for registering to Carpool System.");
+            builder.Append(Environment.NewLine);
             builder.AppendFormat("Your user name is: " + userName);
-
+            builder.Replace(Environment.NewLine, "<br />").ToString();
             sendEmail(email,subject,builder.ToString());
  
         }
 
         public void ChangePasswordEmail(string userName, string email, string password)
         {
-            string subject = "CarpoolSystem: YourPassword Has Changed!";
+            string subject = "CarpoolSystem: Your Password Has Changed!";
+
             StringBuilder builder = new StringBuilder();
+
             builder.Append("A password change has been initiated for your account: " + userName);
-            builder.AppendFormat("\n");
-            builder.Append("Your new Password is: " + password);
-            builder.AppendFormat("\n");
+            builder.Append(Environment.NewLine);
+            builder.Append("Your new Password is: " + password).AppendLine();
+            builder.Append(Environment.NewLine);
             string link = "To log in, please got to : <a href='http://localhost:2825/'>CarpoolSystem.com</a> and proceed to" 
                             +" <a href='http://localhost:2825/account/ChangePassword'>this link</a> to change your password.";
             builder.Append(link);
+            builder.Replace(Environment.NewLine, "<br />").ToString();
             sendEmail(email, subject, builder.ToString());
 
         }

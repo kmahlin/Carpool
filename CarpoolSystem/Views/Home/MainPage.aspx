@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <h2>
-        Main Menu</h2>
+MainPage
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Main Menu</h2>
+    <h2>Main Menu</h2>
     <h3>
         <%: ViewData["Message"] %></h3>
 
