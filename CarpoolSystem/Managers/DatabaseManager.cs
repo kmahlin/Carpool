@@ -204,6 +204,17 @@ namespace CarpoolSystem.Managers
             return comment;
         }
 
+
+
+        public List<CarpoolSystem.Profile> getprofileByUserName(string userName)
+        {
+            var user = db.Users.Where(c => c.UserName == userName);
+            
+            var profile = db.Profiles.Where(c => c.ProfileId == user.FirstOrDefault().ProfileId).ToList();
+
+            return profile;
+        }
+
         public List<CarpoolSystem.Profile> getProfilebyProfileId(int id)
         {
             var profile = db.Profiles.Where(c => c.ProfileId == id).ToList();
