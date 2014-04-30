@@ -389,7 +389,7 @@ div#title
 
 a.event
 {
-    background: url(../../Images/site/Car_Event.png) no-repeat top left;
+    background: url(/Images/site/Car_Event.png) no-repeat top left;
     background-size: 150px 150px;
      width: 150px;
      height: 150px;
@@ -406,7 +406,7 @@ a.event:hover
 
 a.search
 {
-    background: url("../../Images/site/Search.png") no-repeat top left;
+    background: url("/Images/site/Search.png") no-repeat top left;
     background-size: 140px 140px;
      width: 150px;
      height: 150px;
@@ -423,7 +423,7 @@ a.search:hover
 
 a.profile
 {
-    background: url("../../Images/site/profile.png") no-repeat top left;
+    background: url("/Images/site/profile.png") no-repeat top left;
     background-size: 140px 140px;
      width: 150px;
      height: 150px;
@@ -439,7 +439,7 @@ a.profile:hover
 
 a.manage
 {
-    background: url("../../Images/site/manage.gif") no-repeat top left;
+    background: url("/Images/site/manage.gif") no-repeat top left;
     background-size: 140px 140px;
      width: 150px;
      height: 150px;

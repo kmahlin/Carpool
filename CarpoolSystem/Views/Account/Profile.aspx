@@ -9,7 +9,7 @@
     <h2>Your Profile</h2>
 
     <object data="<%: Model.ImagePath%>" width="100" height="100">
-        <img src="../../Images/default_profile_image.gif" alt="Just testing." width="100" height="100">
+        <img src="/Images/default_profile_image.gif" alt="Just testing." width="100" height="100">
     </object>
 
 <%--    <img src = "<%: Model.ImagePath%>"

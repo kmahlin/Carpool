@@ -42,7 +42,7 @@
 
             <div class="inner1">
                 <div style="float: inherit; border: .1em solid black">
-                    <img src="../../Images/carpool.jpg" alt="File not found!" height="200px" width="200px" />
+                    <img src="/Images/carpool.jpg" alt="File not found!" height="200px" width="200px" />
                 </div>
             </div>
 
